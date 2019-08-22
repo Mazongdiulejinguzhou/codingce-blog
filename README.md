@@ -239,8 +239,6 @@
 
 如果大家需要与我交流，可以扫描下方二维码添加我的微信获取关注[我的公众号](#公众号)：
 
-![我的微信](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-2/JavaGuide.jpg)
-
 ### Contributor
 
 
