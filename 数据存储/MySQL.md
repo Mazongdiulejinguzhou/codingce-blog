@@ -2,7 +2,7 @@
 
 Java面试通关手册（Java学习指南，欢迎Star，会一直完善下去，欢迎建议和指导）：[https://github.com/Snailclimb/Java_Guide](https://github.com/Snailclimb/Java_Guide)
 
-> ## 书籍1
+> ## 书籍
 
 **《高性能MySQL : 第3版》**
 
