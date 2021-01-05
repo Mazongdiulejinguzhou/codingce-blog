@@ -1,0 +1,1667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head hexo-theme='https://github.com/volantis-x/hexo-theme-volantis/tree/4.2.0'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
+  
+    
+  
+  <!-- 渲染优化 -->
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- 页面元数据 -->
+  
+  <title>Java基础知识 - xzMhehe</title>
+  
+    <meta name="keywords" content="Java">
+  
+
+  
+
+  <!-- feed -->
+  
+
+  <!-- import meta -->
+  
+
+  <!-- link -->
+  
+
+  <!-- import link -->
+  
+
+  
+    
+<link rel="stylesheet" href="/css/first.css">
+
+  
+
+  
+  <link rel="stylesheet" href="/css/style.css" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="/css/style.css"></noscript>
+  
+
+  <script id="loadcss"></script>
+
+</head>
+
+<body>
+  
+
+<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
+  <div class='container'>
+  <div id='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h m-phone' id="pjax-header-nav-list">
+        <li><a id="s-comment" class="fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a id="s-toc" class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+            <img no-lazy class='logo' src='https://image.codingce.com.cn/icodingcelg.jpg'/>
+          
+          
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h m-pc'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/links/
+                  
+                  
+                  
+                    id="links"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h m-phone'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/links/
+                  
+                  
+                  
+                    id="links"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+  <div id="l_body">
+    <div id="l_cover">
+  
+    
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
+          
+            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg"></div>
+          
+          <div class='cover-body'>
+  <div class='top'>
+    
+    
+      <p class="title">全栈自学社区</p>
+    
+    
+  </div>
+  <div class='bottom'>
+    <div class='menu navigation'>
+      <div class='list-h'>
+        
+          
+            <a href="/"
+              
+              
+              id="home">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg'><p>博客</p>
+            </a>
+          
+            <a href="/archives/"
+              
+              
+              id="archives">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg'><p>归档</p>
+            </a>
+          
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+          <div id="scroll-down" style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
+        </div>
+    
+  
+  </div>
+
+    <div id='safearea'>
+      <div class='body-wrapper' id="pjax-container">
+        
+
+<div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
+  
+
+
+  
+  <div class="article-meta" id="top">
+    
+    
+    
+      <h1 class="title">
+        Java基础知识
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/" rel="nofollow">
+    <img no-lazy src="">
+    <p>请设置文章作者</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/Java/">Java</a>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Aug 1, 2020</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="Java基础知识" data-path="/2020/08/01/Java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
+      </div>
+    
+  </div>
+
+
+  
+  <!-- MarkdownTOC -->
+<ul>
+<li><a href="#1-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%92%8C%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B%E7%9A%84%E5%8C%BA%E5%88%AB">1. 面向对象和面向过程的区别</a>
+<ul>
+<li><a href="#%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B">面向过程</a></li>
+<li><a href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1">面向对象</a></li>
+</ul>
+</li>
+<li><a href="#2-java-%E8%AF%AD%E8%A8%80%E6%9C%89%E5%93%AA%E4%BA%9B%E7%89%B9%E7%82%B9">2. Java 语言有哪些特点</a></li>
+<li><a href="#3-%E5%85%B3%E4%BA%8E-jvm-jdk-%E5%92%8C-jre-%E6%9C%80%E8%AF%A6%E7%BB%86%E9%80%9A%E4%BF%97%E7%9A%84%E8%A7%A3%E7%AD%94">3. 关于 JVM JDK 和 JRE 最详细通俗的解答</a>
+<ul>
+<li><a href="#jvm">JVM</a></li>
+<li><a href="#jdk-%E5%92%8C-jre">JDK 和 JRE</a></li>
+</ul>
+</li>
+<li><a href="#4-oracle-jdk-%E5%92%8C-openjdk-%E7%9A%84%E5%AF%B9%E6%AF%94">4. Oracle JDK 和 OpenJDK 的对比</a></li>
+<li><a href="#5-java%E5%92%8Cc%E7%9A%84%E5%8C%BA%E5%88%AB">5. Java和C++的区别</a></li>
+<li><a href="#6-%E4%BB%80%E4%B9%88%E6%98%AF-java-%E7%A8%8B%E5%BA%8F%E7%9A%84%E4%B8%BB%E7%B1%BB-%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%92%8C%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%9A%84%E4%B8%BB%E7%B1%BB%E6%9C%89%E4%BD%95%E4%B8%8D%E5%90%8C">6. 什么是 Java 程序的主类 应用程序和小程序的主类有何不同</a></li>
+<li><a href="#7-java-%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E4%B8%8E%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E9%97%B4%E6%9C%89%E9%82%A3%E4%BA%9B%E5%B7%AE%E5%88%AB">7. Java 应用程序与小程序之间有那些差别</a></li>
+<li><a href="#8-%E5%AD%97%E7%AC%A6%E5%9E%8B%E5%B8%B8%E9%87%8F%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E7%9A%84%E5%8C%BA%E5%88%AB">8. 字符型常量和字符串常量的区别</a></li>
+<li><a href="#9-%E6%9E%84%E9%80%A0%E5%99%A8-constructor-%E6%98%AF%E5%90%A6%E5%8F%AF%E8%A2%AB-override">9. 构造器 Constructor 是否可被 override</a></li>
+<li><a href="#10-%E9%87%8D%E8%BD%BD%E5%92%8C%E9%87%8D%E5%86%99%E7%9A%84%E5%8C%BA%E5%88%AB">10. 重载和重写的区别</a></li>
+<li><a href="#11-java-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7-%E5%B0%81%E8%A3%85-%E7%BB%A7%E6%89%BF-%E5%A4%9A%E6%80%81">11. Java 面向对象编程三大特性: 封装 继承 多态</a>
+<ul>
+<li><a href="#%E5%B0%81%E8%A3%85">封装</a></li>
+<li><a href="#%E7%BB%A7%E6%89%BF">继承</a></li>
+<li><a href="#%E5%A4%9A%E6%80%81">多态</a></li>
+</ul>
+</li>
+<li><a href="#12-string-stringbuffer-%E5%92%8C-stringbuilder-%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88-string-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%8D%E5%8F%AF%E5%8F%98%E7%9A%84">12. String StringBuffer 和 StringBuilder 的区别是什么 String 为什么是不可变的</a></li>
+<li><a href="#13-%E8%87%AA%E5%8A%A8%E8%A3%85%E7%AE%B1%E4%B8%8E%E6%8B%86%E7%AE%B1">13. 自动装箱与拆箱</a></li>
+<li><a href="#14-%E5%9C%A8%E4%B8%80%E4%B8%AA%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95%E5%86%85%E8%B0%83%E7%94%A8%E4%B8%80%E4%B8%AA%E9%9D%9E%E9%9D%99%E6%80%81%E6%88%90%E5%91%98%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E9%9D%9E%E6%B3%95%E7%9A%84">14. 在一个静态方法内调用一个非静态成员为什么是非法的</a></li>
+<li><a href="#15-%E5%9C%A8-java-%E4%B8%AD%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E4%B8%8D%E5%81%9A%E4%BA%8B%E4%B8%94%E6%B2%A1%E6%9C%89%E5%8F%82%E6%95%B0%E7%9A%84%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95%E7%9A%84%E4%BD%9C%E7%94%A8">15. 在 Java 中定义一个不做事且没有参数的构造方法的作用</a></li>
+<li><a href="#16-import-java%E5%92%8Cjavax%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB">16. import java和javax有什么区别</a></li>
+<li><a href="#17-%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88">17.  接口和抽象类的区别是什么</a></li>
+<li><a href="#18-%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F%E4%B8%8E%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E7%9A%84%E5%8C%BA%E5%88%AB%E6%9C%89%E9%82%A3%E4%BA%9B">18.  成员变量与局部变量的区别有那些</a></li>
+<li><a href="#19-%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%E7%94%A8%E4%BB%80%E4%B9%88%E8%BF%90%E7%AE%97%E7%AC%A6%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BD%93%E4%B8%8E%E5%AF%B9%E8%B1%A1%E5%BC%95%E7%94%A8%E6%9C%89%E4%BD%95%E4%B8%8D%E5%90%8C">19. 创建一个对象用什么运算符?对象实体与对象引用有何不同?</a></li>
+<li><a href="#20-%E4%BB%80%E4%B9%88%E6%98%AF%E6%96%B9%E6%B3%95%E7%9A%84%E8%BF%94%E5%9B%9E%E5%80%BC%E8%BF%94%E5%9B%9E%E5%80%BC%E5%9C%A8%E7%B1%BB%E7%9A%84%E6%96%B9%E6%B3%95%E9%87%8C%E7%9A%84%E4%BD%9C%E7%94%A8%E6%98%AF%E4%BB%80%E4%B9%88">20. 什么是方法的返回值?返回值在类的方法里的作用是什么?</a></li>
+<li><a href="#21-%E4%B8%80%E4%B8%AA%E7%B1%BB%E7%9A%84%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95%E7%9A%84%E4%BD%9C%E7%94%A8%E6%98%AF%E4%BB%80%E4%B9%88-%E8%8B%A5%E4%B8%80%E4%B8%AA%E7%B1%BB%E6%B2%A1%E6%9C%89%E5%A3%B0%E6%98%8E%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95%E8%AF%A5%E7%A8%8B%E5%BA%8F%E8%83%BD%E6%AD%A3%E7%A1%AE%E6%89%A7%E8%A1%8C%E5%90%97-%E4%B8%BA%E4%BB%80%E4%B9%88">21. 一个类的构造方法的作用是什么 若一个类没有声明构造方法,该程序能正确执行吗 ?为什么?</a></li>
+<li><a href="#22-%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95%E6%9C%89%E5%93%AA%E4%BA%9B%E7%89%B9%E6%80%A7">22. 构造方法有哪些特性</a></li>
+<li><a href="#23-%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95%E5%92%8C%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95%E6%9C%89%E4%BD%95%E4%B8%8D%E5%90%8C">23. 静态方法和实例方法有何不同</a></li>
+<li><a href="#24-%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%9B%B8%E7%AD%89%E4%B8%8E%E6%8C%87%E5%90%91%E4%BB%96%E4%BB%AC%E7%9A%84%E5%BC%95%E7%94%A8%E7%9B%B8%E7%AD%89%E4%B8%A4%E8%80%85%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C">24. 对象的相等与指向他们的引用相等，两者有什么不同？</a></li>
+<li><a href="#25-%E5%9C%A8%E8%B0%83%E7%94%A8%E5%AD%90%E7%B1%BB%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95%E4%B9%8B%E5%89%8D%E4%BC%9A%E5%85%88%E8%B0%83%E7%94%A8%E7%88%B6%E7%B1%BB%E6%B2%A1%E6%9C%89%E5%8F%82%E6%95%B0%E7%9A%84%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95%E5%85%B6%E7%9B%AE%E7%9A%84%E6%98%AF">25. 在调用子类构造方法之前会先调用父类没有参数的构造方法，其目的是?</a></li>
+<li><a href="#26--%E4%B8%8E-equals%E9%87%8D%E8%A6%81">26.  == 与 equals(重要)</a></li>
+<li><a href="#27-hashcode-%E4%B8%8E-equals-%E9%87%8D%E8%A6%81">27. hashCode 与 equals (重要)</a>
+<ul>
+<li><a href="#hashcode%EF%BC%88%EF%BC%89%E4%BB%8B%E7%BB%8D">hashCode（）介绍</a></li>
+<li><a href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E6%9C%89-hashcode">为什么要有 hashCode</a></li>
+<li><a href="#hashcode%EF%BC%88%EF%BC%89%E4%B8%8Eequals%EF%BC%88%EF%BC%89%E7%9A%84%E7%9B%B8%E5%85%B3%E8%A7%84%E5%AE%9A">hashCode（）与equals（）的相关规定</a></li>
+</ul>
+</li>
+<li><a href="#28-%E4%B8%BA%E4%BB%80%E4%B9%88java%E4%B8%AD%E5%8F%AA%E6%9C%89%E5%80%BC%E4%BC%A0%E9%80%92">28. 为什么Java中只有值传递</a></li>
+<li><a href="#29-%E7%AE%80%E8%BF%B0%E7%BA%BF%E7%A8%8B%E7%A8%8B%E5%BA%8F%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E4%BB%A5%E5%8F%8A%E4%BB%96%E4%BB%AC%E4%B9%8B%E9%97%B4%E5%85%B3%E7%B3%BB%E6%98%AF%E4%BB%80%E4%B9%88">29. 简述线程，程序、进程的基本概念。以及他们之间关系是什么</a></li>
+<li><a href="#30-%E7%BA%BF%E7%A8%8B%E6%9C%89%E5%93%AA%E4%BA%9B%E5%9F%BA%E6%9C%AC%E7%8A%B6%E6%80%81">30. 线程有哪些基本状态?</a></li>
+<li><a href="#31-%E5%85%B3%E4%BA%8E-final-%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93">31 关于 final 关键字的一些总结</a></li>
+<li><a href="#32-java-%E4%B8%AD%E7%9A%84%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86">32 Java 中的异常处理</a>
+<ul>
+<li><a href="#java%E5%BC%82%E5%B8%B8%E7%B1%BB%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84%E5%9B%BE">Java异常类层次结构图</a></li>
+<li><a href="#throwable%E7%B1%BB%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95">Throwable类常用方法</a></li>
+<li><a href="#%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E6%80%BB%E7%BB%93">异常处理总结</a></li>
+</ul>
+</li>
+<li><a href="#33-java%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%AD%E5%A6%82%E6%9E%9C%E6%9C%89%E4%BA%9B%E5%AD%97%E6%AE%B5%E4%B8%8D%E6%83%B3%E8%BF%9B%E8%A1%8C%E5%BA%8F%E5%88%97%E5%8C%96-%E6%80%8E%E4%B9%88%E5%8A%9E">33 Java序列化中如果有些字段不想进行序列化 怎么办</a></li>
+<li><a href="#34-%E8%8E%B7%E5%8F%96%E7%94%A8%E9%94%AE%E7%9B%98%E8%BE%93%E5%85%A5%E5%B8%B8%E7%94%A8%E7%9A%84%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E6%B3%95">34 获取用键盘输入常用的的两种方法</a></li>
+<li><a href="#%E5%8F%82%E8%80%83">参考</a></li>
+</ul>
+<!-- /MarkdownTOC -->
+<h2 id="1-面向对象和面向过程的区别">1. 面向对象和面向过程的区别</h2>
+<h3 id="面向过程">面向过程</h3>
+<p><strong>优点：</strong> 性能比面向对象高，因为类调用时需要实例化，开销比较大，比较消耗资源;比如单片机、嵌入式开发、Linux/Unix等一般采用面向过程开发，性能是最重要的因素。</p>
+<p><strong>缺点：</strong> 没有面向对象易维护、易复用、易扩展</p>
+<h3 id="面向对象">面向对象</h3>
+<p><strong>优点：</strong> 易维护、易复用、易扩展，由于面向对象有封装、继承、多态性的特性，可以设计出低耦合的系统，使系统更加灵活、更加易于维护</p>
+<p><strong>缺点：</strong> 性能比面向过程低</p>
+<h2 id="2-Java-语言有哪些特点">2. Java 语言有哪些特点</h2>
+<ol>
+<li>简单易学；</li>
+<li>面向对象（封装，继承，多态）；</li>
+<li>平台无关性（ Java 虚拟机实现平台无关性）；</li>
+<li>可靠性；</li>
+<li>安全性；</li>
+<li>支持多线程（ C++ 语言没有内置的多线程机制，因此必须调用操作系统的多线程功能来进行多线程程序设计，而 Java 语言却提供了多线程支持）；</li>
+<li>支持网络编程并且很方便（ Java 语言诞生本身就是为简化网络编程设计的，因此 Java 语言不仅支持网络编程而且很方便）；</li>
+<li>编译与解释并存；</li>
+</ol>
+<h2 id="3-关于-JVM-JDK-和-JRE-最详细通俗的解答">3. 关于 JVM JDK 和 JRE 最详细通俗的解答</h2>
+<h3 id="JVM">JVM</h3>
+<p>Java虚拟机（JVM）是运行 Java 字节码的虚拟机。JVM有针对不同系统的特定实现（Windows，Linux，macOS），目的是使用相同的字节码，它们都会给出相同的结果。</p>
+<p><strong>什么是字节码?采用字节码的好处是什么?</strong></p>
+<blockquote>
+<p>在 Java 中，JVM可以理解的代码就叫做<code>字节码</code>（即扩展名为 <code>.class</code> 的文件），它不面向任何特定的处理器，只面向虚拟机。Java 语言通过字节码的方式，在一定程度上解决了传统解释型语言执行效率低的问题，同时又保留了解释型语言可移植的特点。所以 Java 程序运行时比较高效，而且，由于字节码并不专对一种特定的机器，因此，Java程序无须重新编译便可在多种不同的计算机上运行。</p>
+</blockquote>
+<p><strong>Java 程序从源代码到运行一般有下面3步：</strong></p>
+<p><img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/Java%20%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E8%BF%87%E7%A8%8B.png" class="lazyload" data-srcset="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/Java%20%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E8%BF%87%E7%A8%8B.png" srcset="data:image/png;base64,666" alt="Java程序运行过程"></p>
+<p>我们需要格外注意的是 .class-&gt;机器码 这一步。在这一步 jvm 类加载器首先加载字节码文件，然后通过解释器逐行解释执行，这种方式的执行速度会相对比较慢。而且，有些方法和代码块是经常需要被调用的，也就是所谓的热点代码，所以后面引进了 JIT 编译器，JIT 属于运行时编译。当 JIT 编译器完成第一次编译后，其会将字节码对应的机器码保存下来，下次可以直接使用。而我们知道，机器码的运行效率肯定是高于 Java 解释器的。这也解释了我们为什么经常会说 Java 是编译与解释共存的语言。</p>
+<blockquote>
+<p>HotSpot采用了惰性评估(Lazy Evaluation)的做法，根据二八定律，消耗大部分系统资源的只有那一小部分的代码（热点代码），而这也就是JIT所需要编译的部分。JVM会根据代码每次被执行的情况收集信息并相应地做出一些优化，因此执行的次数越多，它的速度就越快。JDK 9引入了一种新的编译模式AOT(Ahead of Time Compilation)，它是直接将字节码编译成机器码，这样就避免了JIT预热等各方面的开销。JDK支持分层编译和AOT协作使用。但是 ，AOT 编译器的编译质量是肯定比不上 JIT 编译器的。</p>
+</blockquote>
+<p>总结：Java虚拟机（JVM）是运行 Java 字节码的虚拟机。JVM有针对不同系统的特定实现（Windows，Linux，macOS），目的是使用相同的字节码，它们都会给出相同的结果。字节码和不同系统的 JVM  实现是 Java 语言“一次编译，随处可以运行”的关键所在。</p>
+<h3 id="JDK-和-JRE">JDK 和 JRE</h3>
+<p>JDK是Java Development Kit，它是功能齐全的Java SDK。它拥有JRE所拥有的一切，还有编译器（javac）和工具（如javadoc和jdb）。它能够创建和编译程序。</p>
+<p>JRE 是 Java运行时环境。它是运行已编译 Java 程序所需的所有内容的集合，包括 Java虚拟机（JVM），Java类库，java命令和其他的一些基础构件。但是，它不能用于创建新程序。</p>
+<p>如果你只是为了运行一下 Java 程序的话，那么你只需要安装 JRE 就可以了。如果你需要进行一些 Java 编程方面的工作，那么你就需要安装JDK了。但是，这不是绝对的。有时，即使您不打算在计算机上进行任何Java开发，仍然需要安装JDK。例如，如果要使用JSP部署Web应用程序，那么从技术上讲，您只是在应用程序服务器中运行Java程序。那你为什么需要JDK呢？因为应用程序服务器会将 JSP 转换为 Java servlet，并且需要使用 JDK 来编译 servlet。</p>
+<h2 id="4-Oracle-JDK-和-OpenJDK-的对比">4. Oracle JDK 和 OpenJDK 的对比</h2>
+<p>可能在看这个问题之前很多人和我一样并没有接触和使用过  OpenJDK 。那么Oracle和OpenJDK之间是否存在重大差异？下面通过我通过我收集到一些资料对你解答这个被很多人忽视的问题。</p>
+<p>对于Java 7，没什么关键的地方。OpenJDK项目主要基于Sun捐赠的HotSpot源代码。此外，OpenJDK被选为Java 7的参考实现，由Oracle工程师维护。关于JVM，JDK，JRE和OpenJDK之间的区别，Oracle博客帖子在2012年有一个更详细的答案：</p>
+<blockquote>
+<p>问：OpenJDK存储库中的源代码与用于构建Oracle JDK的代码之间有什么区别？</p>
+<p>答：非常接近 - 我们的Oracle JDK版本构建过程基于OpenJDK 7构建，只添加了几个部分，例如部署代码，其中包括Oracle的Java插件和Java WebStart的实现，以及一些封闭的源代码派对组件，如图形光栅化器，一些开源的第三方组件，如Rhino，以及一些零碎的东西，如附加文档或第三方字体。展望未来，我们的目的是开源Oracle JDK的所有部分，除了我们考虑商业功能的部分。</p>
+</blockquote>
+<p>总结：</p>
+<ol>
+<li>Oracle JDK版本将每三年发布一次，而OpenJDK版本每三个月发布一次；</li>
+<li>OpenJDK 是一个参考模型并且是完全开源的，而Oracle JDK是OpenJDK的一个实现，并不是完全开源的；</li>
+<li>Oracle JDK 比 OpenJDK 更稳定。OpenJDK和Oracle JDK的代码几乎相同，但Oracle JDK有更多的类和一些错误修复。因此，如果您想开发企业/商业软件，我建议您选择Oracle JDK，因为它经过了彻底的测试和稳定。某些情况下，有些人提到在使用OpenJDK 可能会遇到了许多应用程序崩溃的问题，但是，只需切换到Oracle JDK就可以解决问题；</li>
+<li>在响应性和JVM性能方面，Oracle JDK与OpenJDK相比提供了更好的性能；</li>
+<li>Oracle JDK不会为即将发布的版本提供长期支持，用户每次都必须通过更新到最新版本获得支持来获取最新版本；</li>
+<li>Oracle JDK根据二进制代码许可协议获得许可，而OpenJDK根据GPL v2许可获得许可。</li>
+</ol>
+<h2 id="5-Java和C-的区别">5. Java和C++的区别</h2>
+<p>我知道很多人没学过 C++，但是面试官就是没事喜欢拿咱们 Java 和 C++ 比呀！没办法！！！就算没学过C++，也要记下来！</p>
+<ul>
+<li>都是面向对象的语言，都支持封装、继承和多态</li>
+<li>Java 不提供指针来直接访问内存，程序内存更加安全</li>
+<li>Java 的类是单继承的，C++ 支持多重继承；虽然 Java 的类不可以多继承，但是接口可以多继承。</li>
+<li>Java 有自动内存管理机制，不需要程序员手动释放无用内存</li>
+</ul>
+<h2 id="6-什么是-Java-程序的主类-应用程序和小程序的主类有何不同">6. 什么是 Java 程序的主类 应用程序和小程序的主类有何不同</h2>
+<p>一个程序中可以有多个类，但只能有一个类是主类。在 Java 应用程序中，这个主类是指包含 main（）方法的类。而在 Java 小程序中，这个主类是一个继承自系统类 JApplet 或 Applet 的子类。应用程序的主类不一定要求是 public 类，但小程序的主类要求必须是 public 类。主类是 Java 程序执行的入口点。</p>
+<h2 id="7-Java-应用程序与小程序之间有那些差别">7. Java 应用程序与小程序之间有那些差别</h2>
+<p>简单说应用程序是从主线程启动(也就是 main() 方法)。applet 小程序没有main方法，主要是嵌在浏览器页面上运行(调用init()线程或者run()来启动)，嵌入浏览器这点跟 flash 的小游戏类似。</p>
+<h2 id="8-字符型常量和字符串常量的区别">8. 字符型常量和字符串常量的区别</h2>
+<ol>
+<li>形式上: 字符常量是单引号引起的一个字符 字符串常量是双引号引起的若干个字符</li>
+<li>含义上: 字符常量相当于一个整形值( ASCII 值),可以参加表达式运算 字符串常量代表一个地址值(该字符串在内存中存放位置)</li>
+<li>占内存大小 字符常量只占2个字节 字符串常量占若干个字节(至少一个字符结束标志) (<strong>注意： char在Java中占两个字节</strong>)</li>
+</ol>
+<blockquote>
+<p>java编程思想第四版：2.2.2节<br>
+<img src="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-15/86735519.jpg" class="lazyload" data-srcset="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-15/86735519.jpg" srcset="data:image/png;base64,666" alt=""></p>
+</blockquote>
+<h2 id="9-构造器-Constructor-是否可被-override">9. 构造器 Constructor 是否可被 override</h2>
+<p>在讲继承的时候我们就知道父类的私有属性和构造方法并不能被继承，所以 Constructor 也就不能被 override（重写）,但是可以 overload（重载）,所以你可以看到一个类中有多个构造函数的情况。</p>
+<h2 id="10-重载和重写的区别">10. 重载和重写的区别</h2>
+<p><strong>重载：</strong> 发生在同一个类中，方法名必须相同，参数类型不同、个数不同、顺序不同，方法返回值和访问修饰符可以不同，发生在编译时。</p>
+<p><strong>重写：</strong>   发生在父子类中，方法名、参数列表必须相同，返回值范围小于等于父类，抛出的异常范围小于等于父类，访问修饰符范围大于等于父类；如果父类方法访问修饰符为 private 则子类就不能重写该方法。</p>
+<h2 id="11-Java-面向对象编程三大特性-封装-继承-多态">11. Java 面向对象编程三大特性: 封装 继承 多态</h2>
+<h3 id="封装">封装</h3>
+<p>封装把一个对象的属性私有化，同时提供一些可以被外界访问的属性的方法，如果属性不想被外界访问，我们大可不必提供方法给外界访问。但是如果一个类没有提供给外界访问的方法，那么这个类也没有什么意义了。</p>
+<h3 id="继承">继承</h3>
+<p>继承是使用已存在的类的定义作为基础建立新类的技术，新类的定义可以增加新的数据或新的功能，也可以用父类的功能，但不能选择性地继承父类。通过使用继承我们能够非常方便地复用以前的代码。</p>
+<p><strong>关于继承如下 3 点请记住：</strong></p>
+<ol>
+<li>子类拥有父类非 private 的属性和方法。</li>
+<li>子类可以拥有自己属性和方法，即子类可以对父类进行扩展。</li>
+<li>子类可以用自己的方式实现父类的方法。（以后介绍）。</li>
+</ol>
+<h3 id="多态">多态</h3>
+<p>所谓多态就是指程序中定义的引用变量所指向的具体类型和通过该引用变量发出的方法调用在编程时并不确定，而是在程序运行期间才确定，即一个引用变量到底会指向哪个类的实例对象，该引用变量发出的方法调用到底是哪个类中实现的方法，必须在由程序运行期间才能决定。</p>
+<p>在Java中有两种形式可以实现多态：继承（多个子类对同一方法的重写）和接口（实现接口并覆盖接口中同一方法）。</p>
+<h2 id="12-String-StringBuffer-和-StringBuilder-的区别是什么-String-为什么是不可变的">12. String StringBuffer 和 StringBuilder 的区别是什么 String 为什么是不可变的</h2>
+<p><strong>可变性</strong></p>
+<p>简单的来说：String 类中使用 final 关键字字符数组保存字符串，<code>private　final　char　value[]</code>，所以 String 对象是不可变的。而StringBuilder 与 StringBuffer 都继承自 AbstractStringBuilder 类，在 AbstractStringBuilder 中也是使用字符数组保存字符串<code>char[]value</code> 但是没有用 final 关键字修饰，所以这两种对象都是可变的。</p>
+<p>StringBuilder 与 StringBuffer 的构造方法都是调用父类构造方法也就是 AbstractStringBuilder 实现的，大家可以自行查阅源码。</p>
+<p>AbstractStringBuilder.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractStringBuilder</span> <span class="keyword">implements</span> <span class="title">Appendable</span>, <span class="title">CharSequence</span> </span>&#123;</span><br><span class="line">    <span class="keyword">char</span>[] value;</span><br><span class="line">    <span class="keyword">int</span> count;</span><br><span class="line">    AbstractStringBuilder() &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    AbstractStringBuilder(<span class="keyword">int</span> capacity) &#123;</span><br><span class="line">        value = <span class="keyword">new</span> <span class="keyword">char</span>[capacity];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>线程安全性</strong></p>
+<p>String 中的对象是不可变的，也就可以理解为常量，线程安全。AbstractStringBuilder 是 StringBuilder 与 StringBuffer 的公共父类，定义了一些字符串的基本操作，如 expandCapacity、append、insert、indexOf 等公共方法。StringBuffer 对方法加了同步锁或者对调用的方法加了同步锁，所以是线程安全的。StringBuilder 并没有对方法进行加同步锁，所以是非线程安全的。</p>
+<p><strong>性能</strong></p>
+<p>每次对 String 类型进行改变的时候，都会生成一个新的 String 对象，然后将指针指向新的 String 对象。StringBuffer 每次都会对 StringBuffer 对象本身进行操作，而不是生成新的对象并改变对象引用。相同情况下使用 StringBuilder 相比使用 StringBuffer 仅能获得 10%~15% 左右的性能提升，但却要冒多线程不安全的风险。</p>
+<p><strong>对于三者使用的总结：</strong></p>
+<ol>
+<li>操作少量的数据 = String</li>
+<li>单线程操作字符串缓冲区下操作大量数据 = StringBuilder</li>
+<li>多线程操作字符串缓冲区下操作大量数据 = StringBuffer</li>
+</ol>
+<h2 id="13-自动装箱与拆箱">13. 自动装箱与拆箱</h2>
+<p><strong>装箱</strong>：将基本类型用它们对应的引用类型包装起来；</p>
+<p><strong>拆箱</strong>：将包装类型转换为基本数据类型；</p>
+<h2 id="14-在一个静态方法内调用一个非静态成员为什么是非法的">14. 在一个静态方法内调用一个非静态成员为什么是非法的</h2>
+<p>由于静态方法可以不通过对象进行调用，因此在静态方法里，不能调用其他非静态变量，也不可以访问非静态变量成员。</p>
+<h2 id="15-在-Java-中定义一个不做事且没有参数的构造方法的作用">15. 在 Java 中定义一个不做事且没有参数的构造方法的作用</h2>
+<p>Java 程序在执行子类的构造方法之前，如果没有用 super() 来调用父类特定的构造方法，则会调用父类中“没有参数的构造方法”。因此，如果父类中只定义了有参数的构造方法，而在子类的构造方法中又没有用 super() 来调用父类中特定的构造方法，则编译时将发生错误，因为 Java 程序在父类中找不到没有参数的构造方法可供执行。解决办法是在父类里加上一个不做事且没有参数的构造方法。</p>
+<h2 id="16-import-java和javax有什么区别">16. import java和javax有什么区别</h2>
+<p>刚开始的时候 JavaAPI 所必需的包是 java 开头的包，javax 当时只是扩展 API 包来说使用。然而随着时间的推移，javax 逐渐的扩展成为 Java API 的组成部分。但是，将扩展从 javax 包移动到 java 包将是太麻烦了，最终会破坏一堆现有的代码。因此，最终决定 javax 包将成为标准API的一部分。</p>
+<p>所以，实际上java和javax没有区别。这都是一个名字。</p>
+<h2 id="17-接口和抽象类的区别是什么">17. 接口和抽象类的区别是什么</h2>
+<ol>
+<li>接口的方法默认是 public，所有方法在接口中不能有实现(Java 8 开始接口方法可以有默认实现），抽象类可以有非抽象的方法</li>
+<li>接口中的实例变量默认是 final 类型的，而抽象类中则不一定</li>
+<li>一个类可以实现多个接口，但最多只能实现一个抽象类</li>
+<li>一个类实现接口的话要实现接口的所有方法，而抽象类不一定</li>
+<li>接口不能用 new 实例化，但可以声明，但是必须引用一个实现该接口的对象 从设计层面来说，抽象是对类的抽象，是一种模板设计，接口是行为的抽象，是一种行为的规范。</li>
+</ol>
+<p>备注:在JDK8中，接口也可以定义静态方法，可以直接用接口名调用。实现类和实现是不可以调用的。如果同时实现两个接口，接口中定义了一样的默认方法，必须重写，不然会报错。(详见issue:<a href="https://github.com/Snailclimb/JavaGuide/issues/146" target="_blank" rel="noopener">https://github.com/Snailclimb/JavaGuide/issues/146</a>)</p>
+<h2 id="18-成员变量与局部变量的区别有那些">18. 成员变量与局部变量的区别有那些</h2>
+<ol>
+<li>从语法形式上，看成员变量是属于类的，而局部变量是在方法中定义的变量或是方法的参数；成员变量可以被 public,private,static 等修饰符所修饰，而局部变量不能被访问控制修饰符及 static 所修饰；但是，成员变量和局部变量都能被 final 所修饰；</li>
+<li>从变量在内存中的存储方式来看:如果成员变量是使用<code>static</code>修饰的，那么这个成员变量是属于类的，如果没有使用使用<code>static</code>修饰，这个成员变量是属于实例的。而对象存在于堆内存，局部变量存在于栈内存</li>
+<li>从变量在内存中的生存时间上看:成员变量是对象的一部分，它随着对象的创建而存在，而局部变量随着方法的调用而自动消失。</li>
+<li>成员变量如果没有被赋初值:则会自动以类型的默认值而赋值（一种情况例外被 final 修饰的成员变量也必须显示地赋值）；而局部变量则不会自动赋值。</li>
+</ol>
+<h2 id="19-创建一个对象用什么运算符-对象实体与对象引用有何不同">19. 创建一个对象用什么运算符?对象实体与对象引用有何不同?</h2>
+<p>new运算符，new创建对象实例（对象实例在堆内存中），对象引用指向对象实例（对象引用存放在栈内存中）。一个对象引用可以指向0个或1个对象（一根绳子可以不系气球，也可以系一个气球）;一个对象可以有n个引用指向它（可以用n条绳子系住一个气球）。</p>
+<h2 id="20-什么是方法的返回值-返回值在类的方法里的作用是什么">20. 什么是方法的返回值?返回值在类的方法里的作用是什么?</h2>
+<p>方法的返回值是指我们获取到的某个方法体中的代码执行后产生的结果！（前提是该方法可能产生结果）。返回值的作用:接收出结果，使得它可以用于其他的操作！</p>
+<h2 id="21-一个类的构造方法的作用是什么-若一个类没有声明构造方法-该程序能正确执行吗-为什么">21. 一个类的构造方法的作用是什么 若一个类没有声明构造方法,该程序能正确执行吗 ?为什么?</h2>
+<p>主要作用是完成对类对象的初始化工作。可以执行。因为一个类即使没有声明构造方法也会有默认的不带参数的构造方法。</p>
+<h2 id="22-构造方法有哪些特性">22. 构造方法有哪些特性</h2>
+<ol>
+<li>名字与类名相同；</li>
+<li>没有返回值，但不能用void声明构造函数；</li>
+<li>生成类的对象时自动执行，无需调用。</li>
+</ol>
+<h2 id="23-静态方法和实例方法有何不同">23. 静态方法和实例方法有何不同</h2>
+<ol>
+<li>
+<p>在外部调用静态方法时，可以使用&quot;类名.方法名&quot;的方式，也可以使用&quot;对象名.方法名&quot;的方式。而实例方法只有后面这种方式。也就是说，调用静态方法可以无需创建对象。</p>
+</li>
+<li>
+<p>静态方法在访问本类的成员时，只允许访问静态成员（即静态成员变量和静态方法），而不允许访问实例成员变量和实例方法；实例方法则无此限制.</p>
+</li>
+</ol>
+<h2 id="24-对象的相等与指向他们的引用相等-两者有什么不同">24. 对象的相等与指向他们的引用相等,两者有什么不同?</h2>
+<p>对象的相等，比的是内存中存放的内容是否相等。而引用相等，比较的是他们指向的内存地址是否相等。</p>
+<h2 id="25-在调用子类构造方法之前会先调用父类没有参数的构造方法-其目的是">25. 在调用子类构造方法之前会先调用父类没有参数的构造方法,其目的是?</h2>
+<p>帮助子类做初始化工作。</p>
+<h2 id="26-与-equals-重要">26. == 与 equals(重要)</h2>
+<p><strong>==</strong> : 它的作用是判断两个对象的地址是不是相等。即，判断两个对象是不是同一个对象。(基本数据类型==比较的是值，引用数据类型==比较的是内存地址)</p>
+<p><strong>equals()</strong> : 它的作用也是判断两个对象是否相等。但它一般有两种使用情况：</p>
+<ul>
+<li>情况1：类没有覆盖 equals() 方法。则通过 equals() 比较该类的两个对象时，等价于通过“==”比较这两个对象。</li>
+<li>情况2：类覆盖了 equals() 方法。一般，我们都覆盖 equals() 方法来两个对象的内容相等；若它们的内容相等，则返回 true (即，认为这两个对象相等)。</li>
+</ul>
+<p><strong>举个例子：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test1</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String a = <span class="keyword">new</span> String(<span class="string">"ab"</span>); <span class="comment">// a 为一个引用</span></span><br><span class="line">        String b = <span class="keyword">new</span> String(<span class="string">"ab"</span>); <span class="comment">// b为另一个引用,对象的内容一样</span></span><br><span class="line">        String aa = <span class="string">"ab"</span>; <span class="comment">// 放在常量池中</span></span><br><span class="line">        String bb = <span class="string">"ab"</span>; <span class="comment">// 从常量池中查找</span></span><br><span class="line">        <span class="keyword">if</span> (aa == bb) <span class="comment">// true</span></span><br><span class="line">            System.out.println(<span class="string">"aa==bb"</span>);</span><br><span class="line">        <span class="keyword">if</span> (a == b) <span class="comment">// false，非同一对象</span></span><br><span class="line">            System.out.println(<span class="string">"a==b"</span>);</span><br><span class="line">        <span class="keyword">if</span> (a.equals(b)) <span class="comment">// true</span></span><br><span class="line">            System.out.println(<span class="string">"aEQb"</span>);</span><br><span class="line">        <span class="keyword">if</span> (<span class="number">42</span> == <span class="number">42.0</span>) &#123; <span class="comment">// true</span></span><br><span class="line">            System.out.println(<span class="string">"true"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>说明：</strong></p>
+<ul>
+<li>String 中的 equals 方法是被重写过的，因为 object 的 equals 方法是比较的对象的内存地址，而 String 的 equals 方法比较的是对象的值。</li>
+<li>当创建 String 类型的对象时，虚拟机会在常量池中查找有没有已经存在的值和要创建的值相同的对象，如果有就把它赋给当前引用。如果没有就在常量池中重新创建一个 String 对象。</li>
+</ul>
+<h2 id="27-hashCode-与-equals-重要">27. hashCode 与 equals (重要)</h2>
+<p>面试官可能会问你：“你重写过 hashcode 和 equals 么，为什么重写equals时必须重写hashCode方法？”</p>
+<h3 id="hashCode（）介绍">hashCode（）介绍</h3>
+<p>hashCode() 的作用是获取哈希码，也称为散列码；它实际上是返回一个int整数。这个哈希码的作用是确定该对象在哈希表中的索引位置。hashCode() 定义在JDK的Object.java中，这就意味着Java中的任何类都包含有hashCode() 函数。</p>
+<p>散列表存储的是键值对(key-value)，它的特点是：能根据“键”快速的检索出对应的“值”。这其中就利用到了散列码！（可以快速找到所需要的对象）</p>
+<h3 id="为什么要有-hashCode">为什么要有 hashCode</h3>
+<p><strong>我们以“HashSet 如何检查重复”为例子来说明为什么要有 hashCode：</strong></p>
+<p>当你把对象加入 HashSet 时，HashSet 会先计算对象的 hashcode 值来判断对象加入的位置，同时也会与其他已经加入的对象的 hashcode 值作比较，如果没有相符的hashcode，HashSet会假设对象没有重复出现。但是如果发现有相同 hashcode 值的对象，这时会调用 equals（）方法来检查 hashcode 相等的对象是否真的相同。如果两者相同，HashSet 就不会让其加入操作成功。如果不同的话，就会重新散列到其他位置。（摘自我的Java启蒙书《Head first java》第二版）。这样我们就大大减少了 equals 的次数，相应就大大提高了执行速度。</p>
+<h3 id="hashCode（）与equals（）的相关规定">hashCode（）与equals（）的相关规定</h3>
+<ol>
+<li>如果两个对象相等，则hashcode一定也是相同的</li>
+<li>两个对象相等,对两个对象分别调用equals方法都返回true</li>
+<li>两个对象有相同的hashcode值，它们也不一定是相等的</li>
+<li><strong>因此，equals 方法被覆盖过，则 hashCode 方法也必须被覆盖</strong></li>
+<li>hashCode() 的默认行为是对堆上的对象产生独特值。如果没有重写 hashCode()，则该 class 的两个对象无论如何都不会相等（即使这两个对象指向相同的数据）</li>
+</ol>
+<h2 id="28-为什么Java中只有值传递">28. 为什么Java中只有值传递</h2>
+<p><a href="https://github.com/Snailclimb/JavaGuide/blob/master/EssentialContentForInterview/MostCommonJavaInterviewQuestions/%E7%AC%AC%E4%B8%80%E5%91%A8%EF%BC%882018-8-7%EF%BC%89.md" target="_blank" rel="noopener">为什么Java中只有值传递？</a></p>
+<h2 id="29-简述线程-程序-进程的基本概念-以及他们之间关系是什么">29. 简述线程,程序,进程的基本概念.以及他们之间关系是什么?</h2>
+<p><strong>线程</strong>与进程相似，但线程是一个比进程更小的执行单位。一个进程在其执行的过程中可以产生多个线程。与进程不同的是同类的多个线程共享同一块内存空间和一组系统资源，所以系统在产生一个线程，或是在各个线程之间作切换工作时，负担要比进程小得多，也正因为如此，线程也被称为轻量级进程。</p>
+<p><strong>程序</strong>是含有指令和数据的文件，被存储在磁盘或其他的数据存储设备中，也就是说程序是静态的代码。</p>
+<p><strong>进程</strong>是程序的一次执行过程，是系统运行程序的基本单位，因此进程是动态的。系统运行一个程序即是一个进程从创建，运行到消亡的过程。简单来说，一个进程就是一个执行中的程序，它在计算机中一个指令接着一个指令地执行着，同时，每个进程还占有某些系统资源如CPU时间，内存空间，文件，文件，输入输出设备的使用权等等。换句话说，当程序在执行时，将会被操作系统载入内存中。<br>
+线程是进程划分成的更小的运行单位。线程和进程最大的不同在于基本上各进程是独立的，而各线程则不一定，因为同一进程中的线程极有可能会相互影响。从另一角度来说，进程属于操作系统的范畴，主要是同一段时间内，可以同时执行一个以上的程序，而线程则是在同一程序内几乎同时执行一个以上的程序段。</p>
+<h2 id="30-线程有哪些基本状态">30. 线程有哪些基本状态?</h2>
+<p>Java 线程在运行的生命周期中的指定时刻只可能处于下面6种不同状态的其中一个状态（图源《Java 并发编程艺术》4.1.4节）。</p>
+<p><img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/19-1-29/Java%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%8A%B6%E6%80%81.png" class="lazyload" data-srcset="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/19-1-29/Java%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%8A%B6%E6%80%81.png" srcset="data:image/png;base64,666" alt="Java线程的状态"></p>
+<p>线程在生命周期中并不是固定处于某一个状态而是随着代码的执行在不同状态之间切换。Java 线程状态变迁如下图所示（图源《Java 并发编程艺术》4.1.4节）：</p>
+<p><img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/19-1-29/Java%20%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81%E5%8F%98%E8%BF%81.png" class="lazyload" data-srcset="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/19-1-29/Java%20%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81%E5%8F%98%E8%BF%81.png" srcset="data:image/png;base64,666" alt="Java线程状态变迁"></p>
+<p>由上图可以看出：</p>
+<p>线程创建之后它将处于 <strong>NEW（新建）</strong> 状态，调用 <code>start()</code> 方法后开始运行，线程这时候处于 <strong>READY（可运行）</strong> 状态。可运行状态的线程获得了 cpu 时间片（timeslice）后就处于 <strong>RUNNING（运行）</strong> 状态。</p>
+<blockquote>
+<p>操作系统隐藏 Java虚拟机（JVM）中的 RUNNABLE 和 RUNNING 状态，它只能看到 RUNNABLE 状态（图源：<a href="https://howtodoinjava.com/" target="_blank" rel="noopener">HowToDoInJava</a>：<a href="https://howtodoinjava.com/java/multi-threading/java-thread-life-cycle-and-thread-states/" target="_blank" rel="noopener">Java Thread Life Cycle and Thread States</a>），所以 Java 系统一般将这两个状态统称为 <strong>RUNNABLE（运行中）</strong> 状态 。</p>
+</blockquote>
+<p><img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3/RUNNABLE-VS-RUNNING.png" class="lazyload" data-srcset="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3/RUNNABLE-VS-RUNNING.png" srcset="data:image/png;base64,666" alt="RUNNABLE-VS-RUNNING"></p>
+<p>当线程执行 <code>wait()</code>方法之后，线程进入 **WAITING（等待）**状态。进入等待状态的线程需要依靠其他线程的通知才能够返回到运行状态，而 <strong>TIME_WAITING(超时等待)</strong> 状态相当于在等待状态的基础上增加了超时限制，比如通过 <code>sleep（long millis）</code>方法或 <code>wait（long millis）</code>方法可以将 Java 线程置于 TIMED WAITING 状态。当超时时间到达后 Java 线程将会返回到 RUNNABLE 状态。当线程调用同步方法时，在没有获取到锁的情况下，线程将会进入到 <strong>BLOCKED（阻塞）</strong> 状态。线程在执行 Runnable 的<code>run()</code>方法之后将会进入到 <strong>TERMINATED（终止）</strong> 状态。</p>
+<h2 id="31-关于-final-关键字的一些总结">31 关于 final 关键字的一些总结</h2>
+<p>final关键字主要用在三个地方：变量、方法、类。</p>
+<ol>
+<li>对于一个final变量，如果是基本数据类型的变量，则其数值一旦在初始化之后便不能更改；如果是引用类型的变量，则在对其初始化之后便不能再让其指向另一个对象。</li>
+<li>当用final修饰一个类时，表明这个类不能被继承。final类中的所有成员方法都会被隐式地指定为final方法。</li>
+<li>使用final方法的原因有两个。第一个原因是把方法锁定，以防任何继承类修改它的含义；第二个原因是效率。在早期的Java实现版本中，会将final方法转为内嵌调用。但是如果方法过于庞大，可能看不到内嵌调用带来的任何性能提升（现在的Java版本已经不需要使用final方法进行这些优化了）。类中所有的private方法都隐式地指定为final。</li>
+</ol>
+<h2 id="32-Java-中的异常处理">32 Java 中的异常处理</h2>
+<h3 id="Java异常类层次结构图">Java异常类层次结构图</h3>
+<p><img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-2/Exception.png" class="lazyload" data-srcset="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-2/Exception.png" srcset="data:image/png;base64,666" alt="Java异常类层次结构图"><br>
+在 Java 中，所有的异常都有一个共同的祖先java.lang包中的 <strong>Throwable类</strong>。Throwable： 有两个重要的子类：<strong>Exception（异常）</strong> 和 <strong>Error（错误）</strong> ，二者都是 Java 异常处理的重要子类，各自都包含大量子类。</p>
+<p><strong>Error（错误）:是程序无法处理的错误</strong>，表示运行应用程序中较严重问题。大多数错误与代码编写者执行的操作无关，而表示代码运行时 JVM（Java 虚拟机）出现的问题。例如，Java虚拟机运行错误（Virtual MachineError），当 JVM 不再有继续执行操作所需的内存资源时，将出现 OutOfMemoryError。这些异常发生时，Java虚拟机（JVM）一般会选择线程终止。</p>
+<p>这些错误表示故障发生于虚拟机自身、或者发生在虚拟机试图执行应用时，如Java虚拟机运行错误（Virtual MachineError）、类定义错误（NoClassDefFoundError）等。这些错误是不可查的，因为它们在应用程序的控制和处理能力之 外，而且绝大多数是程序运行时不允许出现的状况。对于设计合理的应用程序来说，即使确实发生了错误，本质上也不应该试图去处理它所引起的异常状况。在 Java中，错误通过Error的子类描述。</p>
+<p><strong>Exception（异常）:是程序本身可以处理的异常</strong>。</font>Exception 类有一个重要的子类 <strong>RuntimeException</strong>。RuntimeException 异常由Java虚拟机抛出。<strong>NullPointerException</strong>（要访问的变量没有引用任何对象时，抛出该异常）、<strong>ArithmeticException</strong>（算术运算异常，一个整数除以0时，抛出该异常）和 <strong>ArrayIndexOutOfBoundsException</strong> （下标越界异常）。</p>
+<p><strong>注意：异常和错误的区别：异常能被程序本身可以处理，错误是无法处理。</strong></p>
+<h3 id="Throwable类常用方法">Throwable类常用方法</h3>
+<ul>
+<li><strong>public string getMessage()</strong>:返回异常发生时的详细信息</li>
+<li><strong>public string toString()</strong>:返回异常发生时的简要描述</li>
+<li><strong>public string getLocalizedMessage()</strong>:返回异常对象的本地化信息。使用Throwable的子类覆盖这个方法，可以声称本地化信息。如果子类没有覆盖该方法，则该方法返回的信息与getMessage（）返回的结果相同</li>
+<li><strong>public void printStackTrace()</strong>:在控制台上打印Throwable对象封装的异常信息</li>
+</ul>
+<h3 id="异常处理总结">异常处理总结</h3>
+<ul>
+<li>**try 块：**用于捕获异常。其后可接零个或多个catch块，如果没有catch块，则必须跟一个finally块。</li>
+<li>**catch 块：**用于处理try捕获到的异常。</li>
+<li>**finally 块：**无论是否捕获或处理异常，finally块里的语句都会被执行。当在try块或catch块中遇到return语句时，finally语句块将在方法返回之前被执行。</li>
+</ul>
+<p><strong>在以下4种特殊情况下，finally块不会被执行：</strong></p>
+<ol>
+<li>在finally语句块第一行发生了异常。 因为在其他行，finally块还是会得到执行</li>
+<li>在前面的代码中用了System.exit(int)已退出程序。 exit是带参函数 ；若该语句在异常语句之后，finally会执行</li>
+<li>程序所在的线程死亡。</li>
+<li>关闭CPU。</li>
+</ol>
+<p>下面这部分内容来自issue:<a href="https://github.com/Snailclimb/JavaGuide/issues/190" target="_blank" rel="noopener">https://github.com/Snailclimb/JavaGuide/issues/190</a>。</p>
+<p><strong>关于返回值：</strong></p>
+<p>如果try语句里有return，返回的是try语句块中变量值。<br>
+详细执行过程如下：</p>
+<ol>
+<li>如果有返回值，就把返回值保存到局部变量中；</li>
+<li>执行jsr指令跳到finally语句里执行；</li>
+<li>执行完finally语句后，返回之前保存在局部变量表里的值。</li>
+<li>如果try，finally语句里均有return，忽略try的return，而使用finally的return.</li>
+</ol>
+<h2 id="33-Java序列化中如果有些字段不想进行序列化-怎么办">33 Java序列化中如果有些字段不想进行序列化 怎么办</h2>
+<p>对于不想进行序列化的变量，使用transient关键字修饰。</p>
+<p>transient关键字的作用是：阻止实例中那些用此关键字修饰的的变量序列化；当对象被反序列化时，被transient修饰的变量值不会被持久化和恢复。transient只能修饰变量，不能修饰类和方法。</p>
+<h2 id="34-获取用键盘输入常用的的两种方法">34 获取用键盘输入常用的的两种方法</h2>
+<p>方法1：通过 Scanner</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Scanner input = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">String s  = input.nextLine();</span><br><span class="line">input.close();</span><br></pre></td></tr></table></figure>
+<p>方法2：通过 BufferedReader</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">BufferedReader input = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(System.in)); </span><br><span class="line">String s = input.readLine();</span><br></pre></td></tr></table></figure>
+<h2 id="参考">参考</h2>
+<ul>
+<li><a href="https://stackoverflow.com/questions/1906445/what-is-the-difference-between-jdk-and-jre" target="_blank" rel="noopener">https://stackoverflow.com/questions/1906445/what-is-the-difference-between-jdk-and-jre</a></li>
+<li><a href="https://www.educba.com/oracle-vs-openjdk/" target="_blank" rel="noopener">https://www.educba.com/oracle-vs-openjdk/</a></li>
+<li><a href="https://stackoverflow.com/questions/22358071/differences-between-oracle-jdk-and-openjdk?answertab=active#tab-top" target="_blank" rel="noopener">https://stackoverflow.com/questions/22358071/differences-between-oracle-jdk-and-openjdk?answertab=active#tab-top</a></li>
+</ul>
+
+  
+  
+    
+    <div class='footer'>
+      
+      
+      
+      
+    </div>
+  
+  
+    
+
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-12-13T12:41:40+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Dec 13, 2020</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Java/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Java</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=http://i.codingce.com.cn/2020/08/01/Java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/&title=Java基础知识 - xzMhehe&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://i.codingce.com.cn/2020/08/01/Java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/&title=Java基础知识 - xzMhehe&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=http://i.codingce.com.cn/2020/08/01/Java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/&title=Java基础知识 - xzMhehe&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+        <a class='prev' href='/2020/08/01/%E4%BB%80%E4%B9%88%E6%98%AFSpringMVC/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>初识SpringMVC</p>
+          <p class='content'>回顾MVC
+什么是MVC
+
+MVC是模型(Model)、视图(View)、控制器(Controller)的简写，是一种软件设计规范。
+是将业务逻辑、数据、显示分离的方法来组织代码。
+MVC主要作...</p>
+        </a>
+      
+      
+        <a class='next' href='/2020/08/01/JDK8-Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/'>
+          <p class='title'>JDK8--Lambda表达式<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>JDK8–Lambda表达式
+1.什么是Lambda表达式
+Lambda表达式实质上是一个可传递的代码块，Lambda又称为闭包或者匿名函数，是函数式编程语法，让方法可以像普通参数一样传递
+2....</p>
+        </a>
+      
+    </div>
+  
+</article>
+
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+</div>
+
+  </article>
+
+
+
+
+
+
+</div>
+<aside class='l_side'>
+  
+  
+    
+    
+
+
+
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-面向对象和面向过程的区别"><span class="toc-text">1. 面向对象和面向过程的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#面向过程"><span class="toc-text">面向过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#面向对象"><span class="toc-text">面向对象</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Java-语言有哪些特点"><span class="toc-text">2. Java 语言有哪些特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-关于-JVM-JDK-和-JRE-最详细通俗的解答"><span class="toc-text">3. 关于 JVM JDK 和 JRE 最详细通俗的解答</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM"><span class="toc-text">JVM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JDK-和-JRE"><span class="toc-text">JDK 和 JRE</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Oracle-JDK-和-OpenJDK-的对比"><span class="toc-text">4. Oracle JDK 和 OpenJDK 的对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Java和C-的区别"><span class="toc-text">5. Java和C++的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-什么是-Java-程序的主类-应用程序和小程序的主类有何不同"><span class="toc-text">6. 什么是 Java 程序的主类 应用程序和小程序的主类有何不同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-Java-应用程序与小程序之间有那些差别"><span class="toc-text">7. Java 应用程序与小程序之间有那些差别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-字符型常量和字符串常量的区别"><span class="toc-text">8. 字符型常量和字符串常量的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-构造器-Constructor-是否可被-override"><span class="toc-text">9. 构造器 Constructor 是否可被 override</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-重载和重写的区别"><span class="toc-text">10. 重载和重写的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-Java-面向对象编程三大特性-封装-继承-多态"><span class="toc-text">11. Java 面向对象编程三大特性: 封装 继承 多态</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#封装"><span class="toc-text">封装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#继承"><span class="toc-text">继承</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多态"><span class="toc-text">多态</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-String-StringBuffer-和-StringBuilder-的区别是什么-String-为什么是不可变的"><span class="toc-text">12. String StringBuffer 和 StringBuilder 的区别是什么 String 为什么是不可变的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-自动装箱与拆箱"><span class="toc-text">13. 自动装箱与拆箱</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-在一个静态方法内调用一个非静态成员为什么是非法的"><span class="toc-text">14. 在一个静态方法内调用一个非静态成员为什么是非法的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-在-Java-中定义一个不做事且没有参数的构造方法的作用"><span class="toc-text">15. 在 Java 中定义一个不做事且没有参数的构造方法的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-import-java和javax有什么区别"><span class="toc-text">16. import java和javax有什么区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-接口和抽象类的区别是什么"><span class="toc-text">17. 接口和抽象类的区别是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-成员变量与局部变量的区别有那些"><span class="toc-text">18. 成员变量与局部变量的区别有那些</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#19-创建一个对象用什么运算符-对象实体与对象引用有何不同"><span class="toc-text">19. 创建一个对象用什么运算符?对象实体与对象引用有何不同?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#20-什么是方法的返回值-返回值在类的方法里的作用是什么"><span class="toc-text">20. 什么是方法的返回值?返回值在类的方法里的作用是什么?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#21-一个类的构造方法的作用是什么-若一个类没有声明构造方法-该程序能正确执行吗-为什么"><span class="toc-text">21. 一个类的构造方法的作用是什么 若一个类没有声明构造方法,该程序能正确执行吗 ?为什么?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#22-构造方法有哪些特性"><span class="toc-text">22. 构造方法有哪些特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#23-静态方法和实例方法有何不同"><span class="toc-text">23. 静态方法和实例方法有何不同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#24-对象的相等与指向他们的引用相等-两者有什么不同"><span class="toc-text">24. 对象的相等与指向他们的引用相等,两者有什么不同?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#25-在调用子类构造方法之前会先调用父类没有参数的构造方法-其目的是"><span class="toc-text">25. 在调用子类构造方法之前会先调用父类没有参数的构造方法,其目的是?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#26-与-equals-重要"><span class="toc-text">26. &#x3D;&#x3D; 与 equals(重要)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#27-hashCode-与-equals-重要"><span class="toc-text">27. hashCode 与 equals (重要)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#hashCode（）介绍"><span class="toc-text">hashCode（）介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么要有-hashCode"><span class="toc-text">为什么要有 hashCode</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hashCode（）与equals（）的相关规定"><span class="toc-text">hashCode（）与equals（）的相关规定</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#28-为什么Java中只有值传递"><span class="toc-text">28. 为什么Java中只有值传递</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#29-简述线程-程序-进程的基本概念-以及他们之间关系是什么"><span class="toc-text">29. 简述线程,程序,进程的基本概念.以及他们之间关系是什么?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#30-线程有哪些基本状态"><span class="toc-text">30. 线程有哪些基本状态?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#31-关于-final-关键字的一些总结"><span class="toc-text">31 关于 final 关键字的一些总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#32-Java-中的异常处理"><span class="toc-text">32 Java 中的异常处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Java异常类层次结构图"><span class="toc-text">Java异常类层次结构图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Throwable类常用方法"><span class="toc-text">Throwable类常用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#异常处理总结"><span class="toc-text">异常处理总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#33-Java序列化中如果有些字段不想进行序列化-怎么办"><span class="toc-text">33 Java序列化中如果有些字段不想进行序列化 怎么办</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#34-获取用键盘输入常用的的两种方法"><span class="toc-text">34 获取用键盘输入常用的的两种方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
+    </div>
+  </section>
+
+
+  
+
+
+</aside>
+
+
+
+        
+        
+          <!--此文件用来存放一些不方便取值的变量-->
+<!--思路大概是将值藏到重加载的区域内-->
+
+<script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="Java基础知识";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+</script>
+
+        
+      </div>
+      
+  
+  <footer class="footer clearfix">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+
+        </div>
+      
+    
+      
+        <br>
+        <div class="social-wrapper">
+          
+            
+          
+            
+          
+            
+          
+        </div>
+      
+    
+      
+        <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
+</div>
+      
+    
+      
+        
+          <div><p><span id="lc-sv">本站总访问量为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 次</span> <span id="lc-uv">访客数为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 人</span></p>
+</div>
+        
+      
+    
+      
+        Use
+        <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/4.2.0" target="_blank" class="codename">Volantis</a>
+        as theme
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="/">Copyright © 2017-2020 XXX</a></p>
+
+        </div>
+      
+    
+  </footer>
+
+
+      <a id="s-top" class="fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+    </div>
+  </div>
+  <div>
+    <script>
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/********************脚本懒加载函数********************************/
+function loadScript(src, cb) {
+var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+var script = document.createElement('script');
+script.setAttribute('type','text/javascript');
+if (cb) script.onload = cb;
+script.setAttribute('src', src);
+HEAD.appendChild(script);
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script>
+<script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script>
+<!-- required -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js"></script>
+
+<script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    setTimeout(function() {
+      loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+    }, 1);
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+</script>
+
+
+<!-- internal -->
+
+
+
+
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script>
+
+
+
+
+  
+  
+    <script>
+      window.FPConfig = {
+        delay: 0,
+        ignoreKeywords: [],
+        maxRPS: 5,
+        hoverDelay: 25
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script src="/js/valine.js"></script>
+
+
+<script>
+  var GUEST_INFO = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link'.split(',').filter(function (item) {
+    return GUEST_INFO.indexOf(item) > -1
+  });
+  var REQUIRED_FIELDS = ['nick', 'mail', 'link'];
+  var requiredFields = 'nick,mail'.split(',').filter(function (item) {
+    return REQUIRED_FIELDS.indexOf(item) > -1
+  });
+
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+
+    var valine = new Valine();
+    valine.init({
+      el: '#valine_container',
+      meta: meta,
+      placeholder: pagePlaceholder,
+      path: path,
+      appId: "u3kx4xhHFpadzMOyWK1tMiCd-gzGzoHsz",
+      appKey: "HbQueWo4YTSPBLYvqO9lS89B",
+      pageSize: '10',
+      avatar: 'robohash',
+      lang: 'zh-cn',
+      visitor: 'true',
+      highlight: 'true',
+      mathJax: 'false',
+      enableQQ: 'true',
+      recordIP: 'false',
+      requiredFields: requiredFields,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps
+    })
+  }
+
+  $(function () {
+    pjax_valine();
+  });
+</script>
+
+
+
+
+
+  
+<script src="/js/app.js"></script>
+
+
+
+<!-- optional -->
+
+  <script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  <script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'http://i.codingce.com.cn' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'http://i.codingce.com.cn' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'http://i.codingce.com.cn' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script>
+
+
+
+
+
+
+
+
+<script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script>
+
+<!-- more -->
+
+
+
+
+    
+      
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script>
+
+
+<script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          "#l_cover",
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      // 关于百度统计对 SPA 页面的处理：
+      // 方案一：百度统计>管理>单页应用设置中，打开开启按钮即可对SPA进行统计。 https://tongji.baidu.com/web/help/article?id=324
+      // 方案二：取消注释下列代码。 https://tongji.baidu.com/web/help/article?id=235
+       
+
+      // 关于谷歌统计对 SPA 页面的处理：
+      // 当应用以动态方式加载内容并更新地址栏中的网址时，也应该更新通过 gtag.js 存储的网页网址。
+      // https://developers.google.cn/analytics/devguides/collection/gtagjs/single-page-applications?hl=zh-cn
+      
+	 
+
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+          if (typeof $.fancybox == "undefined") {
+            SCload_fancybox();
+          } else {
+            pjax_fancybox();
+          }
+        
+        
+        
+        
+        
+        
+          pjax_valine();
+        
+        
+        
+        
+        
+      } catch (e) {
+        console.log(e);
+      }
+	  
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  
+      window.location.href = e.triggerElement.href;
+    });
+</script>
+
+    
+  </div>
+</body>
+</html>
