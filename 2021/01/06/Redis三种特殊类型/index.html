@@ -5,8 +5,6 @@
   <!-- SEO相关 -->
   
     
-      <meta name="robots" content="noindex,follow">
-    
   
   <!-- 渲染优化 -->
   <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -21,7 +19,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>Tag: MyBatis - xzMhehe</title>
+  <title>Redis三种特殊类型 - xzMhehe</title>
+  
+    <meta name="keywords" content="Redis">
   
 
   
@@ -243,7 +243,7 @@
     <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper  dock' style="display: none;">
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg"></div>
           
@@ -290,601 +290,271 @@
       <div class='body-wrapper' id="pjax-container">
         
 
-
 <div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
   
+
+
+  
+  <div class="article-meta" id="top">
     
-      
-  <section class="post-list">
     
-      
+    
+      <h1 class="title">
+        Redis三种特殊类型
+      </h1>
+      <div class='new-meta-box'>
         
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/" rel="nofollow">
+    <img no-lazy src="">
+    <p>请设置文章作者</p>
+  </a>
+</div>
+
           
         
           
-        
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/Redis/">Redis</a>
+    </a>
+  </div>
+
+
           
         
           
-        
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Jan 6, 2021</p>
+  </a>
+</div>
+
           
         
           
-        
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="Redis三种特殊类型" data-path="/2021/01/06/Redis%E4%B8%89%E7%A7%8D%E7%89%B9%E6%AE%8A%E7%B1%BB%E5%9E%8B/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
           
         
+      </div>
+    
+  </div>
+
+
+  
+  <h1>三种特殊数据类型</h1>
+<h2 id="geospatial-地理位置">geospatial   地理位置</h2>
+<p>朋友的定位, 附近的人, 打车的距离计算<br>
+Redis的Geo在Redis3.2版本就推出了。这个功能可以推算地理位置信息, 两地之间的距离, 方圆几里的人<br>
+首先需要一个城市经度纬度查询工具   自行百度搜索</p>
+<p>只有六个命令</p>
+<blockquote></blockquote>
+<p>相关命令<br>
+GEOADD<br>
+GEODIST<br>
+GEOHASH<br>
+GEOPOS<br>
+GEORADIUS<br>
+GEORADIUSBYMEMBER</p>
+<h3 id="getadd">getadd</h3>
+<p>添加地理位置<br>
+规则:两级无法添加, 我们一般会下载城市数据, 直接通过java程序一次性导入<br>
+参数key 值(纬度、经度、名称)</p>
+<p>具体的限制，由EPSG:900913 / EPSG:3785 / OSGEO:41001 规定如下：<br>
+有效的经度从-180度到180度。<br>
+有效的纬度从-85.05112878度到85.05112878度。<br>
+当坐标位置超出上述指定范围时，该命令将会返回一个错误。<br>
+(error) ERR invalid longitude,latitude pair 39.900000,116.400000</p>
+<p>GEOADD</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; GEOADD china:city 116.40 39.90 beijing</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; geoadd china:city 121.47 31.23 shanghai</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; geoadd china:city 106.50 29.53 chongqing</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; geoadd china:city 114.05 22.52 shenzhen</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; geoadd china:city 120.16 30.24 hangzhou 108.96 34.26 xian</span><br><span class="line">(integer) 2</span><br><span class="line">127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="GEOPOS">GEOPOS</h3>
+<p>获取当前位置定位: 一定是一个坐标值!</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; geopos china:city beijing   # 获取指定城市的经度纬度</span><br><span class="line">1) 1) "116.39999896287918"</span><br><span class="line">   2) "39.900000091670925"</span><br><span class="line">127.0.0.1:6379&gt; geopos china:city beijing chongqing     # 获取指定城市的经度纬度</span><br><span class="line">1) 1) "116.39999896287918"</span><br><span class="line">   2) "39.900000091670925"</span><br><span class="line">2) 1) "106.49999767541885"</span><br><span class="line">   2) "29.529999579006592"</span><br><span class="line">127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="GEODIST">GEODIST</h3>
+<p>获取当前位置定位: 一定是一个坐标值!</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; geopos china:city beijing   # 获取指定城市的经度纬度</span><br><span class="line">1) 1) "116.39999896287918"</span><br><span class="line">   2) "39.900000091670925"</span><br><span class="line">127.0.0.1:6379&gt; geopos china:city beijing chongqing     # 获取指定城市的经度纬度</span><br><span class="line">1) 1) "116.39999896287918"</span><br><span class="line">   2) "39.900000091670925"</span><br><span class="line">2) 1) "106.49999767541885"</span><br><span class="line">   2) "29.529999579006592"</span><br><span class="line">127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="GEODIST-2">GEODIST</h3>
+<p>两人之间的距离</p>
+<p>返回两个给定位置之间的距离。</p>
+<p>如果两个位置之间的其中一个不存在， 那么命令返回空值。</p>
+<p>指定单位的参数 unit 必须是以下单位的其中一个：</p>
+<ul>
+<li>m 表示单位为米。</li>
+<li>km 表示单位为千米。</li>
+<li>mi 表示单位为英里。</li>
+<li>ft 表示单位为英尺。</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; GEODIST china:city beijing shanghai</span><br><span class="line">"1067378.7564"</span><br><span class="line">127.0.0.1:6379&gt; GEODIST china:city beijing shanghai km</span><br><span class="line">"1067.3788"</span><br><span class="line">127.0.0.1:6379&gt; GEODIST china:city beijing chongqing</span><br><span class="line">"1464070.8051"</span><br><span class="line">127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="GEORADIUS">GEORADIUS</h3>
+<p>附近的人(获取所有附近的人的地址, 定位! )通过半径来查询<br>
+以给定的经纬度为中心， 返回键包含的位置元素当中， 与中心的距离不超过给定最大距离的所有位置元素。<br>
+范围可以使用以下其中一个单位：</p>
+<ul>
+<li>m 表示单位为米。</li>
+<li>km 表示单位为千米。</li>
+<li>mi 表示单位为英里。</li>
+<li>ft 表示单位为英尺。</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; georadius china:city 110 30 1500 km</span><br><span class="line">1) "chongqing"</span><br><span class="line">2) "xian"</span><br><span class="line">3) "shenzhen"</span><br><span class="line">4) "hangzhou"</span><br><span class="line">5) "shanghai"</span><br><span class="line">6) "beijing"</span><br><span class="line">127.0.0.1:6379&gt;       </span><br><span class="line">127.0.0.1:6379&gt; georadius china:city 110 30 150 km withdist withcoord count 2</span><br><span class="line">(empty list or <span class="keyword">set</span>)</span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt;</span><br></pre></td></tr></table></figure>
+
+  
+  
+    
+    <div class='footer'>
+      
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=http://i.codingce.com.cn/2021/01/06/Redis%E4%B8%89%E7%A7%8D%E7%89%B9%E6%AE%8A%E7%B1%BB%E5%9E%8B/>http://i.codingce.com.cn/2021/01/06/Redis%E4%B8%89%E7%A7%8D%E7%89%B9%E6%AE%8A%E7%B1%BB%E5%9E%8B/</a></p>
+              
+            
+          </blockquote>
+        </div>
+      
+      
+    </div>
+  
+  
+    
+
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-06T15:00:17+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Jan 6, 2021</p>
+  </a>
+</div>
+
+        
+      
+        
           
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Redis/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Redis</p></a></div>
+
+
+        
+      
         
           
-        
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
           
-        
+          href="http://connect.qq.com/widget/shareqq/index.html?url=http://i.codingce.com.cn/2021/01/06/Redis%E4%B8%89%E7%A7%8D%E7%89%B9%E6%AE%8A%E7%B1%BB%E5%9E%8B/&title=Redis三种特殊类型 - xzMhehe&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,666">
+          
+        </a>
       
     
-    
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/08/01/Spring%E6%95%B4%E5%90%88Mybatis/">
-        Spring整合Mybatis
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        整合Mybatis
-
-导入相关jar包
-
-junit
-mybatis
-mysql数据库
-spring相关的
-aop织入
-mybatis-spring 【new】
-
-  1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859    ...
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://i.codingce.com.cn/2021/01/06/Redis%E4%B8%89%E7%A7%8D%E7%89%B9%E6%AE%8A%E7%B1%BB%E5%9E%8B/&title=Redis三种特殊类型 - xzMhehe&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,666">
+          
+        </a>
       
     
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-08-01</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Spring/">Spring</a>
-        
-      </div>
       
-        <div>
-          <a class='readmore' href='/2020/08/01/Spring%E6%95%B4%E5%90%88Mybatis/'>
-            Read More
-          </a>
-        </div>
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=http://i.codingce.com.cn/2021/01/06/Redis%E4%B8%89%E7%A7%8D%E7%89%B9%E6%AE%8A%E7%B1%BB%E5%9E%8B/&title=Redis三种特殊类型 - xzMhehe&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,666">
+          
+        </a>
       
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/07/17/%E7%BC%93%E5%AD%98/">
-        缓存
-      </a>
-    </h2>
-  
-  <div class='md'>
     
       
-        简介
-
-查询: 连接数据库 耗资源
-一次查询的结果, 给他暂时存在一个可以直接存放的地方!–&gt;内存: 缓存
-我们再次查询相同数据的时候, 直接走缓存, 就不走数据库了
-
-什么是缓存 [ Cache ]？
-
-存在内存中的临时数据。
-将用户经常查询的数据放在缓存（内存）中，用户去查询数据就不用从磁盘上(关系型数据库数据文件)查询，从缓存中查询，从而提高查询效率，解决了高并发系统的性能问题。...
+    
       
     
   </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-07-17</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/MyBatis/">MyBatis</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/07/17/%E7%BC%93%E5%AD%98/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
 </div>
 
-          </div>
+
+
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/07/15/%E5%A4%9A%E5%AF%B9%E4%B8%80%E4%B8%8E%E4%B8%80%E5%AF%B9%E5%A4%9A/">
-        Mybatis多对一与一对多、动态SQL
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        多对一处理
-测试环境搭建
-
-导入lombok
-新建实体类Student、Teacher
-建立Mapper接口
-建立Mapper.xml文件
-在核心配置文件中绑定注册我们的Mapper接口或者文件![方式很多, 随心选]
-测试查询能否成功
-
-按照查询嵌套处理
-123456789101112131415161718192021222324252627&lt;!--      思路:       ...
-      
-    
+    </div>
   </div>
+
+
   
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-07-15</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/MyBatis/">MyBatis</a>
-        
-      </div>
+  
+
+  
+    <div class="prev-next">
       
-        <div>
-          <a class='readmore' href='/2020/07/15/%E5%A4%9A%E5%AF%B9%E4%B8%80%E4%B8%8E%E4%B8%80%E5%AF%B9%E5%A4%9A/'>
-            Read More
-          </a>
-        </div>
+      
+        <a class='next' href='/2020/10/24/Redis%E5%85%A5%E9%97%A8/'>
+          <p class='title'>Redis入门<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>Redis是什么
+Redis（Remote Dictionary Server )，即远程字典服务，是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦可持久化的日志型、Key-Valu...</p>
+        </a>
       
     </div>
   
+</article>
 
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
 </div>
 
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/07/14/%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91/">
-        注解开发
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        使用注解开发
-面向接口编程
-
-大家之前都学过面向对象编程, 也学过接口, 但真正的开发过程中,很多时候我们都会选择面向接口编程
-根本原因: 解耦, 可拓展, 提高复用, 分层开发中, 上层不用具体实现, 大家都遵守共同的标准, 使得开发变得很容易, 规范更好
-在一个面向对象的系统中, 系统的各种功能, 是由许许多多的不同对象协作完成的, 在这种情况下, 各个对象内部是如何实现自己的, 对系统...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-07-14</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/MyBatis/">MyBatis</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/07/14/%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/07/14/RowBounds/">
-        其他分页
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        RowBounds分页
-面向对象实现,RowBounds分页比较老了解即可,有些老的公司可能还在使用
-不再使用SQL实现分页
-
-接口
-
-123456789    //RowBounds分页    List&lt;User&gt; getUserByRowBounds(Map&lt;String, Integer&gt; map);``` - mapper.xml```xml    &lt;!...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-07-14</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/MyBatis/">MyBatis</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/07/14/RowBounds/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/07/13/%E5%88%86%E9%A1%B5/">
-        分页(SQL)
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        分页
-为什么分页
-
-减少数据的处理量
-
-使用Limit分页
-1SELECT * FROM user limit startIndex, pageSize;
-使用mybatis实现分页,核心SQL
-
-接口
-
-12//分页List&lt;User&gt; getUserByLimit(Map&lt;String, Integer&gt; map);
-
-mapper.xml
-
-1234&lt;!-...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-07-13</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/MyBatis/">MyBatis</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/07/13/%E5%88%86%E9%A1%B5/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/07/13/%E6%97%A5%E5%BF%97%E5%B7%A5%E5%8E%82/">
-        日志工厂
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        控制台打印SQL
-如果一个数据库的操作,出现了异常,我们需要排查,日志就是最好的帮手
-曾经: sout debug
-现在: 日志工厂
+  </article>
 
 
-SLF4J |
-LOG4J 掌握
-LOG4J2
-JDK_LOGGING
-COMMONS_LOGGING
-STDOUT_LOGGING 掌握
-NO_LOGGING
-在Mybatis中具体使用哪一个日志实现, 在设置中设定.
-
-STDOUT_LOGGING标准...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-07-13</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/MyBatis/">MyBatis</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/07/13/%E6%97%A5%E5%BF%97%E5%B7%A5%E5%8E%82/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/07/12/Mybatis%E4%B8%AD%E7%9A%84%E5%B1%9E%E6%80%A7%E5%90%8D%E5%92%8C%E5%AD%97%E6%AE%B5%E5%90%8D/">
-        Mybatis中的属性名和字段名
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        解决属性名和字段名不一致问题
-问题
-数据库中的字段
-
-新建一个项目，拷贝之前，测试实体类字段不一致的情况
-12345public class User &#123;    private int id;    private String name;    private String password;&#125;
-测试出现问题
-
-123select * from mybatis.user...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-07-12</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/MyBatis/">MyBatis</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/07/12/Mybatis%E4%B8%AD%E7%9A%84%E5%B1%9E%E6%80%A7%E5%90%8D%E5%92%8C%E5%AD%97%E6%AE%B5%E5%90%8D/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/07/11/First-MyBatis/">
-        第一个MyBatis程序
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        第一个MyBatis程序
-思路: 搭建环境–&gt;导入MyBatis–&gt;编写代码–&gt;测试
-搭建环境
-搭建数据库
-新建项目
-
-新建一个普通的maven项目
-删除src目录
-导入maven依赖
-
- 123456789101112131415161718192021&lt;!--导入依赖--&gt;&lt;dependencies&gt;    &lt;!--mybatis--&gt...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-07-11</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/MyBatis/">MyBatis</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/07/11/First-MyBatis/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/07/11/MyBatis/">
-        什么是MyBatis
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        简介
-什么是 MyBatis？
-MyBatis 是一款优秀的持久层框架，它支持自定义 SQL、存储过程以及高级映射。MyBatis 免除了几乎所有的 JDBC 代码以及设置参数和获取结果集的工作。MyBatis 可以通过简单的 XML 或注解来配置和映射原始类型、接口和 Java POJO（Plain Old Java Objects，普通老式 Java 对象）为数据库中的记录。
-MyBat...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-07-11</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/MyBatis/">MyBatis</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/07/11/MyBatis/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-    
-  </section>
-  
-    
-  
 
 
-    
-  
+
+
 </div>
 <aside class='l_side'>
   
@@ -892,186 +562,28 @@ MyBat...
     
     
 
-<section class="widget blogger shadow desktop mobile">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box rectangle' href='/about/'>
-          <img no-lazy src='https://image.codingce.com.cn/iavatar.jpg'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-        
-        
-          <p><span id="jinrishici-sentence">xzMhehe</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="/atom.xml"
-              class="social fas fa-rss flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="mailto:codingce@gmail.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/xzMhehe"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="/"
-              class="social fas fa-headphones-alt flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
 
-  
 
-  
-    
-    
-  
-
-  <section class="widget category shadow desktop">
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
     
   <header>
     
-      <a href='/blog/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
     
   </header>
 
 
     <div class='content'>
-      <ul class="entry navigation">
-        
-          <li><a class="flat-box"
-            title="/categories/Git/" href="/categories/Git/"
-            id="categoriesGit"
-            ><div class='name'>Git</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Java/" href="/categories/Java/"
-            id="categoriesJava"
-            ><div class='name'>Java</div><div class='badge'>(4)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/MyBatis/" href="/categories/MyBatis/"
-            id="categoriesMyBatis"
-            ><div class='name'>MyBatis</div><div class='badge'>(9)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Redis/" href="/categories/Redis/"
-            id="categoriesRedis"
-            ><div class='name'>Redis</div><div class='badge'>(3)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Spring/" href="/categories/Spring/"
-            id="categoriesSpring"
-            ><div class='name'>Spring</div><div class='badge'>(8)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/SpringBoot/" href="/categories/SpringBoot/"
-            id="categoriesSpringBoot"
-            ><div class='name'>SpringBoot</div><div class='badge'>(11)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/SpringCloud/" href="/categories/SpringCloud/"
-            id="categoriesSpringCloud"
-            ><div class='name'>SpringCloud</div><div class='badge'>(8)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/SpringMVC/" href="/categories/SpringMVC/"
-            id="categoriesSpringMVC"
-            ><div class='name'>SpringMVC</div><div class='badge'>(8)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Sql/" href="/categories/Sql/"
-            id="categoriesSql"
-            ><div class='name'>Sql</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E5%8A%9B%E6%89%A3/" href="/categories/%E5%8A%9B%E6%89%A3/"
-            id="categoriesE58A9BE689A3"
-            ><div class='name'>力扣</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
-            id="categoriesE7AE97E6B395E4B88EE695B0E68DAEE7BB93E69E84"
-            ><div class='name'>算法与数据结构</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E8%80%83%E7%A0%94/" href="/categories/%E8%80%83%E7%A0%94/"
-            id="categoriesE88083E7A094"
-            ><div class='name'>考研</div><div class='badge'>(2)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E9%9A%8F%E8%AE%B0/" href="/categories/%E9%9A%8F%E8%AE%B0/"
-            id="categoriesE99A8FE8AEB0"
-            ><div class='name'>随记</div><div class='badge'>(6)</div></a></li>
-        
-      </ul>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#geospatial-地理位置"><span class="toc-text">geospatial   地理位置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#getadd"><span class="toc-text">getadd</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GEOPOS"><span class="toc-text">GEOPOS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GEODIST"><span class="toc-text">GEODIST</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GEODIST-2"><span class="toc-text">GEODIST</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GEORADIUS"><span class="toc-text">GEORADIUS</span></a></li></ol></li></ol>
     </div>
   </section>
 
-
-  
-
-  
-    
-    
-  
-
-  <section class="widget tagcloud shadow desktop mobile">
-    
-  <header>
-    
-      <a href='/blog/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <a href="/tags/Git/" style="font-size: 14px; color: #999">Git</a> <a href="/tags/Java/" style="font-size: 19px; color: #777">Java</a> <a href="/tags/Multithread%EF%BC%88%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%89/" style="font-size: 14px; color: #999">Multithread（多线程）</a> <a href="/tags/MyBatis/" style="font-size: 22.33px; color: #606060">MyBatis</a> <a href="/tags/Redis/" style="font-size: 17.33px; color: #828282">Redis</a> <a href="/tags/Spring/" style="font-size: 20.67px; color: #6c6c6c">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 24px; color: #555">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 20.67px; color: #6c6c6c">SpringCloud</a> <a href="/tags/SpringMVC/" style="font-size: 20.67px; color: #6c6c6c">SpringMVC</a> <a href="/tags/Sql/" style="font-size: 14px; color: #999">Sql</a> <a href="/tags/%E5%8A%9B%E6%89%A3/" style="font-size: 14px; color: #999">力扣</a> <a href="/tags/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 14px; color: #999">算法与数据结构</a> <a href="/tags/%E8%80%83%E7%A0%94/" style="font-size: 15.67px; color: #8e8e8e">考研</a> <a href="/tags/%E9%9A%8F%E8%AE%B0/" style="font-size: 20.67px; color: #6c6c6c">随记</a>
-    </div>
-  </section>
-
-
-  
 
   
 
 
 </aside>
+
 
 
         
@@ -1081,8 +593,8 @@ MyBat...
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
-  pdata.postTitle="";
+  pdata.ispage=true;
+  pdata.postTitle="Redis三种特殊类型";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 
