@@ -413,7 +413,13 @@ GEORADIUSBYMEMBER</p>
 <li>mi 表示单位为英里。</li>
 <li>ft 表示单位为英尺。</li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; georadius china:city 110 30 1500 km</span><br><span class="line">1) "chongqing"</span><br><span class="line">2) "xian"</span><br><span class="line">3) "shenzhen"</span><br><span class="line">4) "hangzhou"</span><br><span class="line">5) "shanghai"</span><br><span class="line">6) "beijing"</span><br><span class="line">127.0.0.1:6379&gt;       </span><br><span class="line">127.0.0.1:6379&gt; georadius china:city 110 30 150 km withdist withcoord count 2</span><br><span class="line">(empty list or <span class="keyword">set</span>)</span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>所有数据都应该录入: china:city  才会让结果更加的准确</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; georadius china:city 110 30 1500 km     # 获取 110 30 这个经纬度为中心  寻找方圆1000km 内的城市</span><br><span class="line">1) "chongqing"</span><br><span class="line">2) "xian"</span><br><span class="line">3) "shenzhen"</span><br><span class="line">4) "hangzhou"</span><br><span class="line">5) "shanghai"</span><br><span class="line">6) "beijing"</span><br><span class="line">127.0.0.1:6379&gt;georadius china:city 110 30 150 km withdist          # 显示到中间距离的位置</span><br><span class="line">127.0.0.1:6379&gt; georadius china:city 110 30 150 km withcoord        # 显示他人的定位信息   </span><br><span class="line">127.0.0.1:6379&gt; georadius china:city 110 30 150 km withdist withcoord count 2       # 筛选指定的结果</span><br><span class="line">(empty list or <span class="keyword">set</span>)</span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="GEORADIUSBYMEMBER">GEORADIUSBYMEMBER</h3>
+<p>找出位于指定元素周围元素的其他元素.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; georadiusbymember china:city beijing 1000 km</span><br><span class="line">1) "beijing"</span><br><span class="line">2) "xian"</span><br><span class="line">127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="GEOHASH">GEOHASH</h3>
+<p>命令返回一个或多个位置的geohash表示</p>
 
   
   
@@ -448,7 +454,7 @@ GEORADIUSBYMEMBER</p>
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-06T15:00:17+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-06T18:14:43+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：Jan 6, 2021</p>
@@ -574,7 +580,7 @@ Redis（Remote Dictionary Server )，即远程字典服务，是一个开源的�
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#geospatial-地理位置"><span class="toc-text">geospatial   地理位置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#getadd"><span class="toc-text">getadd</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GEOPOS"><span class="toc-text">GEOPOS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GEODIST"><span class="toc-text">GEODIST</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GEODIST-2"><span class="toc-text">GEODIST</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GEORADIUS"><span class="toc-text">GEORADIUS</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#geospatial-地理位置"><span class="toc-text">geospatial   地理位置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#getadd"><span class="toc-text">getadd</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GEOPOS"><span class="toc-text">GEOPOS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GEODIST"><span class="toc-text">GEODIST</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GEODIST-2"><span class="toc-text">GEODIST</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GEORADIUS"><span class="toc-text">GEORADIUS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GEORADIUSBYMEMBER"><span class="toc-text">GEORADIUSBYMEMBER</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GEOHASH"><span class="toc-text">GEOHASH</span></a></li></ol></li></ol>
     </div>
   </section>
 
