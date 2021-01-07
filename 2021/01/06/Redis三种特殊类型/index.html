@@ -419,7 +419,29 @@ GEORADIUSBYMEMBER</p>
 <p>找出位于指定元素周围元素的其他元素.</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; georadiusbymember china:city beijing 1000 km</span><br><span class="line">1) "beijing"</span><br><span class="line">2) "xian"</span><br><span class="line">127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure>
 <h3 id="GEOHASH">GEOHASH</h3>
-<p>命令返回一个或多个位置的geohash表示</p>
+<p>命令返回一个或多个位置的geohash表示<br>
+该命令将返回11个字符的Geohash字符串</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将二维经纬度转换为一维的字符串, 如果两个字符串越接近, 那么则距离越近</span></span><br><span class="line">127.0.0.1:6379&gt; geohash china:city beijing chongqing</span><br><span class="line">1) "wx4fbxxfke0"</span><br><span class="line">2) "wm5xzrybty0"</span><br><span class="line">127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="GEO底层实现原理">GEO底层实现原理</h3>
+<p>其实就是Zset 我们可以使用Zset命令来操作geo</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; zrange china:city 0 -1</span><br><span class="line">1) "chongqing"</span><br><span class="line">2) "xian"</span><br><span class="line">3) "shenzhen"</span><br><span class="line">4) "hangzhou"</span><br><span class="line">5) "shanghai"</span><br><span class="line">6) "beijing"</span><br><span class="line">127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="HyperLogLogs">HyperLogLogs</h2>
+<h3 id="什么是基数">什么是基数</h3>
+<p>A{1, 3, 5, 7, 8, 7}  B{1, 3, 5, 7, 8}<br>
+基数(不重复的元素) = 5 可以接受误差</p>
+<h3 id="简介">简介</h3>
+<p>Redis 2.8.9 版本就更新了 HyperLogLogs 数据结构<br>
+优点: 占用内存是固定的  2^64 不同的元素的技术   只需要12kb 的内存   若从内存角度比较的话 HyperLogLogs 首选<br>
+Redis HyperLogLogs 基数统计算法<br>
+<strong>网页UV(一个人访问网站多次, 但是还是算作一个人)</strong><br>
+传统方式 set保存用户的id 然后就可以统计set元素数量就可以作为标准判断<br>
+这种方式保存大量的用户id就会比较麻烦 我们的目的是为了计数 而不是保存用户id<br>
+0.81%错误率 统计UV任务 可以忽略不记的</p>
+<h4 id=""></h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; PFadd mykey a b c d e f g h i j     # 创建第一个元素 mykey</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; pfcount mykey                       # 统计 mykey 元素的基数数量</span><br><span class="line">(integer) 10</span><br><span class="line">127.0.0.1:6379&gt; PFadd mykey2 i j k l m n o p        # 创建第二个元素 mykey2</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; pfcount mykey2</span><br><span class="line">(integer) 8</span><br><span class="line">127.0.0.1:6379&gt; pfmerge mykey3 mykey mykey2         # 合并两组 mykey mykey2 =&gt; mykey3 并集</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; pfcount mykey3</span><br><span class="line">(integer) 16</span><br><span class="line">127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure>
+<p>如果允许容错    那么一定可以使用 HyperLogLogs<br>
+如果不允许容错  就使用set或者自己的数据类型即可</p>
+<h3 id="Bitmaps">Bitmaps</h3>
 
   
   
@@ -454,10 +476,10 @@ GEORADIUSBYMEMBER</p>
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-06T18:14:43+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-07T10:11:04+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Jan 6, 2021</p>
+    <p>更新于：Jan 7, 2021</p>
   </a>
 </div>
 
@@ -580,7 +602,7 @@ Redis（Remote Dictionary Server )，即远程字典服务，是一个开源的�
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#geospatial-地理位置"><span class="toc-text">geospatial   地理位置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#getadd"><span class="toc-text">getadd</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GEOPOS"><span class="toc-text">GEOPOS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GEODIST"><span class="toc-text">GEODIST</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GEODIST-2"><span class="toc-text">GEODIST</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GEORADIUS"><span class="toc-text">GEORADIUS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GEORADIUSBYMEMBER"><span class="toc-text">GEORADIUSBYMEMBER</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GEOHASH"><span class="toc-text">GEOHASH</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#geospatial-地理位置"><span class="toc-text">geospatial   地理位置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#getadd"><span class="toc-text">getadd</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GEOPOS"><span class="toc-text">GEOPOS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GEODIST"><span class="toc-text">GEODIST</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GEODIST-2"><span class="toc-text">GEODIST</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GEORADIUS"><span class="toc-text">GEORADIUS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GEORADIUSBYMEMBER"><span class="toc-text">GEORADIUSBYMEMBER</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GEOHASH"><span class="toc-text">GEOHASH</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GEO底层实现原理"><span class="toc-text">GEO底层实现原理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HyperLogLogs"><span class="toc-text">HyperLogLogs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是基数"><span class="toc-text">什么是基数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#简介"><span class="toc-text">简介</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-text"></span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bitmaps"><span class="toc-text">Bitmaps</span></a></li></ol></li></ol>
     </div>
   </section>
 
