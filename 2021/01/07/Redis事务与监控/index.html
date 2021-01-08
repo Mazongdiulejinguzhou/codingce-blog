@@ -5,8 +5,6 @@
   <!-- SEO相关 -->
   
     
-      <meta name="robots" content="noindex,follow">
-    
   
   <!-- 渲染优化 -->
   <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -21,7 +19,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>Archive: 2021 - xzMhehe</title>
+  <title>Redis事务与监控 - xzMhehe</title>
+  
+    <meta name="keywords" content="Redis">
   
 
   
@@ -56,7 +56,7 @@
 <body>
   
 
-<header id="l_header" class="l_header auto shadow blur " style='opacity: 0' >
+<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -243,7 +243,7 @@
     <div id="l_cover">
   
     
-        <div id="half" class='cover-wrapper  dock' style="display: ;">
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg"></div>
           
@@ -291,142 +291,267 @@
         
 
 <div class='l_main'>
-	
-		
-  <section class="post-list">
-    
-      
-        
-          
-        
-          
-        
-      
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
+  
+
+
+  
+  <div class="article-meta" id="top">
     
     
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
     
-    <h2 class="article-title" >
-      <a href="/2021/01/07/Redis%E4%BA%8B%E5%8A%A1%E4%B8%8E%E7%9B%91%E6%8E%A7/">
+      <h1 class="title">
         Redis事务与监控
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        事务
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/" rel="nofollow">
+    <img no-lazy src="">
+    <p>全栈自学社区</p>
+  </a>
+</div>
 
-Redis单条命令是保证原子性的,但是事务不保证原子性的
-Redis事务没有隔离级别的概念
-所有的命命令在事务中, 并没有直接被执行, 只有发起执行命令的时候才会被执行
-
-Redis 事务的本质：  一组命令的集合  一个事务中的所有命令都会被序列化, 在事务执行过程中, 会按照顺序执行
-一次性 顺序性 排他性   执行一系列的命令
-1----- 队列set set set 执行--...
-      
-    
+          
+        
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/Redis/">Redis</a>
+    </a>
   </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
+
+
+          
         
-        <time>2021-01-07</time>
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Jan 7, 2021</p>
+  </a>
+</div>
+
+          
         
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Redis/">Redis</a>
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="Redis事务与监控" data-path="/2021/01/07/Redis%E4%BA%8B%E5%8A%A1%E4%B8%8E%E7%9B%91%E6%8E%A7/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
         
       </div>
+    
+  </div>
+
+
+  
+  <h2 id="事务">事务</h2>
+<ul>
+<li>Redis单条命令是保证原子性的,但是事务不保证原子性的</li>
+<li>Redis事务没有隔离级别的概念</li>
+<li>所有的命命令在事务中, 并没有直接被执行, 只有发起执行命令的时候才会被执行</li>
+</ul>
+<p>Redis 事务的本质：  一组命令的集合  一个事务中的所有命令都会被序列化, 在事务执行过程中, 会按照顺序执行<br>
+一次性 顺序性 排他性   执行一系列的命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">----- 队列<span class="built_in">set</span> <span class="built_in">set</span> <span class="built_in">set</span> 执行-----</span><br></pre></td></tr></table></figure>
+<p>Redis的事务:</p>
+<ul>
+<li>开启事务(multi)</li>
+<li>命令入队(…)</li>
+<li>执行事务(exec)</li>
+</ul>
+<h3 id="正常执行事务">正常执行事务</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; multi           <span class="comment"># 开启事务</span></span><br><span class="line">OK</span><br><span class="line"><span class="comment"># 命令入队</span></span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k1 v1</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k2 v2</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; get k2</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k3 v3</span><br><span class="line">QUEUED</span><br><span class="line"><span class="comment"># 执行事务</span></span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">exec</span></span><br><span class="line">1) OK</span><br><span class="line">2) OK</span><br><span class="line">3) <span class="string">"v2"</span></span><br><span class="line">4) OK</span><br><span class="line">127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="放弃事务">放弃事务</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; multi           <span class="comment"># 开启事务</span></span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k4 v4</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; discard         <span class="comment"># 取消事务</span></span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; get k4          <span class="comment"># 事务队列中的命令都不会执行</span></span><br><span class="line">(nil)</span><br></pre></td></tr></table></figure>
+<h3 id="编译型异常">编译型异常</h3>
+<p>(代码有错误 命令有错误)<br>
+事务中的所有命令都不会被执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; multi</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k1 v1</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k2 v2</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span>  k3 v3</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; getset k3       <span class="comment"># 错误的命令</span></span><br><span class="line">(error) ERR wrong number of arguments <span class="keyword">for</span> <span class="string">'getset'</span> <span class="built_in">command</span></span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k4 v4</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k5 v5</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">exec</span>            <span class="comment"># 执行的时候报错</span></span><br><span class="line">(error) EXECABORT Transaction discarded because of previous errors.</span><br><span class="line">127.0.0.1:6379&gt; get k5          <span class="comment"># 所有的命令都不会被执行</span></span><br><span class="line">(nil)</span><br><span class="line">127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="运行时异常">运行时异常</h3>
+<p>如果事务队列中存在语法性错误, 那么执行命令的时候, 其他命令是可以正常执行的, 错误命令抛出异常</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k1 <span class="string">"v1"</span></span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; multi</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; incr k1         <span class="comment"># 会在执行的时候失败</span></span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k2 v2</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k3 v3</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; get k3</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">exec</span>            <span class="comment"># 虽然第一条命令报错了, 但是依旧正常执行成功了</span></span><br><span class="line">1) (error) ERR value is not an <span class="built_in">integer</span> or out of range</span><br><span class="line">2) OK</span><br><span class="line">3) OK</span><br><span class="line">4) <span class="string">"v3"</span></span><br><span class="line">127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="监控-Watch">监控  Watch</h2>
+<p><strong>悲观锁</strong></p>
+<ul>
+<li>很悲观, 认为什么时候都会出现问题, 无论做什么都会加锁.</li>
+</ul>
+<p><strong>乐观锁</strong></p>
+<ul>
+<li>很乐观, 认为什么时候都不会出现问题, 所以不会加锁.  更新数据的时候去判断一下, 在此期间是否有人修改过这个数据</li>
+<li>获取version</li>
+<li>更新时比较version</li>
+<li>Watch本省就是个乐观锁</li>
+</ul>
+<h3 id="Redis监视测试">Redis监视测试</h3>
+<p>正常执行成功</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> money 100</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> out 0</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; watch money     <span class="comment"># 监视money对象</span></span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; multi           <span class="comment"># 事务正常结束, 数据期间没有发生变动, 这个时候就正常执行成功</span></span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; decrby money 20</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; incrby out 20</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">exec</span></span><br><span class="line">1) (<span class="built_in">integer</span>) 80</span><br><span class="line">2) (<span class="built_in">integer</span>) 20</span><br><span class="line">127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure>
+<p>测试多线程修改值, 监视失败, 使用watch可以当作redis乐观锁操作</p>
+<p>线程一</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; watch money     <span class="comment"># 监视money</span></span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; multi</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; decrby money 10</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; incrby out 10</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">exec</span>            <span class="comment"># 执行事务之前在, 另外一个线程, 修改了我们的值, 就会导致事务执行失败. </span></span><br><span class="line">(nil)</span><br><span class="line">127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure>
+<p>线程二</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; get money</span><br><span class="line"><span class="string">"80"</span></span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> money 1000</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure>
+<p>解决方案</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; unwatch             <span class="comment"># 如果发现事务执行失败, 就先解锁</span></span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; watch money         <span class="comment"># 获取新的值, 再次监视, select version</span></span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; multi</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; decrby money 1</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; incrby money 1</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">exec</span>                <span class="comment"># 比对监视的值是否发生变化, 如果没有变化, 执行成功, 如果执行失败, 那么就继续 先解锁 -》 获取新值再次监视......</span></span><br><span class="line">1) (<span class="built_in">integer</span>) 999</span><br><span class="line">2) (<span class="built_in">integer</span>) 1000</span><br><span class="line">127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure>
+
+  
+  
+    
+    <div class='footer'>
       
-        <div>
-          <a class='readmore' href='/2021/01/07/Redis%E4%BA%8B%E5%8A%A1%E4%B8%8E%E7%9B%91%E6%8E%A7/'>
-            Read More
-          </a>
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=http://i.codingce.com.cn/2021/01/07/Redis%E4%BA%8B%E5%8A%A1%E4%B8%8E%E7%9B%91%E6%8E%A7/>http://i.codingce.com.cn/2021/01/07/Redis%E4%BA%8B%E5%8A%A1%E4%B8%8E%E7%9B%91%E6%8E%A7/</a></p>
+              
+            
+          </blockquote>
         </div>
+      
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-08T10:50:28+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Jan 8, 2021</p>
+  </a>
 </div>
 
-          </div>
         
       
         
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
+          
   
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/01/06/Redis%E4%B8%89%E7%A7%8D%E7%89%B9%E6%AE%8A%E7%B1%BB%E5%9E%8B/">
-        Redis三种特殊类型
-      </a>
-    </h2>
-  
-  <div class='md'>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Redis/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Redis</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
     
       
-        Redis三种特殊类型
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=http://i.codingce.com.cn/2021/01/07/Redis%E4%BA%8B%E5%8A%A1%E4%B8%8E%E7%9B%91%E6%8E%A7/&title=Redis事务与监控 - xzMhehe&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://i.codingce.com.cn/2021/01/07/Redis%E4%BA%8B%E5%8A%A1%E4%B8%8E%E7%9B%91%E6%8E%A7/&title=Redis事务与监控 - xzMhehe&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=http://i.codingce.com.cn/2021/01/07/Redis%E4%BA%8B%E5%8A%A1%E4%B8%8E%E7%9B%91%E6%8E%A7/&title=Redis事务与监控 - xzMhehe&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+      
+        <a class='next' href='/2021/01/06/Redis%E4%B8%89%E7%A7%8D%E7%89%B9%E6%AE%8A%E7%B1%BB%E5%9E%8B/'>
+          <p class='title'>Redis三种特殊类型<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>Redis三种特殊类型
 三种特殊数据类型
 geospatial 地理位置
 朋友的定位, 附近的人, 打车的距离计算
-Redis的Geo在Redis3.2版本就推出了.这个功能可以推算地理位置信息, 两地之间的距离, 方圆几里的人
-首先需要一个城市经度纬度查询工具 自行百度搜索
-只有六个命令
-
-相关命令
-GEOADD
-GEODIST
-GEOHASH
-GEOPOS
-GEORADIUS
-GEORA...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-01-06</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Redis/">Redis</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/01/06/Redis%E4%B8%89%E7%A7%8D%E7%89%B9%E6%AE%8A%E7%B1%BB%E5%9E%8B/'>
-            Read More
-          </a>
-        </div>
+Redis的Geo在Redis3.2版本就推出了.这个功能可以推算地理位置信息...</p>
+        </a>
       
     </div>
   
+</article>
 
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
 </div>
 
-          </div>
-        
-      
-    
-  </section>
-  
-    
-  
+  </article>
 
 
-	
+
+
+
+
 </div>
 <aside class='l_side'>
   
@@ -434,186 +559,28 @@ GEORA...
     
     
 
-<section class="widget blogger shadow desktop mobile">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box rectangle' href='/about/'>
-          <img no-lazy src='https://image.codingce.com.cn/iavatar.jpg'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-        
-        
-          <p><span id="jinrishici-sentence">xzMhehe</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="/atom.xml"
-              class="social fas fa-rss flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="mailto:codingce@gmail.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/xzMhehe"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="/"
-              class="social fas fa-headphones-alt flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
 
-  
 
-  
-    
-    
-  
-
-  <section class="widget category shadow desktop">
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
     
   <header>
     
-      <a href='/blog/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
     
   </header>
 
 
     <div class='content'>
-      <ul class="entry navigation">
-        
-          <li><a class="flat-box"
-            title="/categories/Git/" href="/categories/Git/"
-            id="categoriesGit"
-            ><div class='name'>Git</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Java/" href="/categories/Java/"
-            id="categoriesJava"
-            ><div class='name'>Java</div><div class='badge'>(4)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/MyBatis/" href="/categories/MyBatis/"
-            id="categoriesMyBatis"
-            ><div class='name'>MyBatis</div><div class='badge'>(9)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Redis/" href="/categories/Redis/"
-            id="categoriesRedis"
-            ><div class='name'>Redis</div><div class='badge'>(4)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Spring/" href="/categories/Spring/"
-            id="categoriesSpring"
-            ><div class='name'>Spring</div><div class='badge'>(8)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/SpringBoot/" href="/categories/SpringBoot/"
-            id="categoriesSpringBoot"
-            ><div class='name'>SpringBoot</div><div class='badge'>(11)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/SpringCloud/" href="/categories/SpringCloud/"
-            id="categoriesSpringCloud"
-            ><div class='name'>SpringCloud</div><div class='badge'>(8)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/SpringMVC/" href="/categories/SpringMVC/"
-            id="categoriesSpringMVC"
-            ><div class='name'>SpringMVC</div><div class='badge'>(8)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Sql/" href="/categories/Sql/"
-            id="categoriesSql"
-            ><div class='name'>Sql</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E5%8A%9B%E6%89%A3/" href="/categories/%E5%8A%9B%E6%89%A3/"
-            id="categoriesE58A9BE689A3"
-            ><div class='name'>力扣</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
-            id="categoriesE7AE97E6B395E4B88EE695B0E68DAEE7BB93E69E84"
-            ><div class='name'>算法与数据结构</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E8%80%83%E7%A0%94/" href="/categories/%E8%80%83%E7%A0%94/"
-            id="categoriesE88083E7A094"
-            ><div class='name'>考研</div><div class='badge'>(2)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E9%9A%8F%E8%AE%B0/" href="/categories/%E9%9A%8F%E8%AE%B0/"
-            id="categoriesE99A8FE8AEB0"
-            ><div class='name'>随记</div><div class='badge'>(6)</div></a></li>
-        
-      </ul>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#事务"><span class="toc-text">事务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#正常执行事务"><span class="toc-text">正常执行事务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#放弃事务"><span class="toc-text">放弃事务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译型异常"><span class="toc-text">编译型异常</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运行时异常"><span class="toc-text">运行时异常</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#监控-Watch"><span class="toc-text">监控  Watch</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis监视测试"><span class="toc-text">Redis监视测试</span></a></li></ol></li></ol>
     </div>
   </section>
 
-
-  
-
-  
-    
-    
-  
-
-  <section class="widget tagcloud shadow desktop mobile">
-    
-  <header>
-    
-      <a href='/blog/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <a href="/tags/Git/" style="font-size: 14px; color: #999">Git</a> <a href="/tags/Java/" style="font-size: 19px; color: #777">Java</a> <a href="/tags/Multithread%EF%BC%88%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%89/" style="font-size: 14px; color: #999">Multithread（多线程）</a> <a href="/tags/MyBatis/" style="font-size: 22.33px; color: #606060">MyBatis</a> <a href="/tags/Redis/" style="font-size: 17.33px; color: #828282">Redis</a> <a href="/tags/Spring/" style="font-size: 20.67px; color: #6c6c6c">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 24px; color: #555">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 20.67px; color: #6c6c6c">SpringCloud</a> <a href="/tags/SpringMVC/" style="font-size: 20.67px; color: #6c6c6c">SpringMVC</a> <a href="/tags/Sql/" style="font-size: 14px; color: #999">Sql</a> <a href="/tags/%E5%8A%9B%E6%89%A3/" style="font-size: 14px; color: #999">力扣</a> <a href="/tags/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 14px; color: #999">算法与数据结构</a> <a href="/tags/%E8%80%83%E7%A0%94/" style="font-size: 15.67px; color: #8e8e8e">考研</a> <a href="/tags/%E9%9A%8F%E8%AE%B0/" style="font-size: 20.67px; color: #6c6c6c">随记</a>
-    </div>
-  </section>
-
-
-  
 
   
 
 
 </aside>
+
 
 
         
@@ -623,14 +590,14 @@ GEORA...
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
-  pdata.postTitle="";
+  pdata.ispage=true;
+  pdata.postTitle="Redis事务与监控";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 
   var l_header=document.getElementById("l_header");
   
-  l_header.classList.remove("show");
+  l_header.classList.add("show");
   
 </script>
 
