@@ -5,8 +5,6 @@
   <!-- SEO相关 -->
   
     
-      <meta name="robots" content="noindex,follow">
-    
   
   <!-- 渲染优化 -->
   <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -21,7 +19,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>Tag: 随记 - xzMhehe</title>
+  <title>Jedis - xzMhehe</title>
+  
+    <meta name="keywords" content="Redis">
   
 
   
@@ -243,7 +243,7 @@
     <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper  dock' style="display: none;">
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg"></div>
           
@@ -290,494 +290,254 @@
       <div class='body-wrapper' id="pjax-container">
         
 
-
 <div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
   
+
+
+  
+  <div class="article-meta" id="top">
     
-      
-  <section class="post-list">
     
-      
+    
+      <h1 class="title">
+        Jedis
+      </h1>
+      <div class='new-meta-box'>
         
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/" rel="nofollow">
+    <img no-lazy src="">
+    <p>全栈自学社区</p>
+  </a>
+</div>
+
           
         
           
-        
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/Redis/">Redis</a>
+    </a>
+  </div>
+
+
           
         
           
-        
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Jan 8, 2021</p>
+  </a>
+</div>
+
           
         
           
-        
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="Jedis" data-path="/2021/01/08/Jedis/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
           
         
+      </div>
+    
+  </div>
+
+
+  
+  <h2 id="Jedis">Jedis</h2>
+<p>使用Java来操作Redis</p>
+<blockquote>
+<p>什么是Jedis 是Redis官方推荐的Java操作Redis中间件, 如果你要使用Java操作Redis, 那么就该对jedis熟悉</p>
+</blockquote>
+<h2 id="测试">测试</h2>
+<ul>
+<li>导入对应的依赖</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 导入jedisd的包 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>redis.clients<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jedis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- fastjson --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>fastjson<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.62<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>编码测试
+<ul>
+<li>连接数据库</li>
+<li>操作命令</li>
+<li>断开连接</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">TestPing</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//1 new Jedis 对象即可</span></span><br><span class="line">    Jedis jedis = <span class="keyword">new</span> Jedis(<span class="string">"127.0.0.1"</span>, <span class="number">6379</span>);</span><br><span class="line">    <span class="comment">//jedis 所有的命令就是他的基本命令, 就是对象的方法</span></span><br><span class="line">    System.out.println(jedis.ping());;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出<br>
+PONG</p>
+<h2 id="常用API">常用API</h2>
+<ul>
+<li>String</li>
+<li>List</li>
+<li>Set</li>
+<li>Hash</li>
+<li>Zset</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">TestKey</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Jedis jedis = <span class="keyword">new</span> Jedis(<span class="string">"127.0.0.1"</span>, <span class="number">6379</span>);</span><br><span class="line">    System.out.println(<span class="string">"清空数据"</span> + jedis.flushDB());</span><br><span class="line">    System.out.println(<span class="string">"判断某个键是否存在: "</span> + jedis.exists(<span class="string">"username"</span>));</span><br><span class="line">    System.out.println(<span class="string">"新增'&lt;username, mxz&gt;的键值对'"</span> + jedis.set(<span class="string">"username"</span>, <span class="string">"mxz"</span>));</span><br><span class="line">    System.out.println(<span class="string">"新增'&lt;password, mxz&gt;的键值对'"</span> + jedis.set(<span class="string">"password"</span>, <span class="string">"mxz"</span>));</span><br><span class="line">    System.out.println(<span class="string">"系统中所有的键值对如下: "</span>);</span><br><span class="line">    Set&lt;String&gt; keys = jedis.keys(<span class="string">"*"</span>);</span><br><span class="line">    System.out.println(keys);</span><br><span class="line"></span><br><span class="line">    System.out.println(<span class="string">"删除键password: "</span> + jedis.del(<span class="string">"password"</span>));</span><br><span class="line">    System.out.println(<span class="string">"判断键password是否存在: "</span> + jedis.exists(<span class="string">"password"</span>));</span><br><span class="line">    System.out.println(<span class="string">"查看键username所存储值的类型: "</span> + jedis.type(<span class="string">"username"</span>));</span><br><span class="line">    System.out.println(<span class="string">"随机返回key空间的一个: "</span> + jedis.randomKey());</span><br><span class="line">    System.out.println(<span class="string">"重命名key: "</span> + jedis.rename(<span class="string">"username"</span>, <span class="string">"name"</span>));</span><br><span class="line">    System.out.println(<span class="string">"按索引查询: "</span> + jedis.select(<span class="number">0</span>));</span><br><span class="line">    System.out.println(<span class="string">"删除当前选择数据库的所有的key: "</span> + jedis.flushDB());</span><br><span class="line">    System.out.println(<span class="string">"返回当前数据库中key的数目: "</span> + jedis.dbSize());</span><br><span class="line">    System.out.println(<span class="string">"删除所有数据库中的所有的key: "</span> + jedis.flushAll());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">  .   ____          _            __ _ _</span><br><span class="line"> /\\ / ___<span class="string">'_ __ _ _(_)_ __  __ _ \ \ \ \</span></span><br><span class="line"><span class="string">( ( )\___ | '</span>_ | <span class="string">'_| | '</span>_ \/ _` | \ \ \ \</span><br><span class="line"> \\/  ___)| |_)| | | | | || (_| |  ) ) ) )</span><br><span class="line">  <span class="string">'  |____| .__|_| |_|_| |_\__, | / / / /</span></span><br><span class="line"><span class="string"> =========|_|==============|___/=/_/_/_/</span></span><br><span class="line"><span class="string"> :: Spring Boot ::                (v2.4.1)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">2021-01-08 19:28:31.602  INFO 7492 --- [           main] cn.com.codincge.RedisApplicationTests    : Starting RedisApplicationTests using Java 1.8.0_181 on DESKTOP-GMI8GKQ with PID 7492 (started by mxz in D:\mxz_code\codingce-java\codingce-redis\redis-01-jedis)</span></span><br><span class="line"><span class="string">2021-01-08 19:28:31.608  INFO 7492 --- [           main] cn.com.codincge.RedisApplicationTests    : No active profile set, falling back to default profiles: default</span></span><br><span class="line"><span class="string">2021-01-08 19:28:32.290  INFO 7492 --- [           main] cn.com.codincge.RedisApplicationTests    : Started RedisApplicationTests in 1.133 seconds (JVM running for 3.804)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">清空数据OK</span></span><br><span class="line"><span class="string">判断某个键是否存在: false</span></span><br><span class="line"><span class="string">新增'</span>&lt;username, mxz&gt;的键值对<span class="string">'OK</span></span><br><span class="line"><span class="string">新增'</span>&lt;password, mxz&gt;的键值对<span class="string">'OK</span></span><br><span class="line"><span class="string">系统中所有的键值对如下: </span></span><br><span class="line"><span class="string">[password, username]</span></span><br><span class="line"><span class="string">删除键password: 1</span></span><br><span class="line"><span class="string">判断键password是否存在: false</span></span><br><span class="line"><span class="string">查看键username所存储值的类型: string</span></span><br><span class="line"><span class="string">随机返回key空间的一个: username</span></span><br><span class="line"><span class="string">重命名key: OK</span></span><br><span class="line"><span class="string">按索引查询: OK</span></span><br><span class="line"><span class="string">删除当前选择数据库的所有的key: OK</span></span><br><span class="line"><span class="string">返回当前数据库中key的数目: 0</span></span><br><span class="line"><span class="string">删除所有数据库中的所有的key: OK</span></span><br></pre></td></tr></table></figure>
+  
+  
+    
+    <div class='footer'>
+      
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=http://i.codingce.com.cn/2021/01/08/Jedis/>http://i.codingce.com.cn/2021/01/08/Jedis/</a></p>
+              
+            
+          </blockquote>
+        </div>
+      
+      
+    </div>
+  
+  
+    
+
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-08T19:51:41+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Jan 8, 2021</p>
+  </a>
+</div>
+
+        
+      
+        
           
-        
-      
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
   
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/09/27/%E5%88%86%E6%9E%90%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/">
-        分析开源项目
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        解压项目
-先不要着急运行
-观察
-
-运用了哪些技术(SpringBoot、Vue、Redi、MQ…)
-是否有数据库(mysql)
-你的环境是否匹配(Maven、 Java、npm、nodes.js、redis…)
-通过了, 然后再想办法运行
-
-跑起来是第一步
-
-安装数据库, 执行SQL
-前端需要跑起来
-后端项目导入跑起来
-启动后端项目
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Redis/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Redis</p></a></div>
 
 
-只要发现了Swagger, 那么跑起来第一步就是先进入...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-09-27</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E9%9A%8F%E8%AE%B0/">随记</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/09/27/%E5%88%86%E6%9E%90%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
         
       
         
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/09/13/%E4%BA%92%E8%81%94%E7%BD%91%E4%B8%89%E9%AB%98%E6%9E%B6%E6%9E%84%EF%BC%9A%E9%AB%98%E5%B9%B6%E5%8F%91%E3%80%81%E9%AB%98%E6%80%A7%E8%83%BD%E3%80%81%E9%AB%98%E5%8F%AF%E7%94%A8/">
-        互联网三高架构：高并发、高性能、高可用
-      </a>
-    </h2>
-  
-  <div class='md'>
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
     
       
-        面向互联网的三高系统，最关注的软件质量属性是：性能、可用性、伸缩性、扩展性、安全性。
-而构建此类系统，最常见的架构模式有：横向分层、纵向分割、分布式化、集群化、使用缓存、使用异步模式、使用冗余、自动化（发布、部署、监控）。
-具体来说，可以在不同层次常用的技术有：
-前端架构
-浏览器优化技术：合理布局，页面缓存，减少http请求数，页面压缩，减少 cookie 传输。
-
-
-1）CDN
-CDN的基...
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=http://i.codingce.com.cn/2021/01/08/Jedis/&title=Jedis - xzMhehe&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://i.codingce.com.cn/2021/01/08/Jedis/&title=Jedis - xzMhehe&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=http://i.codingce.com.cn/2021/01/08/Jedis/&title=Jedis - xzMhehe&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+    
       
     
   </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-09-13</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/09/13/%E4%BA%92%E8%81%94%E7%BD%91%E4%B8%89%E9%AB%98%E6%9E%B6%E6%9E%84%EF%BC%9A%E9%AB%98%E5%B9%B6%E5%8F%91%E3%80%81%E9%AB%98%E6%80%A7%E8%83%BD%E3%80%81%E9%AB%98%E5%8F%AF%E7%94%A8/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
 </div>
 
-          </div>
+
+
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/08/11/hexo%E9%80%9F%E5%BA%A6%E4%BC%98%E5%8C%96%EF%BC%8Cgulp%E5%8E%8B%E7%BC%A9%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90/">
-        hexo速度优化，gulp压缩静态资源
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        起因
-自己博客插件加多了之后,感觉访问速度慢了些, 找了一些优化方法
-
-
-少发送请求
-把要加载的js文件（css文件同理）合并成一个（尽量少）文件，则可以向服务器少发送请求，从而减少等待时间。(前端不是很懂,太麻烦了,我只采用压缩文件这个方法)
-
-
-压缩文件
-使用压缩之后的js、css、img、html等静态资源文件，同样可以减少请求时间。(虽然html文件压缩对小网站意义不大,详见HTML...
-      
-    
+    </div>
   </div>
+
+
   
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-08-11</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E9%9A%8F%E8%AE%B0/">随记</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/08/11/hexo%E9%80%9F%E5%BA%A6%E4%BC%98%E5%8C%96%EF%BC%8Cgulp%E5%8E%8B%E7%BC%A9%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
   
 
-</div>
+  
+    <div class="prev-next">
+      
+      
+        <a class='next' href='/2021/01/07/Redis%E4%BA%8B%E5%8A%A1%E4%B8%8E%E7%9B%91%E6%8E%A7/'>
+          <p class='title'>Redis事务与监控<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>事务
 
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/08/06/%E6%9D%80%E6%AD%BB%E4%B8%80%E5%8F%AA%E7%9F%A5%E6%9B%B4%E9%B8%9F/">
-        杀死一只知更鸟
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        纵观历史，社会总是对新兴而不同的事物感到排斥。《杀死一只知更鸟》向我们展示了一个鲜明的例子，仅仅因为那个人是不同的黑人，社会就可以对一个无辜者使用各种残忍的手段无所而不用其极。故事发生在虚构的Alabama州小镇Maycomb。本书讨论了美国司法以及社会的不公正和种族偏见的问题。
-Maycomb镇让人想起那些人们过着心满意足的生活的古老小镇，那里的人们过着一种平静得令人不安的生活。故事发生在...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-08-06</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E9%9A%8F%E8%AE%B0/">随记</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/08/06/%E6%9D%80%E6%AD%BB%E4%B8%80%E5%8F%AA%E7%9F%A5%E6%9B%B4%E9%B8%9F/'>
-            Read More
-          </a>
-        </div>
+Redis单条命令是保证原子性的,但是事务不保证原子性的
+Redis事务没有隔离级别的概念
+所有的命命令在事务中, 并没有直接被执行, 只有发起执行命令的时候才会被执行
+
+Redis 事...</p>
+        </a>
       
     </div>
   
+</article>
 
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
 </div>
 
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/07/13/%E6%88%91%E7%90%86%E8%A7%A3%E7%9A%84%E4%BA%92%E8%81%94%E7%BD%91%E5%BA%94%E7%94%A8%E5%92%8C%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/">
-        我理解的互联网应用和企业应用开发
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        互联网应用(网站或app)，和企业应用的本质区别，应该从用户谈起。
-互联网是陌生用户，网站对于他们来说是自助系统(类似于ATM取款机)，不需要、也不可能对他们强制培训，比如用户注册。所以它们要做得绝对的弱智化，尽量降低学习成本。
-企业应用是公司员工，带有强制性，而且上岗前、或系统上线前，一般都有培训，比如工行柜台员工那个Windows客户端的功能，比如存款，都是通过输入“2397”调出的。相...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-07-13</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E9%9A%8F%E8%AE%B0/">随记</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/07/13/%E6%88%91%E7%90%86%E8%A7%A3%E7%9A%84%E4%BA%92%E8%81%94%E7%BD%91%E5%BA%94%E7%94%A8%E5%92%8C%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/07/09/development-words/">
-        常见开发单词
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        开发常见单词™
-
-
-
-单词
-音标
-释义
+  </article>
 
 
 
 
-Authentication
- /ɔːˌθentɪˈkeɪʃn/
-证明；鉴定；证实
 
 
-Authorization
- /ˌɔːθəraɪˈzeɪʃn/
-授权，认可；批准，委任
-
-
-primary
-/ˈpraɪməri/ 
-主要的；初级的；基本的
-
-
-Concerns
-
-关注；关注点；关注者
-
-
-cryptography
-/krɪpˈtɒɡrəf...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-07-09</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E9%9A%8F%E8%AE%B0/">随记</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/07/09/development-words/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/07/08/my-blog/">
-        随记
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        怎么可能有顺序呢，当然是随机的~
-
-    
-        
-        
-            CWorld's Blog
-            求知若愚，虚怀若谷
-        
-    
-    
-        
-        
-            KD's Blog
-            杂乱的技术小站
-        
-    
-    
-        
- ...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-07-08</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E9%9A%8F%E8%AE%B0/">随记</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/07/08/my-blog/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/07/07/my-hexo-blog/">
-        My Hexo Blog
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        我是xzMhehe，一名Java开发者，技术一般，经历平平，但是也一直渴望进步，同时也努力活着，为了人生不留遗憾，也希望能够一直做着自己喜欢的事情，得闲时分享心得、分享一些浅薄的经验，等以后老得不能再老了，就说故事已经讲完了,不去奢求圆满。
-相信浏览这段话的你也知道，学习是一件极其枯燥而无聊的过程，甚至有时候显得很无助，我也想告诉你，成长就是这样一件残酷的事情，任何成功都不是一蹴而就，需要坚...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-07-07</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/07/07/my-hexo-blog/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-    
-  </section>
-  
-    
-  
-
-
-    
-  
 </div>
 <aside class='l_side'>
   
@@ -785,186 +545,28 @@ cryptography
     
     
 
-<section class="widget blogger shadow desktop mobile">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box rectangle' href='/about/'>
-          <img no-lazy src='https://image.codingce.com.cn/iavatar.jpg'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-        
-        
-          <p><span id="jinrishici-sentence">xzMhehe</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="/atom.xml"
-              class="social fas fa-rss flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="mailto:codingce@gmail.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/xzMhehe"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="/"
-              class="social fas fa-headphones-alt flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
 
-  
 
-  
-    
-    
-  
-
-  <section class="widget category shadow desktop">
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
     
   <header>
     
-      <a href='/blog/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
     
   </header>
 
 
     <div class='content'>
-      <ul class="entry navigation">
-        
-          <li><a class="flat-box"
-            title="/categories/Git/" href="/categories/Git/"
-            id="categoriesGit"
-            ><div class='name'>Git</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Java/" href="/categories/Java/"
-            id="categoriesJava"
-            ><div class='name'>Java</div><div class='badge'>(4)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/MyBatis/" href="/categories/MyBatis/"
-            id="categoriesMyBatis"
-            ><div class='name'>MyBatis</div><div class='badge'>(9)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Redis/" href="/categories/Redis/"
-            id="categoriesRedis"
-            ><div class='name'>Redis</div><div class='badge'>(5)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Spring/" href="/categories/Spring/"
-            id="categoriesSpring"
-            ><div class='name'>Spring</div><div class='badge'>(8)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/SpringBoot/" href="/categories/SpringBoot/"
-            id="categoriesSpringBoot"
-            ><div class='name'>SpringBoot</div><div class='badge'>(11)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/SpringCloud/" href="/categories/SpringCloud/"
-            id="categoriesSpringCloud"
-            ><div class='name'>SpringCloud</div><div class='badge'>(8)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/SpringMVC/" href="/categories/SpringMVC/"
-            id="categoriesSpringMVC"
-            ><div class='name'>SpringMVC</div><div class='badge'>(8)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Sql/" href="/categories/Sql/"
-            id="categoriesSql"
-            ><div class='name'>Sql</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E5%8A%9B%E6%89%A3/" href="/categories/%E5%8A%9B%E6%89%A3/"
-            id="categoriesE58A9BE689A3"
-            ><div class='name'>力扣</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
-            id="categoriesE7AE97E6B395E4B88EE695B0E68DAEE7BB93E69E84"
-            ><div class='name'>算法与数据结构</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E8%80%83%E7%A0%94/" href="/categories/%E8%80%83%E7%A0%94/"
-            id="categoriesE88083E7A094"
-            ><div class='name'>考研</div><div class='badge'>(2)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E9%9A%8F%E8%AE%B0/" href="/categories/%E9%9A%8F%E8%AE%B0/"
-            id="categoriesE99A8FE8AEB0"
-            ><div class='name'>随记</div><div class='badge'>(6)</div></a></li>
-        
-      </ul>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Jedis"><span class="toc-text">Jedis</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#测试"><span class="toc-text">测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用API"><span class="toc-text">常用API</span></a></li></ol>
     </div>
   </section>
 
-
-  
-
-  
-    
-    
-  
-
-  <section class="widget tagcloud shadow desktop mobile">
-    
-  <header>
-    
-      <a href='/blog/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <a href="/tags/Git/" style="font-size: 14px; color: #999">Git</a> <a href="/tags/Java/" style="font-size: 19px; color: #777">Java</a> <a href="/tags/Multithread%EF%BC%88%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%89/" style="font-size: 14px; color: #999">Multithread（多线程）</a> <a href="/tags/MyBatis/" style="font-size: 22.33px; color: #606060">MyBatis</a> <a href="/tags/Redis/" style="font-size: 17.33px; color: #828282">Redis</a> <a href="/tags/Spring/" style="font-size: 20.67px; color: #6c6c6c">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 24px; color: #555">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 20.67px; color: #6c6c6c">SpringCloud</a> <a href="/tags/SpringMVC/" style="font-size: 20.67px; color: #6c6c6c">SpringMVC</a> <a href="/tags/Sql/" style="font-size: 14px; color: #999">Sql</a> <a href="/tags/%E5%8A%9B%E6%89%A3/" style="font-size: 14px; color: #999">力扣</a> <a href="/tags/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 14px; color: #999">算法与数据结构</a> <a href="/tags/%E8%80%83%E7%A0%94/" style="font-size: 15.67px; color: #8e8e8e">考研</a> <a href="/tags/%E9%9A%8F%E8%AE%B0/" style="font-size: 20.67px; color: #6c6c6c">随记</a>
-    </div>
-  </section>
-
-
-  
 
   
 
 
 </aside>
+
 
 
         
@@ -974,8 +576,8 @@ cryptography
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
-  pdata.postTitle="";
+  pdata.ispage=true;
+  pdata.postTitle="Jedis";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 
