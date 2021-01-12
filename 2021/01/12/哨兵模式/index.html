@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head hexo-theme='https://github.com/volantis-x/hexo-theme-volantis/tree/4.2.0'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
+  
+    
+  
+  <!-- 渲染优化 -->
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- 页面元数据 -->
+  
+  <title>哨兵模式 - xzMhehe</title>
+  
+    <meta name="keywords" content="Redis">
+  
+
+  
+
+  <!-- feed -->
+  
+
+  <!-- import meta -->
+  
+
+  <!-- link -->
+  
+
+  <!-- import link -->
+  
+
+  
+    
+<link rel="stylesheet" href="/css/first.css">
+
+  
+
+  
+  <link rel="stylesheet" href="/css/style.css" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="/css/style.css"></noscript>
+  
+
+  <script id="loadcss"></script>
+
+</head>
+
+<body>
+  
+
+<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
+  <div class='container'>
+  <div id='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h m-phone' id="pjax-header-nav-list">
+        <li><a id="s-comment" class="fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a id="s-toc" class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+            <img no-lazy class='logo' src='https://cdn.jsdelivr.net/gh/XuxuGood/cdn@master/blogImages/site-img/navbar-logo.png'/>
+          
+          
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h m-pc'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/links/
+                  
+                  
+                  
+                    id="links"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h m-phone'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/links/
+                  
+                  
+                  
+                    id="links"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+  <div id="l_body">
+    <div id="l_cover">
+  
+    
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
+          
+            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg"></div>
+          
+          <div class='cover-body'>
+  <div class='top'>
+    
+    
+      <p class="title">全栈自学社区</p>
+    
+    
+  </div>
+  <div class='bottom'>
+    <div class='menu navigation'>
+      <div class='list-h'>
+        
+          
+            <a href="/"
+              
+              
+              id="home">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg'><p>博客</p>
+            </a>
+          
+            <a href="/archives/"
+              
+              
+              id="archives">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg'><p>归档</p>
+            </a>
+          
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+          <div id="scroll-down" style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
+        </div>
+    
+  
+  </div>
+
+    <div id='safearea'>
+      <div class='body-wrapper' id="pjax-container">
+        
+
+<div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
+  
+
+
+  
+  <div class="article-meta" id="top">
+    
+    
+    
+      <h1 class="title">
+        哨兵模式
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/" rel="nofollow">
+    <img no-lazy src="">
+    <p>全栈自学社区</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/Redis/">Redis</a>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Jan 12, 2021</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="哨兵模式" data-path="/2021/01/12/%E5%93%A8%E5%85%B5%E6%A8%A1%E5%BC%8F/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
+      </div>
+    
+  </div>
+
+
+  
+  <h2 id="哨兵模式">哨兵模式</h2>
+<p>主从切换技术的方法是：当主服务器宕机后，需要手动把一台从服务器切换为主服务器，这就需要人工干预，费事费力，还会造成一段时间内服务不可用。这不是一种推荐的方式，更多时候，我们优先考虑<code>哨兵模式</code></p>
+<h2 id="哨兵模式概述">哨兵模式概述</h2>
+<p>哨兵模式是一种特殊的模式，首先Redis提供了哨兵的命令，哨兵是一个独立的进程，作为进程，它会独立运行。其原理是<code>哨兵通过发送命令</code>，<code>等待Redis服务器响应</code>，<code>从而监控运行的多个Redis实例</code>。</p>
+<p><img src="https://s3.ax1x.com/2021/01/12/sJNFot.png" class="lazyload" data-srcset="https://s3.ax1x.com/2021/01/12/sJNFot.png" srcset="data:image/png;base64,666" alt=""></p>
+<p>这里的哨兵有两个作用</p>
+<ul>
+<li>通过发送命令，让Redis服务器返回监控其运行状态，包括主服务器和从服务器。</li>
+<li>当哨兵监测到master宕机，会自动将slave切换成master，然后通过发布订阅模式通知其他的从服务器，修改配置文件，让它们切换主机。</li>
+</ul>
+<p>然而一个哨兵进程对Redis服务器进行监控，可能会出现问题，为此，我们可以使用多个哨兵进行监控。各个哨兵之间还会进行监控，这样就形成了多哨兵模式。</p>
+<p>用文字描述一下故障切换（failover）的过程。假设主服务器宕机，哨兵1先检测到这个结果，系统并不会马上进行failover过程，仅仅是哨兵1主观的认为主服务器不可用，这个现象成为主观下线。当后面的哨兵也检测到主服务器不可用，并且数量达到一定值时，那么哨兵之间就会进行一次投票，投票的结果由一个哨兵发起，进行failover操作。切换成功后，就会通过发布订阅模式，让各个哨兵把自己监控的从服务器实现切换主机，这个过程称为客观下线。这样对于客户端而言，一切都是透明的。</p>
+<h2 id="Redis配置哨兵模式">Redis配置哨兵模式</h2>
+<p>配置3个哨兵和1主2从的Redis服务器来演示这个过程。</p>
+<table>
+<thead>
+<tr>
+<th>服务器类型</th>
+<th>是否是主服务器</th>
+<th>IP地址</th>
+<th>端口</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Redis</td>
+<td>是</td>
+<td>127.0.0.1</td>
+<td>6379</td>
+</tr>
+<tr>
+<td>Redis</td>
+<td>否</td>
+<td>127.0.0.1</td>
+<td>6380</td>
+</tr>
+<tr>
+<td>Redis</td>
+<td>否</td>
+<td>127.0.0.1</td>
+<td>6381</td>
+</tr>
+</tbody>
+</table>
+<p><img src="https://image.codingce.com.cn/shaobing2.png" class="lazyload" data-srcset="https://image.codingce.com.cn/shaobing2.png" srcset="data:image/png;base64,666" alt=""></p>
+<h2 id="测试">测试</h2>
+<p>测试环境：一主二从</p>
+<ul>
+<li>哨兵配置文件  sentinel.config</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># sentinel monitor myredis 被监控主机名称 host 1        数字 1 代表主机挂了, slave 投票看谁接替成为主机, 就会成为主机</span></span><br><span class="line">sentinel monitor myredis 127.0.0.1 6379 1</span><br></pre></td></tr></table></figure>
+<ul>
+<li>启动哨兵</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://t.csdnimg.cn/fM0d</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">[root@ecs-t6-medium-2-linux-20190910000110 redis-5.0.7]<span class="comment"># redis-sentinel myconfig/sentinel.conf</span></span><br><span class="line">10933:X 12 Jan 2021 15:55:07.961 <span class="comment"># oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo</span></span><br><span class="line">10933:X 12 Jan 2021 15:55:07.961 <span class="comment"># Redis version=5.0.7, bits=64, commit=00000000, modified=0, pid=10933, just started</span></span><br><span class="line">10933:X 12 Jan 2021 15:55:07.961 <span class="comment"># Configuration loaded</span></span><br><span class="line">                _._                                                  </span><br><span class="line">           _.-``__ <span class="string">''</span>-._                                             </span><br><span class="line">      _.-``    `.  `_.  <span class="string">''</span>-._           Redis 5.0.7 (00000000/0) 64 bit</span><br><span class="line">  .-`` .-```.  ```\/    _.,_ <span class="string">''</span>-._                                   </span><br><span class="line"> (    <span class="string">'      ,       .-`  | `,    )     Running in sentinel mode</span></span><br><span class="line"><span class="string"> |`-._`-...-` __...-.``-._|'</span>` _.-<span class="string">'|     Port: 26379</span></span><br><span class="line"><span class="string"> |    `-._   `._    /     _.-'</span>    |     PID: 10933</span><br><span class="line">  `-._    `-._  `-./  _.-<span class="string">'    _.-'</span>                                   </span><br><span class="line"> |`-._`-._    `-.__.-<span class="string">'    _.-'</span>_.-<span class="string">'|                                  </span></span><br><span class="line"><span class="string"> |    `-._`-._        _.-'</span>_.-<span class="string">'    |           http://redis.io        </span></span><br><span class="line"><span class="string">  `-._    `-._`-.__.-'</span>_.-<span class="string">'    _.-'</span>                                   </span><br><span class="line"> |`-._`-._    `-.__.-<span class="string">'    _.-'</span>_.-<span class="string">'|                                  </span></span><br><span class="line"><span class="string"> |    `-._`-._        _.-'</span>_.-<span class="string">'    |                                  </span></span><br><span class="line"><span class="string">  `-._    `-._`-.__.-'</span>_.-<span class="string">'    _.-'</span>                                   </span><br><span class="line">      `-._    `-.__.-<span class="string">'    _.-'</span>                                       </span><br><span class="line">          `-._        _.-<span class="string">'                                           </span></span><br><span class="line"><span class="string">              `-.__.-'</span>                                               </span><br><span class="line"></span><br><span class="line">10933:X 12 Jan 2021 15:55:07.962 <span class="comment"># Sentinel ID is af64af6020684a2fe79f1cc4e1727c39778263bc</span></span><br><span class="line">10933:X 12 Jan 2021 15:55:07.962 <span class="comment"># +monitor master myredis 127.0.0.1 6379 quorum 1</span></span><br><span class="line">10933:X 12 Jan 2021 16:04:10.045 * +slave slave 127.0.0.1:6381 127.0.0.1 6381 @ myredis 127.0.0.1 6379</span><br><span class="line">10933:X 12 Jan 2021 16:04:30.090 * +slave slave 127.0.0.1:6380 127.0.0.1 6380 @ myredis 127.0.0.1 6379</span><br></pre></td></tr></table></figure>
+<p>当6379宕机或者关闭后</p>
+<p><strong>哨兵日志</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">11726:X 12 Jan 2021 16:05:35.830 <span class="comment"># Configuration loaded</span></span><br><span class="line">                _._                                                  </span><br><span class="line">           _.-``__ <span class="string">''</span>-._                                             </span><br><span class="line">      _.-``    `.  `_.  <span class="string">''</span>-._           Redis 5.0.7 (00000000/0) 64 bit</span><br><span class="line">  .-`` .-```.  ```\/    _.,_ <span class="string">''</span>-._                                   </span><br><span class="line"> (    <span class="string">'      ,       .-`  | `,    )     Running in sentinel mode</span></span><br><span class="line"><span class="string"> |`-._`-...-` __...-.``-._|'</span>` _.-<span class="string">'|     Port: 26379</span></span><br><span class="line"><span class="string"> |    `-._   `._    /     _.-'</span>    |     PID: 11726</span><br><span class="line">  `-._    `-._  `-./  _.-<span class="string">'    _.-'</span>                                   </span><br><span class="line"> |`-._`-._    `-.__.-<span class="string">'    _.-'</span>_.-<span class="string">'|                                  </span></span><br><span class="line"><span class="string"> |    `-._`-._        _.-'</span>_.-<span class="string">'    |           http://redis.io        </span></span><br><span class="line"><span class="string">  `-._    `-._`-.__.-'</span>_.-<span class="string">'    _.-'</span>                                   </span><br><span class="line"> |`-._`-._    `-.__.-<span class="string">'    _.-'</span>_.-<span class="string">'|                                  </span></span><br><span class="line"><span class="string"> |    `-._`-._        _.-'</span>_.-<span class="string">'    |                                  </span></span><br><span class="line"><span class="string">  `-._    `-._`-.__.-'</span>_.-<span class="string">'    _.-'</span>                                   </span><br><span class="line">      `-._    `-.__.-<span class="string">'    _.-'</span>                                       </span><br><span class="line">          `-._        _.-<span class="string">'                                           </span></span><br><span class="line"><span class="string">              `-.__.-'</span>                                               </span><br><span class="line"></span><br><span class="line">11726:X 12 Jan 2021 16:05:35.831 <span class="comment"># Sentinel ID is af64af6020684a2fe79f1cc4e1727c39778263bc</span></span><br><span class="line">11726:X 12 Jan 2021 16:05:35.831 <span class="comment"># +monitor master myredis 127.0.0.1 6379 quorum 1</span></span><br><span class="line">11726:X 12 Jan 2021 16:07:34.811 <span class="comment"># +sdown master myredis 127.0.0.1 6379</span></span><br><span class="line">11726:X 12 Jan 2021 16:07:34.811 <span class="comment"># +odown master myredis 127.0.0.1 6379 #quorum 1/1</span></span><br><span class="line">11726:X 12 Jan 2021 16:07:34.811 <span class="comment"># +new-epoch 1</span></span><br><span class="line">11726:X 12 Jan 2021 16:07:34.811 <span class="comment"># +try-failover master myredis 127.0.0.1 6379</span></span><br><span class="line">11726:X 12 Jan 2021 16:07:34.814 <span class="comment"># +vote-for-leader af64af6020684a2fe79f1cc4e1727c39778263bc 1</span></span><br><span class="line">11726:X 12 Jan 2021 16:07:34.814 <span class="comment"># +elected-leader master myredis 127.0.0.1 6379</span></span><br><span class="line"><span class="comment"># failove 故障转移</span></span><br><span class="line">11726:X 12 Jan 2021 16:07:34.814 <span class="comment"># +failover-state-select-slave master myredis 127.0.0.1 6379</span></span><br><span class="line">11726:X 12 Jan 2021 16:07:34.866 <span class="comment"># +selected-slave slave 127.0.0.1:6381 127.0.0.1 6381 @ myredis 127.0.0.1 6379</span></span><br><span class="line">11726:X 12 Jan 2021 16:07:34.866 * +failover-state-send-slaveof-noone slave 127.0.0.1:6381 127.0.0.1 6381 @ myredis 127.0.0.1 6379</span><br><span class="line">11726:X 12 Jan 2021 16:07:34.925 * +failover-state-wait-promotion slave 127.0.0.1:6381 127.0.0.1 6381 @ myredis 127.0.0.1 6379</span><br><span class="line">11726:X 12 Jan 2021 16:07:35.087 <span class="comment"># +promoted-slave slave 127.0.0.1:6381 127.0.0.1 6381 @ myredis 127.0.0.1 6379</span></span><br><span class="line">11726:X 12 Jan 2021 16:07:35.087 <span class="comment"># +failover-state-reconf-slaves master myredis 127.0.0.1 6379</span></span><br><span class="line">11726:X 12 Jan 2021 16:07:35.147 * +slave-reconf-sent slave 127.0.0.1:6380 127.0.0.1 6380 @ myredis 127.0.0.1 6379</span><br><span class="line">11726:X 12 Jan 2021 16:07:36.094 * +slave-reconf-inprog slave 127.0.0.1:6380 127.0.0.1 6380 @ myredis 127.0.0.1 6379</span><br><span class="line">11726:X 12 Jan 2021 16:07:36.094 * +slave-reconf-done slave 127.0.0.1:6380 127.0.0.1 6380 @ myredis 127.0.0.1 6379</span><br><span class="line"></span><br><span class="line">11726:X 12 Jan 2021 16:07:36.171 <span class="comment"># +failover-end master myredis 127.0.0.1 6379</span></span><br><span class="line"><span class="comment"># 6381</span></span><br><span class="line">11726:X 12 Jan 2021 16:07:36.171 <span class="comment"># +switch-master myredis 127.0.0.1 6379 127.0.0.1 6381</span></span><br><span class="line">11726:X 12 Jan 2021 16:07:36.171 * +slave slave 127.0.0.1:6380 127.0.0.1 6380 @ myredis 127.0.0.1 6381</span><br><span class="line">11726:X 12 Jan 2021 16:07:36.171 * +slave slave 127.0.0.1:6379 127.0.0.1 6379 @ myredis 127.0.0.1 6381</span><br></pre></td></tr></table></figure>
+<p><strong>此时6381为老大</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6381&gt; info replication</span><br><span class="line"><span class="comment"># Replication</span></span><br><span class="line">role:master</span><br><span class="line">connected_slaves:1</span><br><span class="line">slave0:ip=127.0.0.1,port=6380,state=online,offset=17768,lag=0</span><br><span class="line">master_replid:25c55d651308dd9fcd2f9c84867ed1a58f2f4286</span><br><span class="line">master_replid2:9d786450a338f30155c623f99d1bd58129712aab</span><br><span class="line">master_repl_offset:17768</span><br><span class="line">second_repl_offset:11402</span><br><span class="line">repl_backlog_active:1</span><br><span class="line">repl_backlog_size:1048576</span><br><span class="line">repl_backlog_first_byte_offset:1</span><br><span class="line">repl_backlog_histlen:17768</span><br><span class="line">127.0.0.1:6381&gt;</span><br></pre></td></tr></table></figure>
+<p>如果主机此时回来了, 只能归并到新的主机下, 当作从机, 这就是哨兵模式的规则</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">11726:X 12 Jan 2021 16:07:36.171 * +slave slave 127.0.0.1:6379 127.0.0.1 6379 @ myredis 127.0.0.1 6381</span><br><span class="line">11726:X 12 Jan 2021 16:08:06.192 <span class="comment"># +sdown slave 127.0.0.1:6379 127.0.0.1 6379 @ myredis 127.0.0.1 6381</span></span><br><span class="line">11726:X 12 Jan 2021 16:22:59.961 <span class="comment"># -sdown slave 127.0.0.1:6379 127.0.0.1 6379 @ myredis 127.0.0.1 6381</span></span><br><span class="line">11726:X 12 Jan 2021 16:23:34.353 <span class="comment"># +sdown slave 127.0.0.1:6379 127.0.0.1 6379 @ myredis 127.0.0.1 6381</span></span><br><span class="line">11726:X 12 Jan 2021 16:23:37.565 * +reboot slave 127.0.0.1:6379 127.0.0.1 6379 @ myredis 127.0.0.1 6381</span><br><span class="line">11726:X 12 Jan 2021 16:23:37.648 <span class="comment"># -sdown slave 127.0.0.1:6379 127.0.0.1 6379 @ myredis 127.0.0.1 6381</span></span><br><span class="line">11726:X 12 Jan 2021 16:23:47.568 * +convert-to-slave slave 127.0.0.1:6379 127.0.0.1 6379 @ myredis 127.0.0.1 6381</span><br></pre></td></tr></table></figure>
+<h2 id="哨兵模式-2">哨兵模式</h2>
+<h3 id="优点">优点</h3>
+<ul>
+<li>哨兵集群, 基于主从复制模式, 所有主从配置优点, 它全有</li>
+<li>主从可以切换, 故障可以转移, 系统可用性就会很好</li>
+<li>哨兵模式就是主从模式的升级, 手动到自动, 更加健壮</li>
+</ul>
+<h3 id="缺点">缺点</h3>
+<ul>
+<li>redis 不好在线扩容, 集群容量一旦到达上限, 在线扩容就十分的麻烦</li>
+<li>实现哨兵模式的配置其实是很麻烦的, 里面有很多选择</li>
+</ul>
+<h2 id="哨兵模式全部配置">哨兵模式全部配置</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Example sentinel.conf</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># *** IMPORTANT ***</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># By default Sentinel will not be reachable from interfaces different than</span></span><br><span class="line"><span class="comment"># localhost, either use the 'bind' directive to bind to a list of network</span></span><br><span class="line"><span class="comment"># interfaces, or disable protected mode with "protected-mode no" by</span></span><br><span class="line"><span class="comment"># adding it to this configuration file.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Before doing that MAKE SURE the instance is protected from the outside</span></span><br><span class="line"><span class="comment"># world via firewalling or other means.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># For example you may use one of the following:</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># bind 127.0.0.1 192.168.1.1</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># protected-mode no</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># port &lt;sentinel-port&gt;</span></span><br><span class="line"><span class="comment"># The port that this sentinel instance will run on</span></span><br><span class="line">port 26379          <span class="comment"># 如果有哨兵集群, 我们还需要配置每个哨兵端口</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># By default Redis Sentinel does not run as a daemon. Use 'yes' if you need it.</span></span><br><span class="line"><span class="comment"># Note that Redis will write a pid file in /var/run/redis-sentinel.pid when</span></span><br><span class="line"><span class="comment"># daemonized.</span></span><br><span class="line">daemonize no</span><br><span class="line"></span><br><span class="line"><span class="comment"># When running daemonized, Redis Sentinel writes a pid file in</span></span><br><span class="line"><span class="comment"># /var/run/redis-sentinel.pid by default. You can specify a custom pid file</span></span><br><span class="line"><span class="comment"># location here.</span></span><br><span class="line">pidfile /var/run/redis-sentinel.pid</span><br><span class="line"></span><br><span class="line"><span class="comment"># Specify the log file name. Also the empty string can be used to force</span></span><br><span class="line"><span class="comment"># Sentinel to log on the standard output. Note that if you use standard</span></span><br><span class="line"><span class="comment"># output for logging but daemonize, logs will be sent to /dev/null</span></span><br><span class="line">logfile <span class="string">""</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># sentinel announce-ip &lt;ip&gt;</span></span><br><span class="line"><span class="comment"># sentinel announce-port &lt;port&gt;</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># The above two configuration directives are useful in environments where,</span></span><br><span class="line"><span class="comment"># because of NAT, Sentinel is reachable from outside via a non-local address.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># When announce-ip is provided, the Sentinel will claim the specified IP address</span></span><br><span class="line"><span class="comment"># in HELLO messages used to gossip its presence, instead of auto-detecting the</span></span><br><span class="line"><span class="comment"># local address as it usually does.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Similarly when announce-port is provided and is valid and non-zero, Sentinel</span></span><br><span class="line"><span class="comment"># will announce the specified TCP port.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># The two options don't need to be used together, if only announce-ip is</span></span><br><span class="line"><span class="comment"># provided, the Sentinel will announce the specified IP and the server port</span></span><br><span class="line"><span class="comment"># as specified by the "port" option. If only announce-port is provided, the</span></span><br><span class="line"><span class="comment"># Sentinel will announce the auto-detected local IP and the specified port.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Example:</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># sentinel announce-ip 1.2.3.4</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># dir &lt;working-directory&gt;</span></span><br><span class="line"><span class="comment"># Every long running process should have a well-defined working directory.</span></span><br><span class="line"><span class="comment"># For Redis Sentinel to chdir to /tmp at startup is the simplest thing</span></span><br><span class="line"><span class="comment"># for the process to don't interfere with administrative tasks such as</span></span><br><span class="line"><span class="comment"># unmounting filesystems.</span></span><br><span class="line"><span class="comment"># 哨兵的 sentinel的工作目录</span></span><br><span class="line">dir /tmp            </span><br><span class="line"></span><br><span class="line"><span class="comment"># sentinel monitor &lt;master-name&gt; &lt;ip&gt; &lt;redis-port&gt; &lt;quorum&gt;</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Tells Sentinel to monitor this master, and to consider it in O_DOWN</span></span><br><span class="line"><span class="comment"># (Objectively Down) state only if at least &lt;quorum&gt; sentinels agree.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Note that whatever is the ODOWN quorum, a Sentinel will require to</span></span><br><span class="line"><span class="comment"># be elected by the majority of the known Sentinels in order to</span></span><br><span class="line"><span class="comment"># start a failover, so no failover can be performed in minority.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Replicas are auto-discovered, so you don't need to specify replicas in</span></span><br><span class="line"><span class="comment"># any way. Sentinel itself will rewrite this configuration file adding</span></span><br><span class="line"><span class="comment"># the replicas using additional configuration options.</span></span><br><span class="line"><span class="comment"># Also note that the configuration file is rewritten when a</span></span><br><span class="line"><span class="comment"># replica is promoted to master.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Note: master name should not include special characters or spaces.</span></span><br><span class="line"><span class="comment"># The valid charset is A-z 0-9 and the three characters ".-_".</span></span><br><span class="line"><span class="comment"># 哨兵 sentinel 监控的 redis 主节点 ip port</span></span><br><span class="line"><span class="comment"># master-name 可以自己命名的主节点名字  只能由字母 A-Z  数字0-9 这三个字符".-_" 组成</span></span><br><span class="line"><span class="comment"># quorum 配置多少个 sentinel 哨兵统一认为 master主节点失联, 那么这时候客观上认为主节点失联了</span></span><br><span class="line"><span class="comment"># sentinel monitor &lt;master-name&gt; &lt;ip&gt; &lt;redis-port&gt; &lt;quorum&gt;</span></span><br><span class="line">sentinel monitor mymaster 127.0.0.1 6379 2</span><br><span class="line"></span><br><span class="line"><span class="comment"># sentinel auth-pass &lt;master-name&gt; &lt;password&gt;</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Set the password to use to authenticate with the master and replicas.</span></span><br><span class="line"><span class="comment"># Useful if there is a password set in the Redis instances to monitor.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Note that the master password is also used for replicas, so it is not</span></span><br><span class="line"><span class="comment"># possible to set a different password in masters and replicas instances</span></span><br><span class="line"><span class="comment"># if you want to be able to monitor these instances with Sentinel.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># However you can have Redis instances without the authentication enabled</span></span><br><span class="line"><span class="comment"># mixed with Redis instances requiring the authentication (as long as the</span></span><br><span class="line"><span class="comment"># password set is the same for all the instances requiring the password) as</span></span><br><span class="line"><span class="comment"># the AUTH command will have no effect in Redis instances with authentication</span></span><br><span class="line"><span class="comment"># switched off.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Example:</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 当Redia实例中开启了 requirepass foobared 授权密码 这样所有的连接Redis 实例的客户端都要提供密码</span></span><br><span class="line"><span class="comment"># 设置</span></span><br><span class="line"><span class="comment"># sentinel auth-pass mymaster MySUPER--secret-0123passw0rd</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># sentinel down-after-milliseconds &lt;master-name&gt; &lt;milliseconds&gt;</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Number of milliseconds the master (or any attached replica or sentinel) should</span></span><br><span class="line"><span class="comment"># be unreachable (as in, not acceptable reply to PING, continuously, for the</span></span><br><span class="line"><span class="comment"># specified period) in order to consider it in S_DOWN state (Subjectively</span></span><br><span class="line"><span class="comment"># Down).</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Default is 30 seconds.</span></span><br><span class="line">sentinel down-after-milliseconds mymaster 30000</span><br><span class="line"></span><br><span class="line"><span class="comment"># sentinel parallel-syncs &lt;master-name&gt; &lt;numreplicas&gt;</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># How many replicas we can reconfigure to point to the new replica simultaneously</span></span><br><span class="line"><span class="comment"># during the failover. Use a low number if you use the replicas to serve query</span></span><br><span class="line"><span class="comment"># to avoid that all the replicas will be unreachable at about the same</span></span><br><span class="line"><span class="comment"># time while performing the synchronization with the master.</span></span><br><span class="line">sentinel parallel-syncs mymaster 1</span><br><span class="line"></span><br><span class="line"><span class="comment"># sentinel failover-timeout &lt;master-name&gt; &lt;milliseconds&gt;</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Specifies the failover timeout in milliseconds. It is used in many ways:</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># - The time needed to re-start a failover after a previous failover was</span></span><br><span class="line"><span class="comment">#   already tried against the same master by a given Sentinel, is two</span></span><br><span class="line"><span class="comment">#   times the failover timeout.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># - The time needed for a replica replicating to a wrong master according</span></span><br><span class="line"><span class="comment">#   to a Sentinel current configuration, to be forced to replicate</span></span><br><span class="line"><span class="comment">#   with the right master, is exactly the failover timeout (counting since</span></span><br><span class="line"><span class="comment">#   the moment a Sentinel detected the misconfiguration).</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># - The time needed to cancel a failover that is already in progress but</span></span><br><span class="line"><span class="comment">#   did not produced any configuration change (SLAVEOF NO ONE yet not</span></span><br><span class="line"><span class="comment">#   acknowledged by the promoted replica).</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># - The maximum time a failover in progress waits for all the replicas to be</span></span><br><span class="line"><span class="comment">#   reconfigured as replicas of the new master. However even after this time</span></span><br><span class="line"><span class="comment">#   the replicas will be reconfigured by the Sentinels anyway, but not with</span></span><br><span class="line"><span class="comment">#   the exact parallel-syncs progression as specified.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Default is 3 minutes.</span></span><br><span class="line">sentinel failover-timeout mymaster 180000</span><br><span class="line"></span><br><span class="line"><span class="comment"># SCRIPTS EXECUTION</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># sentinel notification-script and sentinel reconfig-script are used in order</span></span><br><span class="line"><span class="comment"># to configure scripts that are called to notify the system administrator</span></span><br><span class="line"><span class="comment"># or to reconfigure clients after a failover. The scripts are executed</span></span><br><span class="line"><span class="comment"># with the following rules for error handling:</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># If script exits with "1" the execution is retried later (up to a maximum</span></span><br><span class="line"><span class="comment"># number of times currently set to 10).</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># If script exits with "2" (or an higher value) the script execution is</span></span><br><span class="line"><span class="comment"># not retried.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># If script terminates because it receives a signal the behavior is the same</span></span><br><span class="line"><span class="comment"># as exit code 1.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># A script has a maximum running time of 60 seconds. After this limit is</span></span><br><span class="line"><span class="comment"># reached the script is terminated with a SIGKILL and the execution retried.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># NOTIFICATION SCRIPT</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># sentinel notification-script &lt;master-name&gt; &lt;script-path&gt;</span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="comment"># Call the specified notification script for any sentinel event that is</span></span><br><span class="line"><span class="comment"># generated in the WARNING level (for instance -sdown, -odown, and so forth).</span></span><br><span class="line"><span class="comment"># This script should notify the system administrator via email, SMS, or any</span></span><br><span class="line"><span class="comment"># other messaging system, that there is something wrong with the monitored</span></span><br><span class="line"><span class="comment"># Redis systems.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># The script is called with just two arguments: the first is the event type</span></span><br><span class="line"><span class="comment"># and the second the event description.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># The script must exist and be executable in order for sentinel to start if</span></span><br><span class="line"><span class="comment"># this option is provided.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Example:</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># sentinel notification-script mymaster /var/redis/notify.sh</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># CLIENTS RECONFIGURATION SCRIPT</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># sentinel client-reconfig-script &lt;master-name&gt; &lt;script-path&gt;</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># When the master changed because of a failover a script can be called in</span></span><br><span class="line"><span class="comment"># order to perform application-specific tasks to notify the clients that the</span></span><br><span class="line"><span class="comment"># configuration has changed and the master is at a different address.</span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="comment"># The following arguments are passed to the script:</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># &lt;master-name&gt; &lt;role&gt; &lt;state&gt; &lt;from-ip&gt; &lt;from-port&gt; &lt;to-ip&gt; &lt;to-port&gt;</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># &lt;state&gt; is currently always "failover"</span></span><br><span class="line"><span class="comment"># &lt;role&gt; is either "leader" or "observer"</span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="comment"># The arguments from-ip, from-port, to-ip, to-port are used to communicate</span></span><br><span class="line"><span class="comment"># the old address of the master and the new address of the elected replica</span></span><br><span class="line"><span class="comment"># (now a master).</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># This script should be resistant to multiple invocations.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Example:</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># sentinel client-reconfig-script mymaster /var/redis/reconfig.sh</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># SECURITY</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># By default SENTINEL SET will not be able to change the notification-script</span></span><br><span class="line"><span class="comment"># and client-reconfig-script at runtime. This avoids a trivial security issue</span></span><br><span class="line"><span class="comment"># where clients can set the script to anything and trigger a failover in order</span></span><br><span class="line"><span class="comment"># to get the program executed.</span></span><br><span class="line"></span><br><span class="line">sentinel deny-scripts-reconfig yes</span><br><span class="line"></span><br><span class="line"><span class="comment"># REDIS COMMANDS RENAMING</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Sometimes the Redis server has certain commands, that are needed for Sentinel</span></span><br><span class="line"><span class="comment"># to work correctly, renamed to unguessable strings. This is often the case</span></span><br><span class="line"><span class="comment"># of CONFIG and SLAVEOF in the context of providers that provide Redis as</span></span><br><span class="line"><span class="comment"># a service, and don't want the customers to reconfigure the instances outside</span></span><br><span class="line"><span class="comment"># of the administration console.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># In such case it is possible to tell Sentinel to use different command names</span></span><br><span class="line"><span class="comment"># instead of the normal ones. For example if the master "mymaster", and the</span></span><br><span class="line"><span class="comment"># associated replicas, have "CONFIG" all renamed to "GUESSME", I could use:</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># SENTINEL rename-command mymaster CONFIG GUESSME</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># After such configuration is set, every time Sentinel would use CONFIG it will</span></span><br><span class="line"><span class="comment"># use GUESSME instead. Note that there is no actual need to respect the command</span></span><br><span class="line"><span class="comment"># case, so writing "config guessme" is the same in the example above.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># SENTINEL SET can also be used in order to perform this configuration at runtime.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># In order to set a command back to its original name (undo the renaming), it</span></span><br><span class="line"><span class="comment"># is possible to just rename a command to itsef:</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># SENTINEL rename-command mymaster CONFIG CONFIG</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>文章已上传gitee <a href="https://gitee.com/codingce/hexo-blog" target="_blank" rel="noopener">https://gitee.com/codingce/hexo-blog</a><br>
+项目地址: <a href="https://github.com/xzMhehe/codingce-java" target="_blank" rel="noopener">https://github.com/xzMhehe/codingce-java</a></p>
+</blockquote>
+
+  
+  
+    
+    <div class='footer'>
+      
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=http://i.codingce.com.cn/2021/01/12/%E5%93%A8%E5%85%B5%E6%A8%A1%E5%BC%8F/>http://i.codingce.com.cn/2021/01/12/%E5%93%A8%E5%85%B5%E6%A8%A1%E5%BC%8F/</a></p>
+              
+            
+          </blockquote>
+        </div>
+      
+      
+    </div>
+  
+  
+    
+
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-12T17:10:59+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Jan 12, 2021</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Redis/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Redis</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=http://i.codingce.com.cn/2021/01/12/%E5%93%A8%E5%85%B5%E6%A8%A1%E5%BC%8F/&title=哨兵模式 - xzMhehe&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://i.codingce.com.cn/2021/01/12/%E5%93%A8%E5%85%B5%E6%A8%A1%E5%BC%8F/&title=哨兵模式 - xzMhehe&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=http://i.codingce.com.cn/2021/01/12/%E5%93%A8%E5%85%B5%E6%A8%A1%E5%BC%8F/&title=哨兵模式 - xzMhehe&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+        <a class='prev' href='/2021/01/12/Redis%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E5%92%8C%E9%9B%AA%E5%B4%A9/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Redis缓存穿透和雪崩</p>
+          <p class='content'></p>
+        </a>
+      
+      
+        <a class='next' href='/2021/01/11/Redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/'>
+          <p class='title'>Redis主从复制<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>Redis 主从复制
+概念
+主从复制，是指将一台Redis服务器的数据，复制到其他的Redis服务器。前者称为主节点(master)，后者称为从节点(slave)； 数据的复制是单向的，只能由主...</p>
+        </a>
+      
+    </div>
+  
+</article>
+
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+</div>
+
+  </article>
+
+
+
+
+
+
+</div>
+<aside class='l_side'>
+  
+  
+    
+    
+
+
+
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#哨兵模式"><span class="toc-text">哨兵模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#哨兵模式概述"><span class="toc-text">哨兵模式概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis配置哨兵模式"><span class="toc-text">Redis配置哨兵模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#测试"><span class="toc-text">测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#哨兵模式-2"><span class="toc-text">哨兵模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#优点"><span class="toc-text">优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缺点"><span class="toc-text">缺点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#哨兵模式全部配置"><span class="toc-text">哨兵模式全部配置</span></a></li></ol>
+    </div>
+  </section>
+
+
+  
+
+
+</aside>
+
+
+
+        
+        
+          <!--此文件用来存放一些不方便取值的变量-->
+<!--思路大概是将值藏到重加载的区域内-->
+
+<script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="哨兵模式";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+</script>
+
+        
+      </div>
+      
+  
+  <footer class="footer clearfix">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+
+        </div>
+      
+    
+      
+        <br>
+        <div class="social-wrapper">
+          
+            
+          
+            
+          
+            
+          
+        </div>
+      
+    
+      
+        <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
+</div>
+      
+    
+      
+        
+          <div><p><span id="lc-sv">本站总访问量为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 次</span> <span id="lc-uv">访客数为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 人</span></p>
+</div>
+        
+      
+    
+      
+        Use
+        <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/4.2.0" target="_blank" class="codename">Volantis</a>
+        as theme
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="/">Copyright © 2020 ♥ <a href="https://i.codingce.com.cn/">Xinze Ma</a><b> <a target="_blank" rel="external nofollow" href="http://www.beian.miit.gov.cn/"><b>津ICP备19009605号</b></a>    </a></p>
+
+        </div>
+      
+    
+  </footer>
+
+
+      <a id="s-top" class="fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+    </div>
+  </div>
+  <div>
+    <script>
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/********************脚本懒加载函数********************************/
+function loadScript(src, cb) {
+var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+var script = document.createElement('script');
+script.setAttribute('type','text/javascript');
+if (cb) script.onload = cb;
+script.setAttribute('src', src);
+HEAD.appendChild(script);
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script>
+<script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script>
+<!-- required -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js"></script>
+
+<script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    setTimeout(function() {
+      loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+    }, 1);
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+</script>
+
+
+<!-- internal -->
+
+
+
+
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script>
+
+
+
+
+  
+  
+    <script>
+      window.FPConfig = {
+        delay: 0,
+        ignoreKeywords: [],
+        maxRPS: 5,
+        hoverDelay: 25
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script src="/js/valine.js"></script>
+
+
+<script>
+  var GUEST_INFO = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link'.split(',').filter(function (item) {
+    return GUEST_INFO.indexOf(item) > -1
+  });
+  var REQUIRED_FIELDS = ['nick', 'mail', 'link'];
+  var requiredFields = 'nick,mail'.split(',').filter(function (item) {
+    return REQUIRED_FIELDS.indexOf(item) > -1
+  });
+
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+
+    var valine = new Valine();
+    valine.init({
+      el: '#valine_container',
+      meta: meta,
+      placeholder: pagePlaceholder,
+      path: path,
+      appId: "u3kx4xhHFpadzMOyWK1tMiCd-gzGzoHsz",
+      appKey: "HbQueWo4YTSPBLYvqO9lS89B",
+      pageSize: '10',
+      avatar: 'robohash',
+      lang: 'zh-cn',
+      visitor: 'true',
+      highlight: 'true',
+      mathJax: 'false',
+      enableQQ: 'true',
+      recordIP: 'false',
+      requiredFields: requiredFields,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps
+    })
+  }
+
+  $(function () {
+    pjax_valine();
+  });
+</script>
+
+
+
+
+
+  
+<script src="/js/app.js"></script>
+
+
+
+<!-- optional -->
+
+  <script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  <script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'http://i.codingce.com.cn' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'http://i.codingce.com.cn' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'http://i.codingce.com.cn' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script>
+
+
+
+
+
+
+
+
+<script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script>
+
+<!-- more -->
+
+
+
+
+    
+      
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script>
+
+
+<script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          "#l_cover",
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      // 关于百度统计对 SPA 页面的处理：
+      // 方案一：百度统计>管理>单页应用设置中，打开开启按钮即可对SPA进行统计。 https://tongji.baidu.com/web/help/article?id=324
+      // 方案二：取消注释下列代码。 https://tongji.baidu.com/web/help/article?id=235
+       
+
+      // 关于谷歌统计对 SPA 页面的处理：
+      // 当应用以动态方式加载内容并更新地址栏中的网址时，也应该更新通过 gtag.js 存储的网页网址。
+      // https://developers.google.cn/analytics/devguides/collection/gtagjs/single-page-applications?hl=zh-cn
+      
+	 
+
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+          if (typeof $.fancybox == "undefined") {
+            SCload_fancybox();
+          } else {
+            pjax_fancybox();
+          }
+        
+        
+        
+        
+        
+        
+          pjax_valine();
+        
+        
+        
+        
+        
+      } catch (e) {
+        console.log(e);
+      }
+	  
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  
+      window.location.href = e.triggerElement.href;
+    });
+</script>
+
+    
+  </div>
+</body>
+</html>

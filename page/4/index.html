@@ -307,6 +307,224 @@
   
     
     <h2 class="article-title" >
+      <a href="/2020/08/14/SpringBoot%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/">
+        SpringBoot问题总结
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        Spring Boot 2.x 增加拦截器后静态资源文件404无法访问
+问题描述
+
+Spring Boot 2.2.0 增加自定义拦截器后发现静态资源都没法访问，报 404 错误。
+网上找了几个方案比如修改资源文件路径由 /** 改为 /static/** 然后添加到排除列表，我的项目没效果。
+最后发现是配置拦截器的方式不一样造成的，注意以下两个细节：
+配置拦截器的几种方式
+
+在 sprin...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-08-14</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/SpringBoot/">SpringBoot</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/08/14/SpringBoot%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/08/13/Web%E5%BC%80%E5%8F%91%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E5%A4%84%E7%90%86/">
+        Web开发静态资源处理|thymeleaf模板引擎
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        Web开发探究
+简介
+使用SpringBoot的步骤:
+
+创建一个SpringBoot应用，选择需要的模块，SpringBoot就会默认将的需要的模块自动配置好
+手动在配置文件中配置部分配置项目就可以运行起来了
+专注编写业务代码，不需要考虑以前那样一大堆的配置了。
+
+比如SpringBoot到底帮配置了什么？能不能修改？能修改哪些配置？能不能扩展？
+
+向容器中自动配置组件 ：*** Auto...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-08-13</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/SpringBoot/">SpringBoot</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/08/13/Web%E5%BC%80%E5%8F%91%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E5%A4%84%E7%90%86/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/08/13/JSR303%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C%E5%8F%8A%E5%A4%9A%E7%8E%AF%E5%A2%83%E5%88%87%E6%8D%A2/">
+        JSR303数据校验|多环境切换|自动配置原理
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        JSR303数据校验
+使用
+Springboot中可以用@validated来校验数据，如果数据异常则会统一抛出异常，方便异常中心统一处理。我们这里来写个注解让我们的name只能支持Email格式；
+12345678@Component //注册bean@ConfigurationProperties(prefix = "person")@Validated  //数据校验public cl...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-08-13</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/SpringBoot/">SpringBoot</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/08/13/JSR303%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C%E5%8F%8A%E5%A4%9A%E7%8E%AF%E5%A2%83%E5%88%87%E6%8D%A2/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/08/12/AQS/">
+        AQS
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        目录：
+
+
+1 AQS 简单介绍
+2 AQS 原理
+
+2.1 AQS 原理概览
+2.2 AQS 对资源的共享方式
+2.3 AQS底层使用了模板方法模式
+
+
+3 Semaphore(信号量)-允许多个线程同时访问
+4 CountDownLatch （倒计时器）
+
+4.1 CountDownLatch 的三种典型用法
+4.2 CountDownLatch 的使用示例
+4.3 CountDownL...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-08-12</time>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/08/12/AQS/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2020/08/11/hexo%E9%80%9F%E5%BA%A6%E4%BC%98%E5%8C%96%EF%BC%8Cgulp%E5%8E%8B%E7%BC%A9%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90/">
         hexo速度优化，gulp压缩静态资源
       </a>
@@ -623,217 +841,6 @@ Ajax 不是一种新的编程语言，而是一种用于创建更好更快以及
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/08/06/%E6%9D%80%E6%AD%BB%E4%B8%80%E5%8F%AA%E7%9F%A5%E6%9B%B4%E9%B8%9F/">
-        杀死一只知更鸟
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        纵观历史，社会总是对新兴而不同的事物感到排斥。《杀死一只知更鸟》向我们展示了一个鲜明的例子，仅仅因为那个人是不同的黑人，社会就可以对一个无辜者使用各种残忍的手段无所而不用其极。故事发生在虚构的Alabama州小镇Maycomb。本书讨论了美国司法以及社会的不公正和种族偏见的问题。
-Maycomb镇让人想起那些人们过着心满意足的生活的古老小镇，那里的人们过着一种平静得令人不安的生活。故事发生在...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-08-06</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E9%9A%8F%E8%AE%B0/">随记</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/08/06/%E6%9D%80%E6%AD%BB%E4%B8%80%E5%8F%AA%E7%9F%A5%E6%9B%B4%E9%B8%9F/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/08/05/SSM%E6%95%B4%E5%90%88/">
-        SSM整合
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        整合SSM
-环境要求
-环境：
-
-IDEA
-MySQL 5.7.19
-Tomcat 9
-Maven 3.6
-
-要求：
-需要熟练掌握MySQL数据库，Spring，JavaWeb及MyBatis知识，简单的前端知识
-数据库环境
-创建一个存放书籍数据的数据库表
-123456789101112131415161718CREATE DATABASE `ssmbuild`;USE `ssmbuild`;...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-08-05</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/SpringMVC/">SpringMVC</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/08/05/SSM%E6%95%B4%E5%90%88/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/08/04/json/">
-        JSON
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        什么是JSON？
-
-JSON(JavaScript Object Notation, JS 对象标记) 是一种轻量级的数据交换格式，目前使用特别广泛。
-采用完全独立于编程语言的文本格式来存储和表示数据。
-简洁和清晰的层次结构使得 JSON 成为理想的数据交换语言。
-易于人阅读和编写，同时也易于机器解析和生成，并有效地提升网络传输效率。
-
-在 JavaScript 语言中，一切都是对象。因此，...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-08-04</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/SpringMVC/">SpringMVC</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/08/04/json/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/08/04/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%882%EF%BC%89%E5%9B%BE%E7%9A%84%E8%A1%A8%E7%A4%BA%E6%B3%95%E4%B8%8E%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AC%E5%8C%96%E7%AE%97%E6%B3%95/">
-        算法与数据结构（2）图的表示法与常用的转化算法
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        《图的表示方法》
-
-邻接矩阵表示法，如图：
-
-
-也就是说，如果两节点之间有一条弧，则邻接矩阵中对应的元素为1；否则为0。可以看出，这种表示法非常简单、直接。但是，在邻接矩阵的所有 个元素中，只有 个为非零元。如果网络比较稀疏，这种表示法浪费大量的存储空间，从而增加了在网络中查找弧的时间。
-同样，对于网络中的权，也可以用类似邻接矩阵的 矩阵表示。只是此时一条弧所对应的元素不再是1，而是相应的权...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-08-04</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">算法与数据结构</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/08/04/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%882%EF%BC%89%E5%9B%BE%E7%9A%84%E8%A1%A8%E7%A4%BA%E6%B3%95%E4%B8%8E%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AC%E5%8C%96%E7%AE%97%E6%B3%95/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -969,7 +976,7 @@ JSON(JavaScript Object Notation, JS 对象标记) 是一种轻量级的数据交
           <li><a class="flat-box"
             title="/categories/Redis/" href="/categories/Redis/"
             id="categoriesRedis"
-            ><div class='name'>Redis</div><div class='badge'>(8)</div></a></li>
+            ><div class='name'>Redis</div><div class='badge'>(11)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/Spring/" href="/categories/Spring/"
@@ -1038,7 +1045,7 @@ JSON(JavaScript Object Notation, JS 对象标记) 是一种轻量级的数据交
 
 
     <div class='content'>
-      <a href="/tags/Git/" style="font-size: 14px; color: #999">Git</a> <a href="/tags/Java/" style="font-size: 18px; color: #7e7e7e">Java</a> <a href="/tags/Multithread%EF%BC%88%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%89/" style="font-size: 14px; color: #999">Multithread（多线程）</a> <a href="/tags/MyBatis/" style="font-size: 22px; color: #636363">MyBatis</a> <a href="/tags/Redis/" style="font-size: 20px; color: #707070">Redis</a> <a href="/tags/Spring/" style="font-size: 20px; color: #707070">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 24px; color: #555">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 20px; color: #707070">SpringCloud</a> <a href="/tags/SpringMVC/" style="font-size: 20px; color: #707070">SpringMVC</a> <a href="/tags/Sql/" style="font-size: 14px; color: #999">Sql</a> <a href="/tags/%E5%8A%9B%E6%89%A3/" style="font-size: 14px; color: #999">力扣</a> <a href="/tags/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 14px; color: #999">算法与数据结构</a> <a href="/tags/%E8%80%83%E7%A0%94/" style="font-size: 16px; color: #8b8b8b">考研</a> <a href="/tags/%E9%9A%8F%E8%AE%B0/" style="font-size: 20px; color: #707070">随记</a>
+      <a href="/tags/Git/" style="font-size: 14px; color: #999">Git</a> <a href="/tags/Java/" style="font-size: 18px; color: #7e7e7e">Java</a> <a href="/tags/Multithread%EF%BC%88%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%89/" style="font-size: 14px; color: #999">Multithread（多线程）</a> <a href="/tags/MyBatis/" style="font-size: 22px; color: #636363">MyBatis</a> <a href="/tags/Redis/" style="font-size: 24px; color: #555">Redis</a> <a href="/tags/Spring/" style="font-size: 20px; color: #707070">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 24px; color: #555">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 20px; color: #707070">SpringCloud</a> <a href="/tags/SpringMVC/" style="font-size: 20px; color: #707070">SpringMVC</a> <a href="/tags/Sql/" style="font-size: 14px; color: #999">Sql</a> <a href="/tags/%E5%8A%9B%E6%89%A3/" style="font-size: 14px; color: #999">力扣</a> <a href="/tags/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 14px; color: #999">算法与数据结构</a> <a href="/tags/%E8%80%83%E7%A0%94/" style="font-size: 16px; color: #8b8b8b">考研</a> <a href="/tags/%E9%9A%8F%E8%AE%B0/" style="font-size: 20px; color: #707070">随记</a>
     </div>
   </section>
 

@@ -5,8 +5,6 @@
   <!-- SEO相关 -->
   
     
-      <meta name="robots" content="noindex,follow">
-    
   
   <!-- 渲染优化 -->
   <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -21,7 +19,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>Archive: 2020/8 - xzMhehe</title>
+  <title>Redis发布订阅 - xzMhehe</title>
+  
+    <meta name="keywords" content="Redis">
   
 
   
@@ -56,7 +56,7 @@
 <body>
   
 
-<header id="l_header" class="l_header auto shadow blur " style='opacity: 0' >
+<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -243,7 +243,7 @@
     <div id="l_cover">
   
     
-        <div id="half" class='cover-wrapper  dock' style="display: ;">
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg"></div>
           
@@ -291,596 +291,271 @@
         
 
 <div class='l_main'>
-	
-		
-  <section class="post-list">
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
+  
+
+
+  
+  <div class="article-meta" id="top">
     
-      
+    
+    
+      <h1 class="title">
+        Redis发布订阅
+      </h1>
+      <div class='new-meta-box'>
         
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/" rel="nofollow">
+    <img no-lazy src="">
+    <p>全栈自学社区</p>
+  </a>
+</div>
+
           
         
           
-        
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/Redis/">Redis</a>
+    </a>
+  </div>
+
+
           
         
           
-        
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Jan 11, 2021</p>
+  </a>
+</div>
+
           
         
           
-        
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="Redis发布订阅" data-path="/2021/01/11/Redis%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
           
         
+      </div>
+    
+  </div>
+
+
+  
+  <h2 id="Redis-发布订阅">Redis 发布订阅</h2>
+<p>Redis 发布订阅(pub/sub) 是一种消息通信模式: 发布者(pub) 发送消息, 订阅者(sub) 就收消息</p>
+<p>Redis 客户端可以订阅任意数量的值</p>
+<p>订阅/发布消息图</p>
+<p>第一个： 消息发送者 第二个： 频道  第三个 消息接收者<br>
+<img src="https://image.codingce.com.cn/redis-cli.png" class="lazyload" data-srcset="https://image.codingce.com.cn/redis-cli.png" srcset="data:image/png;base64,666" alt=""></p>
+<p>下图展示了频道 channel1 ， 以及订阅这个频道的三个客户端 —— client2 、 client5 和 client1 之间的关系：<br>
+<img src="https://www.runoob.com/wp-content/uploads/2014/11/pubsub1.png" class="lazyload" data-srcset="https://www.runoob.com/wp-content/uploads/2014/11/pubsub1.png" srcset="data:image/png;base64,666" alt=""><br>
+当有新消息通过 PUBLISH 命令发送给频道 channel1 时， 这个消息就会被发送给订阅它的三个客户端：</p>
+<p><img src="https://www.runoob.com/wp-content/uploads/2014/11/pubsub2.png" class="lazyload" data-srcset="https://www.runoob.com/wp-content/uploads/2014/11/pubsub2.png" srcset="data:image/png;base64,666" alt=""></p>
+<h2 id="命令">命令</h2>
+<blockquote>
+<p>1	PSUBSCRIBE pattern [pattern …]<br>
+订阅一个或多个符合给定模式的频道。<br>
+2	PUBSUB subcommand [argument [argument …]]<br>
+查看订阅与发布系统状态。<br>
+3	PUBLISH channel message<br>
+将信息发送到指定的频道。<br>
+4	PUNSUBSCRIBE [pattern [pattern …]]<br>
+退订所有给定模式的频道。<br>
+5	SUBSCRIBE channel [channel …]<br>
+订阅给定的一个或多个频道的信息。<br>
+6	UNSUBSCRIBE [channel [channel …]]<br>
+指退订给定的频道。</p>
+</blockquote>
+<h2 id="测试">测试</h2>
+<ul>
+<li>接收者</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; SUBSCRIBE mxz       <span class="comment"># 订阅一个频道  mxz</span></span><br><span class="line">Reading messages... (press Ctrl-C to quit)</span><br><span class="line">1) <span class="string">"subscribe"</span></span><br><span class="line">2) <span class="string">"mxz"</span></span><br><span class="line">3) (<span class="built_in">integer</span>) 1</span><br></pre></td></tr></table></figure>
+<p>接收消息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1) <span class="string">"message"</span></span><br><span class="line">2) <span class="string">"mxz"</span></span><br><span class="line">3) <span class="string">"Test first"</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>发送者</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; PUBLISH mxz <span class="string">"Test first"</span></span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="使用场景">使用场景</h2>
+<ul>
+<li>实时消息系统</li>
+<li>实时聊天</li>
+<li>订阅, 关注系统</li>
+</ul>
+<p>稍微复杂的场景我们就会使用消息中间件 MQ()</p>
+<blockquote>
+<p>文章已上传gitee <a href="https://gitee.com/codingce/hexo-blog" target="_blank" rel="noopener">https://gitee.com/codingce/hexo-blog</a><br>
+项目地址: <a href="https://github.com/xzMhehe/codingce-java" target="_blank" rel="noopener">https://github.com/xzMhehe/codingce-java</a></p>
+</blockquote>
+
+  
+  
+    
+    <div class='footer'>
+      
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=http://i.codingce.com.cn/2021/01/11/Redis%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85/>http://i.codingce.com.cn/2021/01/11/Redis%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85/</a></p>
+              
+            
+          </blockquote>
+        </div>
+      
+      
+    </div>
+  
+  
+    
+
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-11T15:13:59+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Jan 11, 2021</p>
+  </a>
+</div>
+
+        
+      
+        
           
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Redis/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Redis</p></a></div>
+
+
+        
+      
         
           
-        
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
           
-        
+          href="http://connect.qq.com/widget/shareqq/index.html?url=http://i.codingce.com.cn/2021/01/11/Redis%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85/&title=Redis发布订阅 - xzMhehe&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,666">
+          
+        </a>
       
     
-    
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/08/26/Dubbo%E5%92%8CZookeeper%E9%9B%86%E6%88%90/">
-        Dubbo和Zookeeper集成
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        分布式理论
-什么是分布式系统？
-在《分布式系统原理与范型》一书中有如下定义：“分布式系统是若干独立计算机的集合，这些计算机对于用户来说就像单个相关系统”；
-分布式系统是由一组通过网络进行通信、为了完成共同的任务而协调工作的计算机节点组成的系统。分布式系统的出现是为了用廉价的、普通的机器完成单个计算机无法完成的计算、存储任务。其目的是利用更多的机器，处理更多的数据。
-分布式系统（distrib...
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://i.codingce.com.cn/2021/01/11/Redis%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85/&title=Redis发布订阅 - xzMhehe&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,666">
+          
+        </a>
       
     
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-08-26</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/SpringBoot/">SpringBoot</a>
-        
-      </div>
       
-        <div>
-          <a class='readmore' href='/2020/08/26/Dubbo%E5%92%8CZookeeper%E9%9B%86%E6%88%90/'>
-            Read More
-          </a>
-        </div>
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=http://i.codingce.com.cn/2021/01/11/Redis%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85/&title=Redis发布订阅 - xzMhehe&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,666">
+          
+        </a>
       
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/08/21/Java%E6%B5%81-Steam%E3%80%81%E6%96%87%E4%BB%B6-File-%E5%92%8CIO/">
-        Java流(Steam、文件(File)和IO)
-      </a>
-    </h2>
-  
-  <div class='md'>
     
       
-        Java 流(Stream)、文件(File)和IO
-Java.io 包几乎包含了所有操作输入、输出需要的类。所有这些流类代表了输入源和输出目标。
-Java.io 包中的流支持很多种格式，比如：基本类型、对象、本地化字符集等等。
-一个流可以理解为一个数据的序列。输入流表示从一个源读取数据，输出流表示向一个目标写数据。
-Java 为 I/O 提供了强大的而灵活的支持，使其更广泛地应用到文件传输...
+    
       
     
   </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-08-21</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/08/21/Java%E6%B5%81-Steam%E3%80%81%E6%96%87%E4%BB%B6-File-%E5%92%8CIO/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
 </div>
 
-          </div>
+
+
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/08/20/Swagger/">
-        Swagger
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        项目集成Swagger
-
-
-了解Swagger的概念及作用
-掌握在项目中集成Swagger自动生成API文档
-
-Swagger简介
-前后端分离
-
-前端 -&gt; 前端控制层、视图层
-后端 -&gt; 后端控制层、服务层、数据访问层
-前后端通过API进行交互
-前后端相对独立且松耦合
-
-产生的问题
-
-前后端集成，前端或者后端无法做到“及时协商，尽早解决”，最终导致问题集中爆发
-
-解决方案
-
-首...
-      
-    
+    </div>
   </div>
+
+
   
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-08-20</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/SpringBoot/">SpringBoot</a>
-        
-      </div>
+  
+
+  
+    <div class="prev-next">
       
-        <div>
-          <a class='readmore' href='/2020/08/20/Swagger/'>
-            Read More
-          </a>
-        </div>
+        <a class='prev' href='/2021/01/11/Redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Redis主从复制</p>
+          <p class='content'>Redis 主从复制
+概念
+主从复制，是指将一台Redis服务器的数据，复制到其他的Redis服务器。前者称为主节点(master)，后者称为从节点(slave)； 数据的复制是单向的，只能由主...</p>
+        </a>
+      
+      
+        <a class='next' href='/2021/01/11/Redis%E6%8C%81%E4%B9%85%E5%8C%96/'>
+          <p class='title'>Redis持久化<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>Redis持久化
+面试和工作, 持久化都是重点
+Redis 是内存数据库, 如果不将内存中的数据存入到磁盘, 那么服务器进程退出, 服务器中的数据库状态也会消失, 所以 Redis 提供了持久化...</p>
+        </a>
       
     </div>
   
+</article>
 
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
 </div>
 
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/08/18/shiro/">
-        shiro
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        什么是shiro
-Apache Shiro是一个强大且易用的Java安全框架,执行身份验证、授权、密码和会话管理。使用Shiro的易于理解的API,您可以快速、轻松地获得任何应用程序,从最小的移动应用程序到最大的网络和企业应用程序。
-主要功能
-
-三个核心组件：Subject, SecurityManager 和 Realms.
+  </article>
 
 
-Subject：即“当前操作用户”。但是，在Shiro中，S...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-08-18</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/SpringBoot/">SpringBoot</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/08/18/shiro/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/08/17/%E9%9B%86%E6%88%90SpringSecurity/">
-        集成SpringSecurity
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        SpringSecurity
-安全简介
-在 Web 开发中，安全一直是非常重要的一个方面。安全虽然属于应用的非功能性需求，但是应该在应用开发的初期就考虑进来。如果在应用开发的后期才考虑安全的问题，就可能陷入一个两难的境地：一方面，应用存在严重的安全漏洞，无法满足用户的要求，并可能造成用户的隐私数据被攻击者窃取；另一方面，应用的基本架构已经确定，要修复安全漏洞，可能需要对系统的架构做出比较重大...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-08-17</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/SpringBoot/">SpringBoot</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/08/17/%E9%9B%86%E6%88%90SpringSecurity/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/08/15/SpringBoot%E9%A1%B5%E9%9D%A2%E5%9B%BD%E9%99%85%E5%8C%96/">
-        SpringBoot页面国际化
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        页面国际化
-有的时候，的网站会去涉及中英文甚至多语言的切换，这时候就需要学习国际化了！
-准备工作
-先在IDEA中统一设置properties的编码问题！
-
-编写国际化配置文件，抽取页面需要显示的国际化页面消息。
-配置文件编写
-
-在resources资源文件下新建一个i18n目录，存放国际化配置文件
-建立一个login.properties文件，还有一个login_zh_CN.properti...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-08-15</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/SpringBoot/">SpringBoot</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/08/15/SpringBoot%E9%A1%B5%E9%9D%A2%E5%9B%BD%E9%99%85%E5%8C%96/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/08/14/SpringBoot%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/">
-        SpringBoot问题总结
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        Spring Boot 2.x 增加拦截器后静态资源文件404无法访问
-问题描述
-
-Spring Boot 2.2.0 增加自定义拦截器后发现静态资源都没法访问，报 404 错误。
-网上找了几个方案比如修改资源文件路径由 /** 改为 /static/** 然后添加到排除列表，我的项目没效果。
-最后发现是配置拦截器的方式不一样造成的，注意以下两个细节：
-配置拦截器的几种方式
-
-在 sprin...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-08-14</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/SpringBoot/">SpringBoot</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/08/14/SpringBoot%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/08/13/Web%E5%BC%80%E5%8F%91%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E5%A4%84%E7%90%86/">
-        Web开发静态资源处理|thymeleaf模板引擎
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        Web开发探究
-简介
-使用SpringBoot的步骤:
-
-创建一个SpringBoot应用，选择需要的模块，SpringBoot就会默认将的需要的模块自动配置好
-手动在配置文件中配置部分配置项目就可以运行起来了
-专注编写业务代码，不需要考虑以前那样一大堆的配置了。
-
-比如SpringBoot到底帮配置了什么？能不能修改？能修改哪些配置？能不能扩展？
-
-向容器中自动配置组件 ：*** Auto...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-08-13</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/SpringBoot/">SpringBoot</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/08/13/Web%E5%BC%80%E5%8F%91%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E5%A4%84%E7%90%86/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/08/13/JSR303%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C%E5%8F%8A%E5%A4%9A%E7%8E%AF%E5%A2%83%E5%88%87%E6%8D%A2/">
-        JSR303数据校验|多环境切换|自动配置原理
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        JSR303数据校验
-使用
-Springboot中可以用@validated来校验数据，如果数据异常则会统一抛出异常，方便异常中心统一处理。我们这里来写个注解让我们的name只能支持Email格式；
-12345678@Component //注册bean@ConfigurationProperties(prefix = "person")@Validated  //数据校验public cl...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-08-13</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/SpringBoot/">SpringBoot</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/08/13/JSR303%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C%E5%8F%8A%E5%A4%9A%E7%8E%AF%E5%A2%83%E5%88%87%E6%8D%A2/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/08/12/AQS/">
-        AQS
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        目录：
 
 
-1 AQS 简单介绍
-2 AQS 原理
-
-2.1 AQS 原理概览
-2.2 AQS 对资源的共享方式
-2.3 AQS底层使用了模板方法模式
 
 
-3 Semaphore(信号量)-允许多个线程同时访问
-4 CountDownLatch （倒计时器）
-
-4.1 CountDownLatch 的三种典型用法
-4.2 CountDownLatch 的使用示例
-4.3 CountDownL...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-08-12</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/08/12/AQS/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-    
-  </section>
-  
-    
-      <br>
-      <div class="prev-next">
-        
-        <p class="current">
-          1 / 4
-        </p>
-        
-          <a class="next" rel="next" href="/archives/2020/08/page/2/">
-            <section class="post next white-box shadow">
-              &nbsp;Next&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
-            </section>
-          </a>
-        
-      </div>
-    
-  
-
-
-	
 </div>
 <aside class='l_side'>
   
@@ -888,186 +563,28 @@ Springboot中可以用@validated来校验数据，如果数据异常则会统一
     
     
 
-<section class="widget blogger shadow desktop mobile">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box rectangle' href='/about/'>
-          <img no-lazy src='https://image.codingce.com.cn/iavatar.jpg'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-        
-        
-          <p><span id="jinrishici-sentence">xzMhehe</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="/atom.xml"
-              class="social fas fa-rss flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="mailto:codingce@gmail.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/xzMhehe"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="/"
-              class="social fas fa-headphones-alt flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
 
-  
 
-  
-    
-    
-  
-
-  <section class="widget category shadow desktop">
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
     
   <header>
     
-      <a href='/blog/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
     
   </header>
 
 
     <div class='content'>
-      <ul class="entry navigation">
-        
-          <li><a class="flat-box"
-            title="/categories/Git/" href="/categories/Git/"
-            id="categoriesGit"
-            ><div class='name'>Git</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Java/" href="/categories/Java/"
-            id="categoriesJava"
-            ><div class='name'>Java</div><div class='badge'>(4)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/MyBatis/" href="/categories/MyBatis/"
-            id="categoriesMyBatis"
-            ><div class='name'>MyBatis</div><div class='badge'>(9)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Redis/" href="/categories/Redis/"
-            id="categoriesRedis"
-            ><div class='name'>Redis</div><div class='badge'>(11)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Spring/" href="/categories/Spring/"
-            id="categoriesSpring"
-            ><div class='name'>Spring</div><div class='badge'>(8)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/SpringBoot/" href="/categories/SpringBoot/"
-            id="categoriesSpringBoot"
-            ><div class='name'>SpringBoot</div><div class='badge'>(11)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/SpringCloud/" href="/categories/SpringCloud/"
-            id="categoriesSpringCloud"
-            ><div class='name'>SpringCloud</div><div class='badge'>(8)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/SpringMVC/" href="/categories/SpringMVC/"
-            id="categoriesSpringMVC"
-            ><div class='name'>SpringMVC</div><div class='badge'>(8)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Sql/" href="/categories/Sql/"
-            id="categoriesSql"
-            ><div class='name'>Sql</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E5%8A%9B%E6%89%A3/" href="/categories/%E5%8A%9B%E6%89%A3/"
-            id="categoriesE58A9BE689A3"
-            ><div class='name'>力扣</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
-            id="categoriesE7AE97E6B395E4B88EE695B0E68DAEE7BB93E69E84"
-            ><div class='name'>算法与数据结构</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E8%80%83%E7%A0%94/" href="/categories/%E8%80%83%E7%A0%94/"
-            id="categoriesE88083E7A094"
-            ><div class='name'>考研</div><div class='badge'>(2)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E9%9A%8F%E8%AE%B0/" href="/categories/%E9%9A%8F%E8%AE%B0/"
-            id="categoriesE99A8FE8AEB0"
-            ><div class='name'>随记</div><div class='badge'>(6)</div></a></li>
-        
-      </ul>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis-发布订阅"><span class="toc-text">Redis 发布订阅</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令"><span class="toc-text">命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#测试"><span class="toc-text">测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用场景"><span class="toc-text">使用场景</span></a></li></ol>
     </div>
   </section>
 
-
-  
-
-  
-    
-    
-  
-
-  <section class="widget tagcloud shadow desktop mobile">
-    
-  <header>
-    
-      <a href='/blog/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <a href="/tags/Git/" style="font-size: 14px; color: #999">Git</a> <a href="/tags/Java/" style="font-size: 18px; color: #7e7e7e">Java</a> <a href="/tags/Multithread%EF%BC%88%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%89/" style="font-size: 14px; color: #999">Multithread（多线程）</a> <a href="/tags/MyBatis/" style="font-size: 22px; color: #636363">MyBatis</a> <a href="/tags/Redis/" style="font-size: 24px; color: #555">Redis</a> <a href="/tags/Spring/" style="font-size: 20px; color: #707070">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 24px; color: #555">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 20px; color: #707070">SpringCloud</a> <a href="/tags/SpringMVC/" style="font-size: 20px; color: #707070">SpringMVC</a> <a href="/tags/Sql/" style="font-size: 14px; color: #999">Sql</a> <a href="/tags/%E5%8A%9B%E6%89%A3/" style="font-size: 14px; color: #999">力扣</a> <a href="/tags/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 14px; color: #999">算法与数据结构</a> <a href="/tags/%E8%80%83%E7%A0%94/" style="font-size: 16px; color: #8b8b8b">考研</a> <a href="/tags/%E9%9A%8F%E8%AE%B0/" style="font-size: 20px; color: #707070">随记</a>
-    </div>
-  </section>
-
-
-  
 
   
 
 
 </aside>
+
 
 
         
@@ -1077,14 +594,14 @@ Springboot中可以用@validated来校验数据，如果数据异常则会统一
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
-  pdata.postTitle="";
+  pdata.ispage=true;
+  pdata.postTitle="Redis发布订阅";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 
   var l_header=document.getElementById("l_header");
   
-  l_header.classList.remove("show");
+  l_header.classList.add("show");
   
 </script>
 

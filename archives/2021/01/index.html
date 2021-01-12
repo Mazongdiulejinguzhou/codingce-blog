@@ -309,9 +309,210 @@
         
           
         
+          
+        
+          
+        
+          
+        
+          
+        
       
     
     
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/01/12/Redis%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E5%92%8C%E9%9B%AA%E5%B4%A9/">
+        Redis缓存穿透和雪崩
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-01-12</time>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/01/12/Redis%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E5%92%8C%E9%9B%AA%E5%B4%A9/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/01/12/%E5%93%A8%E5%85%B5%E6%A8%A1%E5%BC%8F/">
+        哨兵模式
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        哨兵模式
+主从切换技术的方法是：当主服务器宕机后，需要手动把一台从服务器切换为主服务器，这就需要人工干预，费事费力，还会造成一段时间内服务不可用。这不是一种推荐的方式，更多时候，我们优先考虑哨兵模式
+哨兵模式概述
+哨兵模式是一种特殊的模式，首先Redis提供了哨兵的命令，哨兵是一个独立的进程，作为进程，它会独立运行。其原理是哨兵通过发送命令，等待Redis服务器响应，从而监控运行的多个Red...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-01-12</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Redis/">Redis</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/01/12/%E5%93%A8%E5%85%B5%E6%A8%A1%E5%BC%8F/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/01/11/Redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/">
+        Redis主从复制
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        Redis 主从复制
+概念
+主从复制，是指将一台Redis服务器的数据，复制到其他的Redis服务器。前者称为主节点(master)，后者称为从节点(slave)； 数据的复制是单向的，只能由主节点到从节点。
+默认情况下，每台Redis服务器都是主节点；且一个主节点可以有多个从节点(或没有从节点)，但一个从节点只能有一个主节点。
+主从复制的作用
+主从复制的作用主要包括：
+
+数据冗余：主从复制...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-01-11</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Redis/">Redis</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/01/11/Redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/01/11/Redis%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85/">
+        Redis发布订阅
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        Redis 发布订阅
+Redis 发布订阅(pub/sub) 是一种消息通信模式: 发布者(pub) 发送消息, 订阅者(sub) 就收消息
+Redis 客户端可以订阅任意数量的值
+订阅/发布消息图
+第一个： 消息发送者 第二个： 频道  第三个 消息接收者
+
+下图展示了频道 channel1 ， 以及订阅这个频道的三个客户端 —— client2 、 client5 和 client1 之...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-01-11</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Redis/">Redis</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/01/11/Redis%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
       
         
           <div class='post-wrapper'>
@@ -750,7 +951,7 @@ GEORA...
           <li><a class="flat-box"
             title="/categories/Redis/" href="/categories/Redis/"
             id="categoriesRedis"
-            ><div class='name'>Redis</div><div class='badge'>(8)</div></a></li>
+            ><div class='name'>Redis</div><div class='badge'>(11)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/Spring/" href="/categories/Spring/"
@@ -819,7 +1020,7 @@ GEORA...
 
 
     <div class='content'>
-      <a href="/tags/Git/" style="font-size: 14px; color: #999">Git</a> <a href="/tags/Java/" style="font-size: 18px; color: #7e7e7e">Java</a> <a href="/tags/Multithread%EF%BC%88%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%89/" style="font-size: 14px; color: #999">Multithread（多线程）</a> <a href="/tags/MyBatis/" style="font-size: 22px; color: #636363">MyBatis</a> <a href="/tags/Redis/" style="font-size: 20px; color: #707070">Redis</a> <a href="/tags/Spring/" style="font-size: 20px; color: #707070">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 24px; color: #555">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 20px; color: #707070">SpringCloud</a> <a href="/tags/SpringMVC/" style="font-size: 20px; color: #707070">SpringMVC</a> <a href="/tags/Sql/" style="font-size: 14px; color: #999">Sql</a> <a href="/tags/%E5%8A%9B%E6%89%A3/" style="font-size: 14px; color: #999">力扣</a> <a href="/tags/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 14px; color: #999">算法与数据结构</a> <a href="/tags/%E8%80%83%E7%A0%94/" style="font-size: 16px; color: #8b8b8b">考研</a> <a href="/tags/%E9%9A%8F%E8%AE%B0/" style="font-size: 20px; color: #707070">随记</a>
+      <a href="/tags/Git/" style="font-size: 14px; color: #999">Git</a> <a href="/tags/Java/" style="font-size: 18px; color: #7e7e7e">Java</a> <a href="/tags/Multithread%EF%BC%88%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%89/" style="font-size: 14px; color: #999">Multithread（多线程）</a> <a href="/tags/MyBatis/" style="font-size: 22px; color: #636363">MyBatis</a> <a href="/tags/Redis/" style="font-size: 24px; color: #555">Redis</a> <a href="/tags/Spring/" style="font-size: 20px; color: #707070">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 24px; color: #555">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 20px; color: #707070">SpringCloud</a> <a href="/tags/SpringMVC/" style="font-size: 20px; color: #707070">SpringMVC</a> <a href="/tags/Sql/" style="font-size: 14px; color: #999">Sql</a> <a href="/tags/%E5%8A%9B%E6%89%A3/" style="font-size: 14px; color: #999">力扣</a> <a href="/tags/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 14px; color: #999">算法与数据结构</a> <a href="/tags/%E8%80%83%E7%A0%94/" style="font-size: 16px; color: #8b8b8b">考研</a> <a href="/tags/%E9%9A%8F%E8%AE%B0/" style="font-size: 20px; color: #707070">随记</a>
     </div>
   </section>
 
