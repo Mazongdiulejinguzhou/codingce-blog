@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>ElasticSearch和solr的区别</title>
+      <link href="2021/01/13/ElasticSearch%E5%92%8Csolr%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+      <url>2021/01/13/ElasticSearch%E5%92%8Csolr%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+      
+        <content type="html"><![CDATA[<h2 id="ElasticSearch-和-solr-的区别">ElasticSearch 和 solr 的区别</h2><h3 id="ElasticSearch-简介">ElasticSearch 简介</h3><p>Elasticsearch是一个开源（Apache 2许可证），是一个基于Apache Lucene库构建的RESTful搜索引擎。</p><p>Elasticsearch是在Solr之后几年推出的。它提供了一个分布式，多租户能力的全文搜索引擎，具有HTTP Web界面（REST）和无架构JSON文档。Elasticsearch的官方客户端库提供Java，Groovy，PHP，Ruby，Perl，Python，.NET和Javascript。</p><p>分布式搜索引擎包括可以划分为分片的索引，并且每个分片可以具有多个副本。每个Elasticsearch节点都可以有一个或多个分片，其引擎也可以充当协调器，将操作委派给正确的分片。</p><p>Elasticsearch可通过近实时搜索进行扩展。其主要功能之一是多​​租户。</p><p>主要功能列表包括：</p><ul><li>分布式搜索</li><li>多租户</li><li>分析搜索</li><li>分组和聚合</li></ul><h3 id="solr-简介">solr 简介</h3><p>Apache Solr是一个基于名为Lucene的Java库构建的开源搜索平台。它以用户友好的方式提供Apache Lucene的搜索功能。作为一个行业参与者近十年，它是一个成熟的产品，拥有强大而广泛的用户社区。它提供分布式索引，复制，负载平衡查询以及自动故障转移和恢复。如果它被正确部署然后管理得好，它就能够成为一个高度可靠，可扩展且容错的搜索引擎。很多互联网巨头，如Netflix，eBay，Instagram和亚马逊（CloudSearch）都使用Solr，因为它能够索引和搜索多个站点。</p><p>主要功能列表包括：</p><ul><li>全文搜索</li><li>突出</li><li>分面搜索</li><li>实时索引</li><li>动态群集</li><li>数据库集成</li><li>NoSQL功能和丰富的文档处理（例如Word和PDF文件）</li></ul><h3 id="Luncene-简介">Luncene 简介</h3><p>Lucene 是一个基于 Java 的全文信息检索工具包，它不是一个完整的搜索应用程序，而是为你的应用程序提供索引和搜索功能。Lucene 目前是 Apache Jakarta 家族中的一个开源项目。也是目前最为流行的基于 Java 开源全文检索工具包。</p><h2 id="Elasticsearch和Solr比较">Elasticsearch和Solr比较</h2><p><img src="https://image.codingce.com.cn/evs1.png" class="lazyload" data-srcset="https://image.codingce.com.cn/evs1.png" srcset="data:image/png;base64,666" alt=""></p><p><img src="https://image.codingce.com.cn/evs2.png" class="lazyload" data-srcset="https://image.codingce.com.cn/evs2.png" srcset="data:image/png;base64,666" alt=""></p><p><img src="https://image.codingce.com.cn/evs3.png" class="lazyload" data-srcset="https://image.codingce.com.cn/evs3.png" srcset="data:image/png;base64,666" alt=""></p><p><img src="https://image.codingce.com.cn/evs4.png" class="lazyload" data-srcset="https://image.codingce.com.cn/evs4.png" srcset="data:image/png;base64,666" alt=""></p><h2 id="Elasticsearch-与-Solr-的比较总结">Elasticsearch 与 Solr 的比较总结</h2><ul><li>二者安装都很简单；</li><li>Solr 利用 Zookeeper 进行分布式管理，而 Elasticsearch 自身带有分布式协调管理功能;</li><li>Solr 支持更多格式的数据，而 Elasticsearch 仅支持json文件格式；</li><li>Solr 官方提供的功能更多，而 Elasticsearch 本身更注重于核心功能，高级功能多有第三方插件提供；</li><li>Solr 在传统的搜索应用中表现好于 Elasticsearch，但在处理实时搜索应用时效率明显低于 Elasticsearch。</li><li>Solr 是传统搜索应用的有力解决方案，但 Elasticsearch 更适用于新兴的实时搜索应用。</li></ul><blockquote><p>文章已上传gitee <a href="https://gitee.com/codingce/hexo-blog" target="_blank" rel="noopener">https://gitee.com/codingce/hexo-blog</a><br>项目地址: <a href="https://github.com/xzMhehe/codingce-java" target="_blank" rel="noopener">https://github.com/xzMhehe/codingce-java</a></p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> ElastciSearch </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ElastciSearch </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>ElastciSearch</title>
       <link href="2021/01/13/ElastciSearch/"/>
       <url>2021/01/13/ElastciSearch/</url>
