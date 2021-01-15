@@ -307,6 +307,120 @@
   
     
     <h2 class="article-title" >
+      <a href="/2020/08/11/hexo%E9%80%9F%E5%BA%A6%E4%BC%98%E5%8C%96%EF%BC%8Cgulp%E5%8E%8B%E7%BC%A9%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90/">
+        hexo速度优化，gulp压缩静态资源
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        起因
+自己博客插件加多了之后,感觉访问速度慢了些, 找了一些优化方法
+
+
+少发送请求
+把要加载的js文件（css文件同理）合并成一个（尽量少）文件，则可以向服务器少发送请求，从而减少等待时间。(前端不是很懂,太麻烦了,我只采用压缩文件这个方法)
+
+
+压缩文件
+使用压缩之后的js、css、img、html等静态资源文件，同样可以减少请求时间。(虽然html文件压缩对小网站意义不大,详见HTML...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-08-11</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E9%9A%8F%E8%AE%B0/">随记</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/08/11/hexo%E9%80%9F%E5%BA%A6%E4%BC%98%E5%8C%96%EF%BC%8Cgulp%E5%8E%8B%E7%BC%A9%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/08/10/yaml%E9%85%8D%E7%BD%AE%E6%B3%A8%E5%85%A5/">
+        yaml配置注入
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        yaml语法学习
+配置文件
+SpringBoot使用一个全局的配置文件 ， 配置文件名称是固定的
+
+application.properties
+
+语法结构 ：key=value
+
+
+
+application.yml
+语法结构 ：key：空格 value
+配置文件的作用 ：修改SpringBoot自动配置的默认值，因为SpringBoot在底层都给我们自动配置好了；
+比如可以在配置文件中修改...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-08-10</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/SpringBoot/">SpringBoot</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/08/10/yaml%E9%85%8D%E7%BD%AE%E6%B3%A8%E5%85%A5/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2020/08/09/SpringBoot%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E5%88%9D%E6%8E%A2/">
         SpringBoot运行原理
       </a>
@@ -720,116 +834,6 @@ JSON(JavaScript Object Notation, JS 对象标记) 是一种轻量级的数据交
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/08/04/%E9%87%8D%E5%AE%9A%E5%90%91%E5%92%8C%E8%BD%AC%E5%8F%91/">
-        重定向和转发|数据处理|乱码问题
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        结果跳转方式
-ModelAndView
-设置ModelAndView对象 , 根据view的名称 , 和视图解析器跳到指定的页面 .
-
-页面 : {视图解析器前缀} + viewName +{视图解析器后缀}
-
-12345678&lt;!-- 视图解析器 --&gt;&lt;bean class="org.springframework.web.servlet.view.InternalRe...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-08-04</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/SpringMVC/">SpringMVC</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/08/04/%E9%87%8D%E5%AE%9A%E5%90%91%E5%92%8C%E8%BD%AC%E5%8F%91/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/08/04/21%E8%80%83%E7%A0%94%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%80%83%E7%A0%94%E6%8B%A9%E6%A0%A1/">
-        21考研计算机考研择校
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        【21考研】计算机考研择校
-考研应该如何选择院校？
-选择报考985，211，或者是双非院校？
-学硕还是专硕？
-全日制还是非全日制？
-选什么专业？
-计算机OR软工OR网安OR人工智能OR大数据？
-都快11月份了，相信这个问题依然让不少小皮皮头疼。
-考研，绝大多数情况下选择大于努力。
-选对了学校，选对了专业，300分可以上985。
-反之，400分也可能会被刷掉。
-选对学校很重要！
-但是，【择校】...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-08-04</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E8%80%83%E7%A0%94/">考研</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/08/04/21%E8%80%83%E7%A0%94%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%80%83%E7%A0%94%E6%8B%A9%E6%A0%A1/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -960,7 +964,7 @@ ModelAndView
           <li><a class="flat-box"
             title="/categories/Java/" href="/categories/Java/"
             id="categoriesJava"
-            ><div class='name'>Java</div><div class='badge'>(4)</div></a></li>
+            ><div class='name'>Java</div><div class='badge'>(5)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/MyBatis/" href="/categories/MyBatis/"
