@@ -5,8 +5,6 @@
   <!-- SEO相关 -->
   
     
-      <meta name="robots" content="noindex,follow">
-    
   
   <!-- 渲染优化 -->
   <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -21,7 +19,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>Archive: 2020 - xzMhehe</title>
+  <title>ES核心概念 - xzMhehe</title>
+  
+    <meta name="keywords" content="Elasticsearch">
   
 
   
@@ -56,7 +56,7 @@
 <body>
   
 
-<header id="l_header" class="l_header auto shadow blur " style='opacity: 0' >
+<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -243,7 +243,7 @@
     <div id="l_cover">
   
     
-        <div id="half" class='cover-wrapper  dock' style="display: ;">
+        <div id="full" class='cover-wrapper post dock' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg"></div>
           
@@ -291,494 +291,446 @@
         
 
 <div class='l_main'>
-	
-		
-  <section class="post-list">
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
+  
+
+
+  
+  <div class="article-meta" id="top">
     
     
-      
+    
+      <h1 class="title">
+        ES核心概念
+      </h1>
+      <div class='new-meta-box'>
         
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/07/12/Mybatis%E4%B8%AD%E7%9A%84%E5%B1%9E%E6%80%A7%E5%90%8D%E5%92%8C%E5%AD%97%E6%AE%B5%E5%90%8D/">
-        Mybatis中的属性名和字段名
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        解决属性名和字段名不一致问题
-问题
-数据库中的字段
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/" rel="nofollow">
+    <img no-lazy src="">
+    <p>全栈自学社区</p>
+  </a>
+</div>
 
-新建一个项目，拷贝之前，测试实体类字段不一致的情况
-12345public class User &#123;    private int id;    private String name;    private String password;&#125;
-测试出现问题
-
-123select * from mybatis.user...
-      
-    
+          
+        
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/Elasticsearch/">Elasticsearch</a>
+    </a>
   </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
+
+
+          
         
-        <time>2020-07-12</time>
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Jan 15, 2021</p>
+  </a>
+</div>
+
+          
         
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/MyBatis/">MyBatis</a>
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="ES核心概念" data-path="/2021/01/15/ES%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
         
       </div>
+    
+  </div>
+
+
+  
+  <h2 id="ES核心概念">ES核心概念</h2>
+<p>ES中:集群,节点,索引,类型,文档,分片,映射都是什么?</p>
+<p>ElasticSearch是面向文档的,关系型数据库和ElasticSearch客观的对比!</p>
+<table>
+<thead>
+<tr>
+<th>Relation DB</th>
+<th>Elasticsearch</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据库(database)</td>
+<td>索引(indices)</td>
+</tr>
+<tr>
+<td>表(table)</td>
+<td>types</td>
+</tr>
+<tr>
+<td>行(row)</td>
+<td>documents</td>
+</tr>
+<tr>
+<td>字段(columns)</td>
+<td>fields</td>
+</tr>
+</tbody>
+</table>
+<p>elasticsearch(集群)中可以包含多个索引(数据库), 每个索引中可以包含多个类型(表), 每个类型下又包含多个文档(行), 每个文档中又包含多个字段(列)</p>
+<h2 id="物理设计">物理设计</h2>
+<p>ElasticSearch在后台把每个索引划分成多个分片,每片分片可以在集群中的不同服务器之间迁移</p>
+<h2 id="逻辑设计">逻辑设计</h2>
+<p>一个索引类型中,包含多个文档,例如说文档1,文档2,当我们索引一篇文档时,可以通过这样一个顺序找到它:</p>
+<p>索引 -&gt; 类型 -&gt; 文档ID</p>
+<p>通过这个组合我们就能所引导某个具体的文档</p>
+<p>注意:ID不必是整数,实际上他是个字符串</p>
+<h2 id="文档">文档</h2>
+<p>之前说ElasticSearch是面向文档的,那么就意味着索引和搜索数据的最小单位是文档,ElasticSearch中,文档有几个重要属性:</p>
+<ul>
+<li>自我包含,一篇文档同时包含字段和对应的值,也就是同时包含Key:value</li>
+<li>可以是层次型的,一个文档中包含子文档,复杂的逻辑实体就是你这么来的</li>
+<li>灵活的结构 ,文档不依赖预先定义的模式,我们知道关系型数据库中,要先提前定义字段才能使用,在ElasticSearch中,对于字段是非常灵活的有时候,有时候我们可以忽略该字段,或者动态添加一个新字段</li>
+</ul>
+<p>尽管我们可以随意的新增和忽略某个字段,但是每个字段的类型非常重要,比如一个年龄字段类型,可以是字符串也可以是整型,因为ElasticSearch会保存字段和类型之间的映射及其他的设置,这种映射具体到每个映射的每种类型,这也是为什么在ElasticSearch中,类型有时候也称为映射类型</p>
+<h2 id="类型">类型</h2>
+<p>类型是文档的逻辑容器,就像关系型数据库一样,表格是行的容器,类型中对于字段的定义成为映射,比如name映射为字符串类型,我们说文档是无模式的,他们不需要拥有映射中所定义的所有字段,比如新增一个字段,那么ElasticSearch是则么做的呢?</p>
+<p>ElasticSearch会自动的将新字段加入映射,但是这个字段的不确定他是什么类型,ElasticSearch就开始猜,如果这个值是16,那么ElasticSearch会认为它是整形,但是ElasticSearch也可能猜不对,所以最安全的方式就是提前定义好所需要的映射,这点跟关系型数据库殊途同归了,先定义好字段,然后再使用,别瞎整</p>
+<h2 id="索引">索引</h2>
+<p>(就是数据库)</p>
+<p>索引是映射类型的容器,ElasticSearch中的索引是一个非常的强大的文档集合,索引存储了映射类型的字段和其他设置,然后他们被存储到了各个分片上,我们来研究下分片是如何工作的</p>
+<h3 id="物理设计-节点和分片-如何工作">物理设计:节点和分片 如何工作</h3>
+<p>一个集群至少有一个节点,而一个节点就是一个ElasticSearch进程节点可以有多个索引默认的,如果你创建索引,那么索引会至少有5个分片(primary shard ,又称为主分片)构成的,每一个主分片会有一个副本(replica shard,又称为复制分片)</p>
+<p><img src="https://image.codingce.com.cn/jiqun1.png" class="lazyload" data-srcset="https://image.codingce.com.cn/jiqun1.png" srcset="data:image/png;base64,666" alt=""></p>
+<p>上图是一个有3个节点的集群,可以看到主分片和对应的复制分片都不会在同一个节点内,这样有利于某个节点挂掉了,数据也不至于丢失,实际上一个分片就是一个Lucene索引,一个包含倒排索引的文件目录,倒排索引的结构使得ElasticSearch在不扫描全部文档的情况下,就可以告诉你那些文档包含特定的关键字,不过额,倒排索引是啥?</p>
+<h2 id="倒排索引">倒排索引</h2>
+<p>ElasticSearch使用的是一种称为倒排索引的结构,采用Lucene倒排索引作为底层,这种结构适用于快速的全文检索,一个索引由文档中所有不重复的列表构成,对于每一个词,都包含他的文档列表,</p>
+<p>列如现在有两个文档,每个文档包含如下内容<br>
+<img src="https://image.codingce.com.cn/dapai1.png" class="lazyload" data-srcset="https://image.codingce.com.cn/dapai1.png" srcset="data:image/png;base64,666" alt=""></p>
+<p>为了创建倒排索引,我们首先要将每个文档拆分成独立的词(或称为词条或者tokens),然后创建一个不包含所有补充度的词条的排序列表,然后列出每个词出现在那个文档</p>
+<table>
+<thead>
+<tr>
+<th>term</th>
+<th>doc_1</th>
+<th>doc_1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Study</td>
+<td>√</td>
+<td>×</td>
+</tr>
+<tr>
+<td>To</td>
+<td>×</td>
+<td>×</td>
+</tr>
+<tr>
+<td>every</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>forever</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>day</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>study</td>
+<td>×</td>
+<td>√</td>
+</tr>
+<tr>
+<td>good</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>every</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>to</td>
+<td>√</td>
+<td>×</td>
+</tr>
+<tr>
+<td>up</td>
+<td>√</td>
+<td>√</td>
+</tr>
+</tbody>
+</table>
+<p>现在,我们视图搜索 to forever,只需要查看包含每个词条的文档</p>
+<table>
+<thead>
+<tr>
+<th>term</th>
+<th>doc_1（权重高）</th>
+<th>doc_1（权重低）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Study</td>
+<td>√</td>
+<td>×</td>
+</tr>
+<tr>
+<td>To</td>
+<td>×</td>
+<td>×</td>
+</tr>
+<tr>
+<td>every</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>forever</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>day</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>study</td>
+<td>×</td>
+<td>√</td>
+</tr>
+<tr>
+<td>good</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>every</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>to</td>
+<td>√</td>
+<td>×</td>
+</tr>
+<tr>
+<td>up</td>
+<td>√</td>
+<td>√</td>
+</tr>
+</tbody>
+</table>
+<p>通过二维表的命中,来决定搜索的结果和权重的高低</p>
+<p>两个文档都匹配,但是第一个文档比第二个文档的匹配程度更高,如果没有别的条件,现在这个刘昂个包含关键字的文档都将返回</p>
+<p>在来看一个示例,比如我们通过博客标题来搜索博客文章,那么倒排索引列表就是这样的一个是结构</p>
+<table>
+	<tr>
+	    <th colspan="2">博客文章(原始数据)</th>
+	    <th colspan="2">索引列表</th>
+	</tr >
+	<tr >
+	    <td>博客标题ID</td>
+	    <td>标签</td>
+	    <td>标签</td>
+        <td>博客标题ID</td>
+	</tr>
+    <tr >
+	    <td>1</td>
+	    <td>python</td>
+	    <td>python</td>
+        <td>1, 2, 3</td>
+	</tr>
+    <tr >
+	    <td>2</td>
+	    <td>python</td>
+	    <td>linux</td>
+        <td>3, 4</td>
+	</tr>
+    <tr >
+	    <td>3</td>
+	    <td>linux, python</td>
+	    <td>&nbsp;</td>
+	    <td>&nbsp;</td>
+	</tr>
+    <tr >
+	    <td>4</td>
+	    <td>linux</td>
+	    <td>&nbsp;</td>
+        <td>&nbsp;</td>
+	</tr>
+</table>
+<p>如果要搜索含有python标签的文章,那相对于查找所有原始数据而言,查找倒排索引后的数据将会快的多,只需要查看标签这一栏,然后获取相关的文章ID即可,完全过滤到无关的数据,来提高检索的效率</p>
+<h3 id="ElasticSearch的索引和Lucene的索引对比">ElasticSearch的索引和Lucene的索引对比</h3>
+<p>在ElasticSearch中,索引这个词被频繁使用,这就是术语的使用,在ElasticSearch中,索引被分为多个分片,每份分片是一个Lucene的索引,所以一个ElasticSearch索引是由多个Lucene的索引组成的,这没啥好说的,因为ElasticSearch是使用,Lucene作为底层的封装,如无特指,说起索引都是指ElasticSearch的索引</p>
+<blockquote>
+<p>文章已上传gitee <a href="https://gitee.com/codingce/hexo-blog" target="_blank" rel="noopener">https://gitee.com/codingce/hexo-blog</a><br>
+项目地址: <a href="https://github.com/xzMhehe/codingce-java" target="_blank" rel="noopener">https://github.com/xzMhehe/codingce-java</a></p>
+</blockquote>
+
+  
+  
+    
+    <div class='footer'>
       
-        <div>
-          <a class='readmore' href='/2020/07/12/Mybatis%E4%B8%AD%E7%9A%84%E5%B1%9E%E6%80%A7%E5%90%8D%E5%92%8C%E5%AD%97%E6%AE%B5%E5%90%8D/'>
-            Read More
-          </a>
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=http://i.codingce.com.cn/2021/01/15/ES%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/>http://i.codingce.com.cn/2021/01/15/ES%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/</a></p>
+              
+            
+          </blockquote>
         </div>
+      
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-15T18:43:06+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Jan 15, 2021</p>
+  </a>
 </div>
 
-          </div>
         
       
         
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
+          
   
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/07/11/utf8%E5%92%8Cutf8mb4%E7%9A%84%E5%8C%BA%E5%88%AB/">
-        utf8和utf8mb4的区别
-      </a>
-    </h2>
-  
-  <div class='md'>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Elasticsearch/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Elasticsearch</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
     
       
-        一、简介
-MySQL在5.5.3之后增加了这个utf8mb4的编码，mb4就是most bytes 4的意思，专门用来兼容四字节的unicode。好在utf8mb4是utf8的超集，除了将编码改为utf8mb4外不需要做其他转换。当然，为了节省空间，一般情况下使用utf8也就够了。
-二、内容描述
-那上面说了既然utf8能够存下大部分中文汉字,那为什么还要使用utf8mb4呢? 原来mysql...
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=http://i.codingce.com.cn/2021/01/15/ES%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/&title=ES核心概念 - xzMhehe&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://i.codingce.com.cn/2021/01/15/ES%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/&title=ES核心概念 - xzMhehe&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=http://i.codingce.com.cn/2021/01/15/ES%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/&title=ES核心概念 - xzMhehe&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,666">
+          
+        </a>
+      
+    
+      
+    
       
     
   </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-07-11</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Sql/">Sql</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/07/11/utf8%E5%92%8Cutf8mb4%E7%9A%84%E5%8C%BA%E5%88%AB/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
 </div>
 
-          </div>
+
+
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/07/11/First-MyBatis/">
-        第一个MyBatis程序
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        第一个MyBatis程序
-思路: 搭建环境–&gt;导入MyBatis–&gt;编写代码–&gt;测试
-搭建环境
-搭建数据库
-新建项目
-
-新建一个普通的maven项目
-删除src目录
-导入maven依赖
-
- 123456789101112131415161718192021&lt;!--导入依赖--&gt;&lt;dependencies&gt;    &lt;!--mybatis--&gt...
-      
-    
+    </div>
   </div>
+
+
   
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-07-11</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/MyBatis/">MyBatis</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/07/11/First-MyBatis/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
   
 
-</div>
+  
+    <div class="prev-next">
+      
+      
+        <a class='next' href='/2021/01/15/Java%E9%93%BE%E8%A1%A8/'>
+          <p class='title'>Java链表<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>链表
 
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/07/11/MyBatis/">
-        什么是MyBatis
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        简介
-什么是 MyBatis？
-MyBatis 是一款优秀的持久层框架，它支持自定义 SQL、存储过程以及高级映射。MyBatis 免除了几乎所有的 JDBC 代码以及设置参数和获取结果集的工作。MyBatis 可以通过简单的 XML 或注解来配置和映射原始类型、接口和 Java POJO（Plain Old Java Objects，普通老式 Java 对象）为数据库中的记录。
-MyBat...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-07-11</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/MyBatis/">MyBatis</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/07/11/MyBatis/'>
-            Read More
-          </a>
-        </div>
+链表是一种物理存储单元上非连续、非顺序的存储结构，数据元素的逻辑顺序是通过链表中的指针链接次序实现的。链表由一系列结点（链表中每一个元素称为结点）组成，结点可以在运行时动态生成。每个结点...</p>
+        </a>
       
     </div>
   
+</article>
 
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
 </div>
 
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/07/09/ArrayList/">
-        ArrayList
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-
-ArrayList简介
-ArrayList核心源码
-ArrayList源码分析
-
-System.arraycopy()和Arrays.copyOf()方法
-
-两者联系与区别
-
-
-ArrayList核心扩容技术
-内部类
-
-
-ArrayList经典Demo
-
-
-ArrayList简介
-ArrayList 的底层是数组队列，相当于动态数组。与 Java 中的数组相比，它的容量能动态增长。在添加...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-07-09</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/07/09/ArrayList/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/07/09/development-words/">
-        常见开发单词
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        开发常见单词™
-
-
-
-单词
-音标
-释义
+  </article>
 
 
 
 
-Authentication
- /ɔːˌθentɪˈkeɪʃn/
-证明；鉴定；证实
 
 
-Authorization
- /ˌɔːθəraɪˈzeɪʃn/
-授权，认可；批准，委任
-
-
-primary
-/ˈpraɪməri/ 
-主要的；初级的；基本的
-
-
-Concerns
-
-关注；关注点；关注者
-
-
-cryptography
-/krɪpˈtɒɡrəf...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-07-09</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E9%9A%8F%E8%AE%B0/">随记</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/07/09/development-words/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/07/08/my-blog/">
-        随记
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        怎么可能有顺序呢，当然是随机的~
-
-    
-        
-        
-            CWorld's Blog
-            求知若愚，虚怀若谷
-        
-    
-    
-        
-        
-            KD's Blog
-            杂乱的技术小站
-        
-    
-    
-        
- ...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-07-08</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E9%9A%8F%E8%AE%B0/">随记</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/07/08/my-blog/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/07/07/my-hexo-blog/">
-        My Hexo Blog
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        我是xzMhehe，一名Java开发者，技术一般，经历平平，但是也一直渴望进步，同时也努力活着，为了人生不留遗憾，也希望能够一直做着自己喜欢的事情，得闲时分享心得、分享一些浅薄的经验，等以后老得不能再老了，就说故事已经讲完了,不去奢求圆满。
-相信浏览这段话的你也知道，学习是一件极其枯燥而无聊的过程，甚至有时候显得很无助，我也想告诉你，成长就是这样一件残酷的事情，任何成功都不是一蹴而就，需要坚...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-07-07</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/07/07/my-hexo-blog/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-    
-  </section>
-  
-    
-      <br>
-      <div class="prev-next">
-        
-          <a class="prev" rel="prev" href="/archives/2020/page/6/">
-            <section class="post prev white-box shadow" >
-              <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;Previous&nbsp;
-            </section>
-          </a>
-        
-        <p class="current">
-          7 / 7
-        </p>
-        
-      </div>
-    
-  
-
-
-	
 </div>
 <aside class='l_side'>
   
@@ -786,191 +738,28 @@ cryptography
     
     
 
-<section class="widget blogger shadow desktop mobile">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box rectangle' href='/about/'>
-          <img no-lazy src='https://image.codingce.com.cn/iavatar.jpg'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-        
-        
-          <p><span id="jinrishici-sentence">xzMhehe</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="/atom.xml"
-              class="social fas fa-rss flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="mailto:codingce@gmail.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/xzMhehe"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="/"
-              class="social fas fa-headphones-alt flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
 
-  
 
-  
-    
-    
-  
-
-  <section class="widget category shadow desktop">
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
     
   <header>
     
-      <a href='/blog/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
     
   </header>
 
 
     <div class='content'>
-      <ul class="entry navigation">
-        
-          <li><a class="flat-box"
-            title="/categories/Elasticsearch/" href="/categories/Elasticsearch/"
-            id="categoriesElasticsearch"
-            ><div class='name'>Elasticsearch</div><div class='badge'>(4)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Git/" href="/categories/Git/"
-            id="categoriesGit"
-            ><div class='name'>Git</div><div class='badge'>(2)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Java/" href="/categories/Java/"
-            id="categoriesJava"
-            ><div class='name'>Java</div><div class='badge'>(5)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/MyBatis/" href="/categories/MyBatis/"
-            id="categoriesMyBatis"
-            ><div class='name'>MyBatis</div><div class='badge'>(9)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Redis/" href="/categories/Redis/"
-            id="categoriesRedis"
-            ><div class='name'>Redis</div><div class='badge'>(12)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Spring/" href="/categories/Spring/"
-            id="categoriesSpring"
-            ><div class='name'>Spring</div><div class='badge'>(8)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/SpringBoot/" href="/categories/SpringBoot/"
-            id="categoriesSpringBoot"
-            ><div class='name'>SpringBoot</div><div class='badge'>(11)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/SpringCloud/" href="/categories/SpringCloud/"
-            id="categoriesSpringCloud"
-            ><div class='name'>SpringCloud</div><div class='badge'>(8)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/SpringMVC/" href="/categories/SpringMVC/"
-            id="categoriesSpringMVC"
-            ><div class='name'>SpringMVC</div><div class='badge'>(8)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/Sql/" href="/categories/Sql/"
-            id="categoriesSql"
-            ><div class='name'>Sql</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E5%8A%9B%E6%89%A3/" href="/categories/%E5%8A%9B%E6%89%A3/"
-            id="categoriesE58A9BE689A3"
-            ><div class='name'>力扣</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
-            id="categoriesE7AE97E6B395E4B88EE695B0E68DAEE7BB93E69E84"
-            ><div class='name'>算法与数据结构</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E8%80%83%E7%A0%94/" href="/categories/%E8%80%83%E7%A0%94/"
-            id="categoriesE88083E7A094"
-            ><div class='name'>考研</div><div class='badge'>(2)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E9%9A%8F%E8%AE%B0/" href="/categories/%E9%9A%8F%E8%AE%B0/"
-            id="categoriesE99A8FE8AEB0"
-            ><div class='name'>随记</div><div class='badge'>(6)</div></a></li>
-        
-      </ul>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ES核心概念"><span class="toc-text">ES核心概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#物理设计"><span class="toc-text">物理设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#逻辑设计"><span class="toc-text">逻辑设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文档"><span class="toc-text">文档</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类型"><span class="toc-text">类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#索引"><span class="toc-text">索引</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#物理设计-节点和分片-如何工作"><span class="toc-text">物理设计:节点和分片 如何工作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#倒排索引"><span class="toc-text">倒排索引</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ElasticSearch的索引和Lucene的索引对比"><span class="toc-text">ElasticSearch的索引和Lucene的索引对比</span></a></li></ol></li></ol>
     </div>
   </section>
 
-
-  
-
-  
-    
-    
-  
-
-  <section class="widget tagcloud shadow desktop mobile">
-    
-  <header>
-    
-      <a href='/blog/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <a href="/tags/Elasticsearch/" style="font-size: 16.86px; color: #868686">Elasticsearch</a> <a href="/tags/Git/" style="font-size: 15.43px; color: #8f8f8f">Git</a> <a href="/tags/Java/" style="font-size: 18.29px; color: #7c7c7c">Java</a> <a href="/tags/Multithread%EF%BC%88%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%89/" style="font-size: 14px; color: #999">Multithread（多线程）</a> <a href="/tags/MyBatis/" style="font-size: 21.14px; color: #686868">MyBatis</a> <a href="/tags/Redis/" style="font-size: 24px; color: #555">Redis</a> <a href="/tags/Spring/" style="font-size: 19.71px; color: #727272">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 22.57px; color: #5f5f5f">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 19.71px; color: #727272">SpringCloud</a> <a href="/tags/SpringMVC/" style="font-size: 19.71px; color: #727272">SpringMVC</a> <a href="/tags/Sql/" style="font-size: 14px; color: #999">Sql</a> <a href="/tags/%E5%8A%9B%E6%89%A3/" style="font-size: 14px; color: #999">力扣</a> <a href="/tags/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 14px; color: #999">算法与数据结构</a> <a href="/tags/%E8%80%83%E7%A0%94/" style="font-size: 15.43px; color: #8f8f8f">考研</a> <a href="/tags/%E9%9A%8F%E8%AE%B0/" style="font-size: 19.71px; color: #727272">随记</a>
-    </div>
-  </section>
-
-
-  
 
   
 
 
 </aside>
+
 
 
         
@@ -980,14 +769,14 @@ cryptography
 
 <script>
   window.pdata={}
-  pdata.ispage=false;
-  pdata.postTitle="";
+  pdata.ispage=true;
+  pdata.postTitle="ES核心概念";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 
   var l_header=document.getElementById("l_header");
   
-  l_header.classList.remove("show");
+  l_header.classList.add("show");
   
 </script>
 
