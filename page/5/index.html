@@ -307,6 +307,111 @@
   
     
     <h2 class="article-title" >
+      <a href="/2020/08/13/Web%E5%BC%80%E5%8F%91%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E5%A4%84%E7%90%86/">
+        Web开发静态资源处理|thymeleaf模板引擎
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        Web开发探究
+简介
+使用SpringBoot的步骤:
+
+创建一个SpringBoot应用，选择需要的模块，SpringBoot就会默认将的需要的模块自动配置好
+手动在配置文件中配置部分配置项目就可以运行起来了
+专注编写业务代码，不需要考虑以前那样一大堆的配置了。
+
+比如SpringBoot到底帮配置了什么？能不能修改？能修改哪些配置？能不能扩展？
+
+向容器中自动配置组件 ：*** Auto...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-08-13</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/SpringBoot/">SpringBoot</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/08/13/Web%E5%BC%80%E5%8F%91%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E5%A4%84%E7%90%86/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/08/13/JSR303%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C%E5%8F%8A%E5%A4%9A%E7%8E%AF%E5%A2%83%E5%88%87%E6%8D%A2/">
+        JSR303数据校验|多环境切换|自动配置原理
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        JSR303数据校验
+使用
+Springboot中可以用@validated来校验数据，如果数据异常则会统一抛出异常，方便异常中心统一处理。我们这里来写个注解让我们的name只能支持Email格式；
+12345678@Component //注册bean@ConfigurationProperties(prefix = "person")@Validated  //数据校验public cl...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-08-13</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/SpringBoot/">SpringBoot</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/08/13/JSR303%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C%E5%8F%8A%E5%A4%9A%E7%8E%AF%E5%A2%83%E5%88%87%E6%8D%A2/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2020/08/12/AQS/">
         AQS
       </a>
@@ -729,118 +834,6 @@ Maycomb镇让人想起那些人们过着心满意足的生活的古老小镇，�
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/08/05/SSM%E6%95%B4%E5%90%88/">
-        SSM整合
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        整合SSM
-环境要求
-环境：
-
-IDEA
-MySQL 5.7.19
-Tomcat 9
-Maven 3.6
-
-要求：
-需要熟练掌握MySQL数据库，Spring，JavaWeb及MyBatis知识，简单的前端知识
-数据库环境
-创建一个存放书籍数据的数据库表
-123456789101112131415161718CREATE DATABASE `ssmbuild`;USE `ssmbuild`;...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-08-05</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/SpringMVC/">SpringMVC</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/08/05/SSM%E6%95%B4%E5%90%88/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/08/04/json/">
-        JSON
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        什么是JSON？
-
-JSON(JavaScript Object Notation, JS 对象标记) 是一种轻量级的数据交换格式，目前使用特别广泛。
-采用完全独立于编程语言的文本格式来存储和表示数据。
-简洁和清晰的层次结构使得 JSON 成为理想的数据交换语言。
-易于人阅读和编写，同时也易于机器解析和生成，并有效地提升网络传输效率。
-
-在 JavaScript 语言中，一切都是对象。因此，...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-08-04</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/SpringMVC/">SpringMVC</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/08/04/json/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -961,7 +954,7 @@ JSON(JavaScript Object Notation, JS 对象标记) 是一种轻量级的数据交
           <li><a class="flat-box"
             title="/categories/Elasticsearch/" href="/categories/Elasticsearch/"
             id="categoriesElasticsearch"
-            ><div class='name'>Elasticsearch</div><div class='badge'>(4)</div></a></li>
+            ><div class='name'>Elasticsearch</div><div class='badge'>(5)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/Git/" href="/categories/Git/"
@@ -1011,7 +1004,7 @@ JSON(JavaScript Object Notation, JS 对象标记) 是一种轻量级的数据交
           <li><a class="flat-box"
             title="/categories/%E5%8A%9B%E6%89%A3/" href="/categories/%E5%8A%9B%E6%89%A3/"
             id="categoriesE58A9BE689A3"
-            ><div class='name'>力扣</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>力扣</div><div class='badge'>(2)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
@@ -1050,7 +1043,7 @@ JSON(JavaScript Object Notation, JS 对象标记) 是一种轻量级的数据交
 
 
     <div class='content'>
-      <a href="/tags/Elasticsearch/" style="font-size: 16.86px; color: #868686">Elasticsearch</a> <a href="/tags/Git/" style="font-size: 15.43px; color: #8f8f8f">Git</a> <a href="/tags/Java/" style="font-size: 18.29px; color: #7c7c7c">Java</a> <a href="/tags/Multithread%EF%BC%88%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%89/" style="font-size: 14px; color: #999">Multithread（多线程）</a> <a href="/tags/MyBatis/" style="font-size: 21.14px; color: #686868">MyBatis</a> <a href="/tags/Redis/" style="font-size: 24px; color: #555">Redis</a> <a href="/tags/Spring/" style="font-size: 19.71px; color: #727272">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 22.57px; color: #5f5f5f">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 19.71px; color: #727272">SpringCloud</a> <a href="/tags/SpringMVC/" style="font-size: 19.71px; color: #727272">SpringMVC</a> <a href="/tags/Sql/" style="font-size: 14px; color: #999">Sql</a> <a href="/tags/%E5%8A%9B%E6%89%A3/" style="font-size: 14px; color: #999">力扣</a> <a href="/tags/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 14px; color: #999">算法与数据结构</a> <a href="/tags/%E8%80%83%E7%A0%94/" style="font-size: 15.43px; color: #8f8f8f">考研</a> <a href="/tags/%E9%9A%8F%E8%AE%B0/" style="font-size: 19.71px; color: #727272">随记</a>
+      <a href="/tags/Elasticsearch/" style="font-size: 16.86px; color: #868686">Elasticsearch</a> <a href="/tags/Git/" style="font-size: 15.43px; color: #8f8f8f">Git</a> <a href="/tags/Java/" style="font-size: 18.29px; color: #7c7c7c">Java</a> <a href="/tags/Multithread%EF%BC%88%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%89/" style="font-size: 14px; color: #999">Multithread（多线程）</a> <a href="/tags/MyBatis/" style="font-size: 21.14px; color: #686868">MyBatis</a> <a href="/tags/Redis/" style="font-size: 24px; color: #555">Redis</a> <a href="/tags/Spring/" style="font-size: 19.71px; color: #727272">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 22.57px; color: #5f5f5f">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 19.71px; color: #727272">SpringCloud</a> <a href="/tags/SpringMVC/" style="font-size: 19.71px; color: #727272">SpringMVC</a> <a href="/tags/Sql/" style="font-size: 14px; color: #999">Sql</a> <a href="/tags/%E5%8A%9B%E6%89%A3/" style="font-size: 15.43px; color: #8f8f8f">力扣</a> <a href="/tags/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 14px; color: #999">算法与数据结构</a> <a href="/tags/%E8%80%83%E7%A0%94/" style="font-size: 15.43px; color: #8f8f8f">考研</a> <a href="/tags/%E9%9A%8F%E8%AE%B0/" style="font-size: 19.71px; color: #727272">随记</a>
     </div>
   </section>
 
