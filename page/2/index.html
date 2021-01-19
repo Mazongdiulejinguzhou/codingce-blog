@@ -307,6 +307,57 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/01/12/Redis%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E5%92%8C%E9%9B%AA%E5%B4%A9/">
+        Redis缓存穿透和雪崩
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+作为一个内存数据库，redis也总是免不了有各种各样的问题，这篇文章主要是针对其中两个问题进行讲解：缓存穿透和缓存雪崩。并给出一些解决方案。这两个问题是基本问题也是面试常问问题。
+
+一、缓存穿透
+概念
+缓存穿透的概念很简单，用户想要查询一个数据，发现redis内存数据库没有，也就是缓存没有命中，于是向持久层数据库查询。发现也没有，于是本次查询失败。当用户很多的时候，缓存都没有命中，于是都去...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-01-12</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Redis/">Redis</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/01/12/Redis%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E5%92%8C%E9%9B%AA%E5%B4%A9/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/01/12/%E5%93%A8%E5%85%B5%E6%A8%A1%E5%BC%8F/">
         哨兵模式
       </a>
@@ -774,56 +825,6 @@ GEORA...
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/10/24/Redis%E5%85%A5%E9%97%A8/">
-        Redis入门
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        Redis是什么
-Redis（Remote Dictionary Server )，即远程字典服务，是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API。从2010年3月15日起，Redis的开发工作由VMware主持。从2013年5月开始，Redis的开发由Pivotal赞助。
-Redis能干嘛
-
-内存存储、持久化、...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2020-10-24</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Redis/">Redis</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/10/24/Redis%E5%85%A5%E9%97%A8/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -944,7 +945,7 @@ Redis能干嘛
           <li><a class="flat-box"
             title="/categories/Elasticsearch/" href="/categories/Elasticsearch/"
             id="categoriesElasticsearch"
-            ><div class='name'>Elasticsearch</div><div class='badge'>(5)</div></a></li>
+            ><div class='name'>Elasticsearch</div><div class='badge'>(6)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/Git/" href="/categories/Git/"

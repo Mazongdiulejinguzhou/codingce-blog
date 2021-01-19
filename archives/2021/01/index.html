@@ -330,6 +330,69 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/01/17/Rest%E9%A3%8E%E6%A0%BC/">
+        ES的Rest风格
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        什么是REST
+REST是一种软件架构风格，或者说是一种规范，其强调HTTP应当以资源为中心，并且规范了URI的风格；规范了HTTP请求动作（GET/PUT/POST/DELETE/HEAD/OPTIONS）的使用，具有对应的语义。
+核心概念包括：
+
+
+
+method
+url地址
+描述
+
+
+
+
+PUT
+localhost:9200/索引名称/类型名称/文档id
+创建文档(指定文档 id)
+
+...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-01-17</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Elasticsearch/">Elasticsearch</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/01/17/Rest%E9%A3%8E%E6%A0%BC/'>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/01/16/%E5%8F%8C%E6%8C%87%E9%92%88-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3-%E7%A7%BB%E5%8A%A8%E9%98%9F%E5%88%97/">
         双指针/滑动窗口/移动队列
       </a>
@@ -391,10 +454,10 @@ there is always more you don`t know.
   <div class='md'>
     
       
-        IK分词插件
+        IK分词器插件
 什么是 IK 分词器
 分词:即把一段中文或者别的划分成一个个的关键字,我们在搜索时候会把自己的信息进行分词,会把数据库中或者索引库中的数据进行分词,然后进行一个匹配操作,默认的中文分词器是将每个字看成一个词,比如&quot;我爱技术&quot;会被分为&quot;我&quot;,“爱”,“技”,“术”,这显然不符合要求,所以我们需要安装中文分词器IK来解决这个问题
-IK提供了两...
+IK提供了...
       
     
   </div>
@@ -803,57 +866,6 @@ Doug Cutting，Hadoop语言和Lucene工具包的创始人
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/01/12/Redis%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E5%92%8C%E9%9B%AA%E5%B4%A9/">
-        Redis缓存穿透和雪崩
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        
-作为一个内存数据库，redis也总是免不了有各种各样的问题，这篇文章主要是针对其中两个问题进行讲解：缓存穿透和缓存雪崩。并给出一些解决方案。这两个问题是基本问题也是面试常问问题。
-
-一、缓存穿透
-概念
-缓存穿透的概念很简单，用户想要查询一个数据，发现redis内存数据库没有，也就是缓存没有命中，于是向持久层数据库查询。发现也没有，于是本次查询失败。当用户很多的时候，缓存都没有命中，于是都去...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-01-12</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Redis/">Redis</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/01/12/Redis%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E5%92%8C%E9%9B%AA%E5%B4%A9/'>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -969,7 +981,7 @@ Doug Cutting，Hadoop语言和Lucene工具包的创始人
           <li><a class="flat-box"
             title="/categories/Elasticsearch/" href="/categories/Elasticsearch/"
             id="categoriesElasticsearch"
-            ><div class='name'>Elasticsearch</div><div class='badge'>(5)</div></a></li>
+            ><div class='name'>Elasticsearch</div><div class='badge'>(6)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/Git/" href="/categories/Git/"

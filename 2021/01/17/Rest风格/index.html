@@ -19,7 +19,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>ES核心概念 - xzMhehe</title>
+  <title>ES的Rest风格 - xzMhehe</title>
   
     <meta name="keywords" content="Elasticsearch">
   
@@ -301,7 +301,7 @@
     
     
       <h1 class="title">
-        ES核心概念
+        ES的Rest风格
       </h1>
       <div class='new-meta-box'>
         
@@ -332,7 +332,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Jan 15, 2021</p>
+    <p>发布于：Jan 17, 2021</p>
   </a>
 </div>
 
@@ -343,7 +343,7 @@
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="ES核心概念" data-path="/2021/01/15/ES%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/">
+      <div id="lc-pv" data-title="ES的Rest风格" data-path="/2021/01/17/Rest%E9%A3%8E%E6%A0%BC/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -360,231 +360,89 @@
 
 
   
-  <h2 id="ES核心概念">ES核心概念</h2>
-<p>ES中:集群,节点,索引,类型,文档,分片,映射都是什么?</p>
-<p>ElasticSearch是面向文档的,关系型数据库和ElasticSearch客观的对比!</p>
+  <h2 id="什么是REST">什么是REST</h2>
+<p>REST是一种软件架构风格，或者说是一种规范，其强调HTTP应当以资源为中心，并且规范了URI的风格；规范了HTTP请求动作（GET/PUT/POST/DELETE/HEAD/OPTIONS）的使用，具有对应的语义。<br>
+核心概念包括：</p>
 <table>
 <thead>
 <tr>
-<th>Relation DB</th>
-<th>Elasticsearch</th>
+<th>method</th>
+<th>url地址</th>
+<th>描述</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>数据库(database)</td>
-<td>索引(indices)</td>
+<td>PUT</td>
+<td>localhost:9200/索引名称/类型名称/文档id</td>
+<td>创建文档(指定文档 id)</td>
 </tr>
 <tr>
-<td>表(table)</td>
-<td>types</td>
+<td>POST</td>
+<td>localhost:9200/索引名称/类型名称</td>
+<td>创建文档(随机文档 id)</td>
 </tr>
 <tr>
-<td>行(row)</td>
-<td>documents</td>
+<td>POST</td>
+<td>localhost:9200/索引名称/类型名称/文档id/_update</td>
+<td>修改文档</td>
 </tr>
 <tr>
-<td>字段(columns)</td>
-<td>fields</td>
+<td>DELETE</td>
+<td>localhost:9200/索引名称/类型名称/文档id</td>
+<td>删除文档</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>localhost:9200/索引名称/类型名称/文档id</td>
+<td>查询文档通过文档 id</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>localhost:9200/索引名称/类型名称/_search</td>
+<td>查询所有数据</td>
 </tr>
 </tbody>
 </table>
-<p>elasticsearch(集群)中可以包含多个索引(数据库), 每个索引中可以包含多个类型(表), 每个类型下又包含多个文档(行), 每个文档中又包含多个字段(列)</p>
-<h2 id="物理设计">物理设计</h2>
-<p>ElasticSearch在后台把每个索引划分成多个分片,每片分片可以在集群中的不同服务器之间迁移</p>
-<h2 id="逻辑设计">逻辑设计</h2>
-<p>一个索引类型中,包含多个文档,例如说文档1,文档2,当我们索引一篇文档时,可以通过这样一个顺序找到它:</p>
-<p>索引 -&gt; 类型 -&gt; 文档ID</p>
-<p>通过这个组合我们就能所引导某个具体的文档</p>
-<p>注意:ID不必是整数,实际上他是个字符串</p>
-<h2 id="文档">文档</h2>
-<p>之前说ElasticSearch是面向文档的,那么就意味着索引和搜索数据的最小单位是文档,ElasticSearch中,文档有几个重要属性:</p>
-<ul>
-<li>自我包含,一篇文档同时包含字段和对应的值,也就是同时包含Key:value</li>
-<li>可以是层次型的,一个文档中包含子文档,复杂的逻辑实体就是你这么来的</li>
-<li>灵活的结构 ,文档不依赖预先定义的模式,我们知道关系型数据库中,要先提前定义字段才能使用,在ElasticSearch中,对于字段是非常灵活的有时候,有时候我们可以忽略该字段,或者动态添加一个新字段</li>
-</ul>
-<p>尽管我们可以随意的新增和忽略某个字段,但是每个字段的类型非常重要,比如一个年龄字段类型,可以是字符串也可以是整型,因为ElasticSearch会保存字段和类型之间的映射及其他的设置,这种映射具体到每个映射的每种类型,这也是为什么在ElasticSearch中,类型有时候也称为映射类型</p>
-<h2 id="类型">类型</h2>
-<p>类型是文档的逻辑容器,就像关系型数据库一样,表格是行的容器,类型中对于字段的定义成为映射,比如name映射为字符串类型,我们说文档是无模式的,他们不需要拥有映射中所定义的所有字段,比如新增一个字段,那么ElasticSearch是则么做的呢?</p>
-<p>ElasticSearch会自动的将新字段加入映射,但是这个字段的不确定他是什么类型,ElasticSearch就开始猜,如果这个值是16,那么ElasticSearch会认为它是整形,但是ElasticSearch也可能猜不对,所以最安全的方式就是提前定义好所需要的映射,这点跟关系型数据库殊途同归了,先定义好字段,然后再使用,别瞎整</p>
-<h2 id="索引">索引</h2>
-<p>(就是数据库)</p>
-<p>索引是映射类型的容器,ElasticSearch中的索引是一个非常的强大的文档集合,索引存储了映射类型的字段和其他设置,然后他们被存储到了各个分片上,我们来研究下分片是如何工作的</p>
-<h3 id="物理设计-节点和分片-如何工作">物理设计:节点和分片 如何工作</h3>
-<p>一个集群至少有一个节点,而一个节点就是一个ElasticSearch进程节点可以有多个索引默认的,如果你创建索引,那么索引会至少有5个分片(primary shard ,又称为主分片)构成的,每一个主分片会有一个副本(replica shard,又称为复制分片)</p>
-<p><img src="https://image.codingce.com.cn/jiqun1.png" class="lazyload" data-srcset="https://image.codingce.com.cn/jiqun1.png" srcset="data:image/png;base64,666" alt=""></p>
-<p>上图是一个有3个节点的集群,可以看到主分片和对应的复制分片都不会在同一个节点内,这样有利于某个节点挂掉了,数据也不至于丢失,实际上一个分片就是一个Lucene索引,一个包含倒排索引的文件目录,倒排索引的结构使得ElasticSearch在不扫描全部文档的情况下,就可以告诉你那些文档包含特定的关键字,不过额,倒排索引是啥?</p>
-<h2 id="倒排索引">倒排索引</h2>
-<p>ElasticSearch使用的是一种称为倒排索引的结构,采用Lucene倒排索引作为底层,这种结构适用于快速的全文检索,一个索引由文档中所有不重复的列表构成,对于每一个词,都包含他的文档列表,</p>
-<p>列如现在有两个文档,每个文档包含如下内容<br>
-<img src="https://image.codingce.com.cn/dapai1.png" class="lazyload" data-srcset="https://image.codingce.com.cn/dapai1.png" srcset="data:image/png;base64,666" alt=""></p>
-<p>为了创建倒排索引,我们首先要将每个文档拆分成独立的词(或称为词条或者tokens),然后创建一个不包含所有补充度的词条的排序列表,然后列出每个词出现在那个文档</p>
-<table>
-<thead>
-<tr>
-<th>term</th>
-<th>doc_1</th>
-<th>doc_1</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Study</td>
-<td>√</td>
-<td>×</td>
-</tr>
-<tr>
-<td>To</td>
-<td>×</td>
-<td>×</td>
-</tr>
-<tr>
-<td>every</td>
-<td>√</td>
-<td>√</td>
-</tr>
-<tr>
-<td>forever</td>
-<td>√</td>
-<td>√</td>
-</tr>
-<tr>
-<td>day</td>
-<td>√</td>
-<td>√</td>
-</tr>
-<tr>
-<td>study</td>
-<td>×</td>
-<td>√</td>
-</tr>
-<tr>
-<td>good</td>
-<td>√</td>
-<td>√</td>
-</tr>
-<tr>
-<td>every</td>
-<td>√</td>
-<td>√</td>
-</tr>
-<tr>
-<td>to</td>
-<td>√</td>
-<td>×</td>
-</tr>
-<tr>
-<td>up</td>
-<td>√</td>
-<td>√</td>
-</tr>
-</tbody>
-</table>
-<p>现在,我们视图搜索 to forever,只需要查看包含每个词条的文档</p>
-<table>
-<thead>
-<tr>
-<th>term</th>
-<th>doc_1（权重高）</th>
-<th>doc_1（权重低）</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Study</td>
-<td>√</td>
-<td>×</td>
-</tr>
-<tr>
-<td>To</td>
-<td>×</td>
-<td>×</td>
-</tr>
-<tr>
-<td>every</td>
-<td>√</td>
-<td>√</td>
-</tr>
-<tr>
-<td>forever</td>
-<td>√</td>
-<td>√</td>
-</tr>
-<tr>
-<td>day</td>
-<td>√</td>
-<td>√</td>
-</tr>
-<tr>
-<td>study</td>
-<td>×</td>
-<td>√</td>
-</tr>
-<tr>
-<td>good</td>
-<td>√</td>
-<td>√</td>
-</tr>
-<tr>
-<td>every</td>
-<td>√</td>
-<td>√</td>
-</tr>
-<tr>
-<td>to</td>
-<td>√</td>
-<td>×</td>
-</tr>
-<tr>
-<td>up</td>
-<td>√</td>
-<td>√</td>
-</tr>
-</tbody>
-</table>
-<p>通过二维表的命中,来决定搜索的结果和权重的高低</p>
-<p>两个文档都匹配,但是第一个文档比第二个文档的匹配程度更高,如果没有别的条件,现在这个刘昂个包含关键字的文档都将返回</p>
-<p>在来看一个示例,比如我们通过博客标题来搜索博客文章,那么倒排索引列表就是这样的一个是结构</p>
-<table>
-	<tr>
-	    <th colspan="2">博客文章(原始数据)</th>
-	    <th colspan="2">索引列表</th>
-	</tr >
-	<tr >
-	    <td>博客标题ID</td>
-	    <td>标签</td>
-	    <td>标签</td>
-        <td>博客标题ID</td>
-	</tr>
-    <tr >
-	    <td>1</td>
-	    <td>python</td>
-	    <td>python</td>
-        <td>1, 2, 3</td>
-	</tr>
-    <tr >
-	    <td>2</td>
-	    <td>python</td>
-	    <td>linux</td>
-        <td>3, 4</td>
-	</tr>
-    <tr >
-	    <td>3</td>
-	    <td>linux, python</td>
-	    <td>&nbsp;</td>
-	    <td>&nbsp;</td>
-	</tr>
-    <tr >
-	    <td>4</td>
-	    <td>linux</td>
-	    <td>&nbsp;</td>
-        <td>&nbsp;</td>
-	</tr>
-</table>
-<p>如果要搜索含有python标签的文章,那相对于查找所有原始数据而言,查找倒排索引后的数据将会快的多,只需要查看标签这一栏,然后获取相关的文章ID即可,完全过滤到无关的数据,来提高检索的效率</p>
-<h3 id="ElasticSearch的索引和Lucene的索引对比">ElasticSearch的索引和Lucene的索引对比</h3>
-<p>在ElasticSearch中,索引这个词被频繁使用,这就是术语的使用,在ElasticSearch中,索引被分为多个分片,每份分片是一个Lucene的索引,所以一个ElasticSearch索引是由多个Lucene的索引组成的,这没啥好说的,因为ElasticSearch是使用,Lucene作为底层的封装,如无特指,说起索引都是指ElasticSearch的索引</p>
+<h2 id="基础测试">基础测试</h2>
+<h3 id="创建一个索引">创建一个索引</h3>
+<blockquote>
+<p>PUT    /索引名/~类型名~/文档 id<br>
+{<br>
+请求体<br>
+}</p>
+</blockquote>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PUT /test1/type1/1</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span>:<span class="string">"全栈自学社区"</span>,</span><br><span class="line">  <span class="attr">"age"</span>:<span class="number">12</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>返回结果</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#! Deprecation: [types removal] Specifying types in document index requests is deprecated, use the typeless endpoints instead (/&#123;index&#125;/_doc/&#123;id&#125;, /&#123;index&#125;/_doc, or /&#123;index&#125;/_create/&#123;id&#125;).</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">"_index"</span> : <span class="string">"test1"</span>,</span><br><span class="line">  <span class="attr">"_type"</span> : <span class="string">"type1"</span>,</span><br><span class="line">  <span class="attr">"_id"</span> : <span class="string">"1"</span>,</span><br><span class="line">  <span class="attr">"_version"</span> : <span class="number">2</span>,</span><br><span class="line">  <span class="attr">"result"</span> : <span class="string">"updated"</span>,</span><br><span class="line">  <span class="attr">"_shards"</span> : &#123;</span><br><span class="line">    <span class="attr">"total"</span> : <span class="number">2</span>,</span><br><span class="line">    <span class="attr">"successful"</span> : <span class="number">1</span>,</span><br><span class="line">    <span class="attr">"failed"</span> : <span class="number">0</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"_seq_no"</span> : <span class="number">1</span>,</span><br><span class="line">  <span class="attr">"_primary_term"</span> : <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="数据类型">数据类型</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">（1）字符串类型： text, keyword</span><br><span class="line">（2）数字类型：long, <span class="built_in">integer</span>, short, byte, double, <span class="built_in">float</span>, half_float, scaled_float</span><br><span class="line">（3）日期：date</span><br><span class="line">（4）日期 纳秒：date_nanos</span><br><span class="line">（5）布尔型：boolean</span><br><span class="line">（6）二进制类型 Binary：binary</span><br><span class="line">（7）Range: integer_range, float_range, long_range, double_range, date_range</span><br></pre></td></tr></table></figure>
+<h3 id="创建具体的索引规则">创建具体的索引规则</h3>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">PUT /test2</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">"mappings"</span>: &#123;</span><br><span class="line">    <span class="attr">"properties"</span>: &#123;</span><br><span class="line">      <span class="attr">"name"</span>: &#123;</span><br><span class="line">        <span class="attr">"type"</span>: <span class="string">"text"</span></span><br><span class="line">      &#125;, </span><br><span class="line">      <span class="attr">"age"</span>: &#123;</span><br><span class="line">        <span class="attr">"type"</span>: <span class="string">"long"</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">"birthday"</span>: &#123;</span><br><span class="line">        <span class="attr">"type"</span>: <span class="string">"date"</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>返回结果</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"acknowledged"</span> : <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">"shards_acknowledged"</span> : <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">"index"</span> : <span class="string">"test2"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="GET-获取具体信息">GET 获取具体信息</h3>
+<p>获取这个规则, 可以通过 GET 获取具体信息</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET test2</span><br></pre></td></tr></table></figure>
+<p>返回结果</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"test2"</span> : &#123;</span><br><span class="line">    <span class="attr">"aliases"</span> : &#123; &#125;,</span><br><span class="line">    <span class="attr">"mappings"</span> : &#123;</span><br><span class="line">      <span class="attr">"properties"</span> : &#123;</span><br><span class="line">        <span class="attr">"age"</span> : &#123;</span><br><span class="line">          <span class="attr">"type"</span> : <span class="string">"long"</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">"birthday"</span> : &#123;</span><br><span class="line">          <span class="attr">"type"</span> : <span class="string">"date"</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">"name"</span> : &#123;</span><br><span class="line">          <span class="attr">"type"</span> : <span class="string">"text"</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"settings"</span> : &#123;</span><br><span class="line">      <span class="attr">"index"</span> : &#123;</span><br><span class="line">        <span class="attr">"routing"</span> : &#123;</span><br><span class="line">          <span class="attr">"allocation"</span> : &#123;</span><br><span class="line">            <span class="attr">"include"</span> : &#123;</span><br><span class="line">              <span class="attr">"_tier_preference"</span> : <span class="string">"data_content"</span></span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">"number_of_shards"</span> : <span class="string">"1"</span>,</span><br><span class="line">        <span class="attr">"provided_name"</span> : <span class="string">"test2"</span>,</span><br><span class="line">        <span class="attr">"creation_date"</span> : <span class="string">"1610936976952"</span>,</span><br><span class="line">        <span class="attr">"number_of_replicas"</span> : <span class="string">"1"</span>,</span><br><span class="line">        <span class="attr">"uuid"</span> : <span class="string">"qqzV0yIqR7CqT_liFewR4Q"</span>,</span><br><span class="line">        <span class="attr">"version"</span> : &#123;</span><br><span class="line">          <span class="attr">"created"</span> : <span class="string">"7100199"</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="查看默认的信息">查看默认的信息</h3>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PUT /test3/_doc/1</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"全栈自学社区"</span>,</span><br><span class="line">  <span class="attr">"age"</span>: <span class="number">18</span>,</span><br><span class="line">  <span class="attr">"birth"</span>: <span class="string">"1997-01-25"</span> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>返回结果</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"_index"</span> : <span class="string">"test3"</span>,</span><br><span class="line">  <span class="attr">"_type"</span> : <span class="string">"_doc"</span>,</span><br><span class="line">  <span class="attr">"_id"</span> : <span class="string">"1"</span>,</span><br><span class="line">  <span class="attr">"_version"</span> : <span class="number">1</span>,</span><br><span class="line">  <span class="attr">"result"</span> : <span class="string">"created"</span>,</span><br><span class="line">  <span class="attr">"_shards"</span> : &#123;</span><br><span class="line">    <span class="attr">"total"</span> : <span class="number">2</span>,</span><br><span class="line">    <span class="attr">"successful"</span> : <span class="number">1</span>,</span><br><span class="line">    <span class="attr">"failed"</span> : <span class="number">0</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"_seq_no"</span> : <span class="number">0</span>,</span><br><span class="line">  <span class="attr">"_primary_term"</span> : <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET test3</span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"test3"</span> : &#123;</span><br><span class="line">    <span class="attr">"aliases"</span> : &#123; &#125;,</span><br><span class="line">    <span class="attr">"mappings"</span> : &#123;</span><br><span class="line">      <span class="attr">"properties"</span> : &#123;</span><br><span class="line">        <span class="attr">"age"</span> : &#123;</span><br><span class="line">          <span class="attr">"type"</span> : <span class="string">"long"</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">"birth"</span> : &#123;</span><br><span class="line">          <span class="attr">"type"</span> : <span class="string">"date"</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">"name"</span> : &#123;</span><br><span class="line">          <span class="attr">"type"</span> : <span class="string">"text"</span>,</span><br><span class="line">          <span class="attr">"fields"</span> : &#123;</span><br><span class="line">            <span class="attr">"keyword"</span> : &#123;</span><br><span class="line">              <span class="attr">"type"</span> : <span class="string">"keyword"</span>,</span><br><span class="line">              <span class="attr">"ignore_above"</span> : <span class="number">256</span></span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"settings"</span> : &#123;</span><br><span class="line">      <span class="attr">"index"</span> : &#123;</span><br><span class="line">        <span class="attr">"routing"</span> : &#123;</span><br><span class="line">          <span class="attr">"allocation"</span> : &#123;</span><br><span class="line">            <span class="attr">"include"</span> : &#123;</span><br><span class="line">              <span class="attr">"_tier_preference"</span> : <span class="string">"data_content"</span></span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">"number_of_shards"</span> : <span class="string">"1"</span>,</span><br><span class="line">        <span class="attr">"provided_name"</span> : <span class="string">"test3"</span>,</span><br><span class="line">        <span class="attr">"creation_date"</span> : <span class="string">"1610937747174"</span>,</span><br><span class="line">        <span class="attr">"number_of_replicas"</span> : <span class="string">"1"</span>,</span><br><span class="line">        <span class="attr">"uuid"</span> : <span class="string">"Hok1PejKSByKuW6ozyQpEA"</span>,</span><br><span class="line">        <span class="attr">"version"</span> : &#123;</span><br><span class="line">          <span class="attr">"created"</span> : <span class="string">"7100199"</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果自己的文档没有指定, 那么es就会给我们默认配置字段类型</p>
+<h3 id="其他命令">其他命令</h3>
+<p>获取 es 当前的信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET _cat/indices?v</span><br></pre></td></tr></table></figure>
+<p>返回结果</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">health status index                           uuid                   pri rep docs.count docs.deleted store.size pri.store.size</span><br><span class="line">yellow open   test2                           qqzV0yIqR7CqT_liFewR4Q   <span class="number">1</span>   <span class="number">1</span>          <span class="number">0</span>            <span class="number">0</span>       <span class="number">208</span>b           <span class="number">208</span>b</span><br><span class="line">yellow open   test3                           Hok1PejKSByKuW6ozyQpEA   <span class="number">1</span>   <span class="number">1</span>          <span class="number">1</span>            <span class="number">0</span>      <span class="number">4.3</span>kb          <span class="number">4.3</span>kb</span><br><span class="line">green  open   .apm-custom-link                A-jNeoZWTDKtQqpf_Kqqog   <span class="number">1</span>   <span class="number">0</span>          <span class="number">0</span>            <span class="number">0</span>       <span class="number">208</span>b           <span class="number">208</span>b</span><br><span class="line">yellow open   xinze                           Gn2y36z2Tpq2jvxBhM0ogg   <span class="number">5</span>   <span class="number">1</span>          <span class="number">0</span>            <span class="number">0</span>        <span class="number">1</span>kb            <span class="number">1</span>kb</span><br><span class="line">green  open   .kibana_task_manager_1          STLFw_63S6a_t5HBC5fW9w   <span class="number">1</span>   <span class="number">0</span>          <span class="number">5</span>          <span class="number">157</span>    <span class="number">153.5</span>kb        <span class="number">153.5</span>kb</span><br><span class="line">green  open   .apm-agent-configuration        bZJ<span class="number">-56</span>bwQFKQekHd5GFdgQ   <span class="number">1</span>   <span class="number">0</span>          <span class="number">0</span>            <span class="number">0</span>       <span class="number">208</span>b           <span class="number">208</span>b</span><br><span class="line">green  open   .kibana-event-log<span class="number">-7.10</span><span class="number">.1</span><span class="number">-000001</span> HUjThpyTQMeJr-QSwMXNLQ   <span class="number">1</span>   <span class="number">0</span>          <span class="number">3</span>            <span class="number">0</span>     <span class="number">16.4</span>kb         <span class="number">16.4</span>kb</span><br><span class="line">green  open   .kibana_2                       hJZflBGSSkqIgWWX_15Ofg   <span class="number">1</span>   <span class="number">0</span>         <span class="number">48</span>           <span class="number">69</span>      <span class="number">4.2</span>mb          <span class="number">4.2</span>mb</span><br><span class="line">yellow open   test1                           a8pjIRrfTsqtTmaAaXRZKg   <span class="number">5</span>   <span class="number">1</span>          <span class="number">1</span>            <span class="number">1</span>      <span class="number">6.2</span>kb          <span class="number">6.2</span>kb</span><br><span class="line">green  open   .kibana_1                       Gi93gw00SzSFVN5dQxrLig   <span class="number">1</span>   <span class="number">0</span>          <span class="number">1</span>            <span class="number">0</span>      <span class="number">5.1</span>kb          <span class="number">5.1</span>kb</span><br><span class="line">green  open   .tasks                          UDpsMCO1SyasUGAJTqxFgw   <span class="number">1</span>   <span class="number">0</span>          <span class="number">1</span>            <span class="number">0</span>      <span class="number">6.9</span>kb          <span class="number">6.9</span>kb</span><br></pre></td></tr></table></figure>
+<p>修改索引<br>
+依旧使用 <code>PUT</code> 然后覆盖</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">POST /test3/_doc/1/_update</span><br><span class="line">&#123;</span><br><span class="line">    <span class="attr">"name"</span>: <span class="string">"全栈自学社区关注就对了"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>删除索引</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE test1</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>文章已上传gitee <a href="https://gitee.com/codingce/hexo-blog" target="_blank" rel="noopener">https://gitee.com/codingce/hexo-blog</a><br>
 项目地址: <a href="https://github.com/xzMhehe/codingce-java" target="_blank" rel="noopener">https://github.com/xzMhehe/codingce-java</a></p>
@@ -606,7 +464,7 @@
               
             
               
-                <p>本文永久链接是：<a href=http://i.codingce.com.cn/2021/01/15/ES%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/>http://i.codingce.com.cn/2021/01/15/ES%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/</a></p>
+                <p>本文永久链接是：<a href=http://i.codingce.com.cn/2021/01/17/Rest%E9%A3%8E%E6%A0%BC/>http://i.codingce.com.cn/2021/01/17/Rest%E9%A3%8E%E6%A0%BC/</a></p>
               
             
           </blockquote>
@@ -623,10 +481,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-15T18:43:06+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-18T14:42:14+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Jan 15, 2021</p>
+    <p>更新于：Jan 18, 2021</p>
   </a>
 </div>
 
@@ -648,7 +506,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=http://i.codingce.com.cn/2021/01/15/ES%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/&title=ES核心概念 - xzMhehe&summary="
+          href="http://connect.qq.com/widget/shareqq/index.html?url=http://i.codingce.com.cn/2021/01/17/Rest%E9%A3%8E%E6%A0%BC/&title=ES的Rest风格 - xzMhehe&summary="
           
           >
           
@@ -660,7 +518,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://i.codingce.com.cn/2021/01/15/ES%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/&title=ES核心概念 - xzMhehe&summary="
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://i.codingce.com.cn/2021/01/17/Rest%E9%A3%8E%E6%A0%BC/&title=ES的Rest风格 - xzMhehe&summary="
           
           >
           
@@ -672,7 +530,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=http://i.codingce.com.cn/2021/01/15/ES%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/&title=ES核心概念 - xzMhehe&summary="
+          href="http://service.weibo.com/share/share.php?url=http://i.codingce.com.cn/2021/01/17/Rest%E9%A3%8E%E6%A0%BC/&title=ES的Rest风格 - xzMhehe&summary="
           
           >
           
@@ -702,19 +560,12 @@
   
     <div class="prev-next">
       
-        <a class='prev' href='/2021/01/15/IK%E5%88%86%E8%AF%8D%E5%99%A8%E8%AF%A6%E8%A7%A3/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>IK分词器详解</p>
-          <p class='content'>IK分词器插件
-什么是 IK 分词器
-分词:即把一段中文或者别的划分成一个个的关键字,我们在搜索时候会把自己的信息进行分词,会把数据库中或者索引库中的数据进行分词,然后进行一个匹配操作,默认的中...</p>
-        </a>
       
-      
-        <a class='next' href='/2021/01/15/Java%E9%93%BE%E8%A1%A8/'>
-          <p class='title'>Java链表<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>链表
-
-链表是一种物理存储单元上非连续、非顺序的存储结构，数据元素的逻辑顺序是通过链表中的指针链接次序实现的。链表由一系列结点（链表中每一个元素称为结点）组成，结点可以在运行时动态生成。每个结点...</p>
+        <a class='next' href='/2021/01/16/%E5%8F%8C%E6%8C%87%E9%92%88-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3-%E7%A7%BB%E5%8A%A8%E9%98%9F%E5%88%97/'>
+          <p class='title'>双指针/滑动窗口/移动队列<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>
+Never stop learning, beacuse life never stops teaching. 不要停止学习, 因为人生总有东西可教
+there is always more ...</p>
         </a>
       
     </div>
@@ -757,7 +608,7 @@
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ES核心概念"><span class="toc-text">ES核心概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#物理设计"><span class="toc-text">物理设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#逻辑设计"><span class="toc-text">逻辑设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文档"><span class="toc-text">文档</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类型"><span class="toc-text">类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#索引"><span class="toc-text">索引</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#物理设计-节点和分片-如何工作"><span class="toc-text">物理设计:节点和分片 如何工作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#倒排索引"><span class="toc-text">倒排索引</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ElasticSearch的索引和Lucene的索引对比"><span class="toc-text">ElasticSearch的索引和Lucene的索引对比</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是REST"><span class="toc-text">什么是REST</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基础测试"><span class="toc-text">基础测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建一个索引"><span class="toc-text">创建一个索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据类型"><span class="toc-text">数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建具体的索引规则"><span class="toc-text">创建具体的索引规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GET-获取具体信息"><span class="toc-text">GET 获取具体信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看默认的信息"><span class="toc-text">查看默认的信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他命令"><span class="toc-text">其他命令</span></a></li></ol></li></ol>
     </div>
   </section>
 
@@ -777,7 +628,7 @@
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="ES核心概念";
+  pdata.postTitle="ES的Rest风格";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 
