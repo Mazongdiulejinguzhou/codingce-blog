@@ -21,7 +21,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>Category: Sql - xzMhehe</title>
+  <title>Archive: 2021 - xzMhehe</title>
   
 
   
@@ -56,7 +56,7 @@
 <body>
   
 
-<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
+<header id="l_header" class="l_header auto shadow blur " style='opacity: 0' >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -243,7 +243,7 @@
     <div id="l_cover">
   
     
-        <div id="full" class='cover-wrapper  dock' style="display: none;">
+        <div id="half" class='cover-wrapper  dock' style="display: ;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg"></div>
           
@@ -290,18 +290,10 @@
       <div class='body-wrapper' id="pjax-container">
         
 
-
 <div class='l_main'>
-  
-    
-      
+	
+		
   <section class="post-list">
-    
-      
-        
-          
-        
-      
     
     
       
@@ -314,18 +306,29 @@
   
     
     <h2 class="article-title" >
-      <a href="/2020/07/11/utf8%E5%92%8Cutf8mb4%E7%9A%84%E5%8C%BA%E5%88%AB/">
-        utf8和utf8mb4的区别
+      <a href="/2021/01/06/Redis%E4%B8%89%E7%A7%8D%E7%89%B9%E6%AE%8A%E7%B1%BB%E5%9E%8B/">
+        Redis三种特殊类型
       </a>
     </h2>
   
   <div class='md'>
     
       
-        一、简介
-MySQL在5.5.3之后增加了这个utf8mb4的编码，mb4就是most bytes 4的意思，专门用来兼容四字节的unicode。好在utf8mb4是utf8的超集，除了将编码改为utf8mb4外不需要做其他转换。当然，为了节省空间，一般情况下使用utf8也就够了。
-二、内容描述
-那上面说了既然utf8能够存下大部分中文汉字,那为什么还要使用utf8mb4呢? 原来mysql...
+        Redis三种特殊类型
+三种特殊数据类型
+geospatial 地理位置
+朋友的定位, 附近的人, 打车的距离计算
+Redis的Geo在Redis3.2版本就推出了.这个功能可以推算地理位置信息, 两地之间的距离, 方圆几里的人
+首先需要一个城市经度纬度查询工具 自行百度搜索
+只有六个命令
+
+相关命令
+GEOADD
+GEODIST
+GEOHASH
+GEOPOS
+GEORADIUS
+GEORA...
       
     
   </div>
@@ -333,15 +336,15 @@ MySQL在5.5.3之后增加了这个utf8mb4的编码，mb4就是most bytes 4的意
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2020-07-11</time>
+        <time>2021-01-06</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/Sql/">Sql</a>
+          <a class="category-link" href="/categories/Redis/">Redis</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/07/11/utf8%E5%92%8Cutf8mb4%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+          <a class='readmore' href='/2021/01/06/Redis%E4%B8%89%E7%A7%8D%E7%89%B9%E6%AE%8A%E7%B1%BB%E5%9E%8B/'>
             Read More
           </a>
         </div>
@@ -358,11 +361,25 @@ MySQL在5.5.3之后增加了这个utf8mb4的编码，mb4就是most bytes 4的意
   </section>
   
     
-  
-
-
+      <br>
+      <div class="prev-next">
+        
+          <a class="prev" rel="prev" href="/archives/2021/page/2/">
+            <section class="post prev white-box shadow" >
+              <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;Previous&nbsp;
+            </section>
+          </a>
+        
+        <p class="current">
+          3 / 3
+        </p>
+        
+      </div>
     
   
+
+
+	
 </div>
 <aside class='l_side'>
   
@@ -571,7 +588,7 @@ MySQL在5.5.3之后增加了这个utf8mb4的编码，mb4就是most bytes 4的意
 
   var l_header=document.getElementById("l_header");
   
-  l_header.classList.add("show");
+  l_header.classList.remove("show");
   
 </script>
 
